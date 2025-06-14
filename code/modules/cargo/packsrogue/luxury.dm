@@ -129,3 +129,8 @@
 	name = "Signet"
 	cost = 220
 	contains = list(/obj/item/clothing/ring/signet)
+
+/datum/supply_pack/rogue/luxury/saiga_plushie
+	name = "Saiga Plushie"
+	cost = 50
+	contains = list(/obj/item/toy/plushie/saiga)

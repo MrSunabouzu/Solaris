@@ -11,7 +11,9 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/diagnose.ogg'
-	invocation_type = "none"
+	invocation_type = "emote"
+	invocation = span_warning("%user% casts Diagnose!")
+	invocation_emote_self = span_warning("I cast Diagnose!")
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 5 SECONDS //very stupidly simple spell
@@ -67,7 +69,9 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/gore/flesh_eat_03.ogg'
-	invocation_type = "none"
+	invocation_type = "emote"
+	invocation = span_warning("%user% casts Bodypart Miracle!")
+	invocation_emote_self = span_warning("I cast Bodypart Miracle!")
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 60 SECONDS //attaching a limb is pretty intense

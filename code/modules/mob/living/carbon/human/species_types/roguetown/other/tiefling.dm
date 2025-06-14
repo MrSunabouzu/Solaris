@@ -5,7 +5,13 @@
 	name = "Tiefling"
 	id = "tiefling"
 	desc = "<b>Tiefling</b><br>\
-	Placeholder Description.<br>\
+To the outsider, the Tiefling is little more than a lesson in tragedy being written into a bloodline. The corruptive ebb and flow of the broken earth deep below, where the armies of the Underking once marched forward into the material plane, bled into mortal bodies to twist them into a darker reflection of what was once human but no longer is.\
+To the privileged few, however, who understand the depths of what it means for a Tiefling to exist-- it is a lesson in redemption greater than any single lifetime. The intermingling of the 'corrupted' and the daemonic, those who had once been in the thrall of the Underking only to break free of his yoke, with the mortal races served to reinforce and stabilize the bloodlines into what is now recognized as a formal 'race'. <br>\
+
+Tieflings have become more prominent, following the end of the Dusk Era, as survivors of the Breaches and remnant soldiers of the shattered hordes emerge into mortal society. Redeemed and redeemers both, they are still subject to skepticism and cruelty from the uninformed and the suspicious.\
+Yet, it is a far cry from the struggles of the first to fall, who were often hunted, scorned, and outcasted from ‘civil’ society. As a result, many of the first Tieflings settled into remote, reclusive communities in the deep earth and in the wilds. <br>\
+It is a popular rumor that the devilspawned are blessed by Nunos with the colors of the earth's greatest treasures, a small sign of the Voiceless One's gentle forgiveness or acceptance despite their accursed origins.\
+While there is no official confirmation from the Church, this rumor has allowed some comfort and ease over the years in regards to those who would choose to move into the new urban societies following the Dusk War. <br>\
 	(+1 Constitution, +1 Intelligence)"
 
 	skin_tone_wording = "Progenitor"
@@ -142,3 +148,5 @@
 
 /datum/species/tieberian/random_surname()
 	return " [pick(world.file2list("strings/rt/names/other/tieflast.txt"))]"
+
+

@@ -38,7 +38,7 @@
 	var/spread_num = 10
 	var/damfactor = 3.5
 	var/reloaded = FALSE
-	var/load_time = 45
+	var/load_time = 40
 	var/gunpowder = FALSE
 	var/obj/item/ramrod/myrod = null
 	var/gunchannel
@@ -88,6 +88,13 @@
 			return FALSE
 		return TRUE
 
+
+
+/datum/intent/shoot/arquebus/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] prepares [masteritem] to fire!"))
+		playsound(mastermob, pick('sound/foley/musketcock.ogg'), 100, FALSE)
+
 /datum/intent/shoot/arquebus/get_chargetime()
 	if(mastermob && chargetime)
 		var/newtime = chargetime
@@ -116,6 +123,11 @@
 		if(mastermob.get_inactive_held_item())
 			return FALSE*/
 		return TRUE
+
+/datum/intent/arc/arquebus/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] prepares [masteritem] to fire!"))
+		playsound(mastermob, pick('sound/foley/musketcock.ogg'), 100, FALSE)
 
 /datum/intent/arc/arquebus/get_chargetime()
 	if(mastermob && chargetime)
@@ -231,6 +243,7 @@
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 		var/obj/projectile/BB = CB.BB
 		BB.damage = BB.damage * damfactor
+		BB.firer = user
 	gunpowder = FALSE
 	reloaded = FALSE
 	user.mind.adjust_experience(/datum/skill/combat/firearms, (user.STAINT*5))
@@ -314,7 +327,7 @@
 	slot_flags = ITEM_SLOT_HIP
 	var/damfactor = 3
 	var/reloaded = FALSE
-	var/load_time = 40
+	var/load_time = 35
 	var/gunpowder = FALSE
 	var/obj/item/ramrod/myrod = null
 	var/spread_num = 10
@@ -344,7 +357,12 @@
 /datum/intent/shoot/arquebus_pistol/can_charge()
 	if(mastermob)
 		return TRUE
-		
+
+/datum/intent/shoot/arquebus_pistol/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] prepares [masteritem] to fire!"))
+		playsound(mastermob, pick('sound/foley/musketcock.ogg'), 100, FALSE)
+
 /datum/intent/shoot/arquebus_pistol/get_chargetime()
 	if(mastermob && chargetime)
 		var/newtime = chargetime
@@ -373,6 +391,11 @@
 		if(mastermob.get_inactive_held_item())
 			return FALSE*/
 	return TRUE
+
+/datum/intent/arc/arquebus_pistol/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] prepares [masteritem] to fire!"))
+		playsound(mastermob, pick('sound/foley/musketcock.ogg'), 100, FALSE)
 
 /datum/intent/arc/arquebus_pistol/get_chargetime()
 	if(mastermob && chargetime)
@@ -496,6 +519,7 @@
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 		var/obj/projectile/BB = CB.BB
 		BB.damage = BB.damage * damfactor
+		BB.firer = user
 	gunpowder = FALSE
 	reloaded = FALSE
 	flick("flintstrike", src)
@@ -603,7 +627,7 @@
 	desc = "A powderhorn of gunpowder used for reloading a firearm."
 	icon_state = "powderhorn"
 	item_state = "powderhorn"
-	slot_flags = SLOT_BELT_L | SLOT_BELT_R | ITEM_SLOT_NECK | ITEM_SLOT_HIP
+	slot_flags = SLOT_BELT_L | SLOT_BELT_R | ITEM_SLOT_HIP
 	w_class = WEIGHT_CLASS_TINY
 
 

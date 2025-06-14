@@ -1,12 +1,8 @@
 Welcome back to Solaris Ridge!
-What a week, huh? -- What do you mean it's tuesday?!
 
-Playtime Tracking has been re-enabled; pending further usage. The initial month's worth of uptime was not backdated.
-THE SKELETON ARMY APPEARS... Necromancers have been fixed up quite substantially.
-Becoming a deadite no longer makes you non-organic. Or non-synthetic. Or just non anything, really.
-Clocks no longer incorrectly refer to days of the week that are not real, and cannot hurt you.
-Another new dungeon has been added to the map! Surely, nothing nefarious lurks inside...
-It would be really funny if you aerosolized the fixed-up stamina potions.
-QUARTZ RINGS ARE NO LONGER INVISIBLE...
+We're testing the first rounds of our newer tileset! Visibility should be drastically upped, no matter where you go.
+The ENTIRE game's HTML/CSS skin has been revamped in this vain as well. THe actual HUD has remained untouched so far.
+These are the 'monster' changes for the time being, the big ones.
+Nearly every spell in the game now has some form of feedback for casting.
 
 Have fun!

@@ -176,6 +176,8 @@
 		H.change_stat("intelligence", rand(4,5))
 		H.change_stat("perception", 3)
 		H.mind.adjust_spellpoints(4)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/nondetection)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
@@ -184,7 +186,6 @@
 		H.change_stat("strength", -1)
 		H.change_stat("intelligence", 1)
 		H.change_stat("perception", 1)
-		H.mind.adjust_spellpoints(1)
 
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 

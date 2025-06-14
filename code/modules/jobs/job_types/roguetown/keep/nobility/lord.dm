@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 
 /datum/job/roguetown/lord
 	title = "Marquis"
-	f_title = "Marquise"
+	f_title = "Marquess"
 	flag = LORD
 	department_flag = NOBLEMEN
 	selection_color = JCOLOR_NOBLE
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 
 /datum/job/roguetown/exlord //just used to change the lords title
 	title = "Marquis Emeritus"
-	f_title = "Marquise Emeritus"
+	f_title = "Marquess Emeritus"
 	flag = LORD
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	if(L)
 		SSticker.rulermob = L
 		if(should_wear_femme_clothes(L))
-			SSticker.rulertype = "Marquise"
+			SSticker.rulertype = "Marquess"
 		else
 			SSticker.rulertype = "Marquis"
 		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is [SSticker.rulertype] of Sunmarch.</span></span></b>")

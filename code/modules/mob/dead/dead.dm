@@ -95,7 +95,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 							var/thing = "[player.client.prefs.real_name]"
 							if(istype(job, /datum/job/roguetown/hand))
 								if(player != src)
-									if(client.prefs.job_preferences["Marquise"] == JP_HIGH)
+									if(client.prefs.job_preferences["Marquis"] == JP_HIGH)
 										thing = "<a href='byond://?src=[REF(src)];sethand=[player.client.ckey]'>[player.client.prefs.real_name]</a>"
 								for(var/mob/dead/new_player/Lord in GLOB.player_list)
 									if(Lord.client.prefs.job_preferences["Marquis"] == JP_HIGH)

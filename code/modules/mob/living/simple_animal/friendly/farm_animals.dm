@@ -324,7 +324,7 @@
 			amount_grown += rand(1,2)
 			if(amount_grown >= 100)
 				visible_message(span_notice("[src] hatches with a quiet cracking sound."))
-				new /mob/living/simple_animal/chick(get_turf(src))
+				new mob_type(get_turf(src))
 				STOP_PROCESSING(SSobj, src)
 				qdel(src)
 

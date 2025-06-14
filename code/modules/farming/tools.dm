@@ -213,26 +213,6 @@
 	candodge = FALSE
 	misscost = 0
 
-/*
-//make this attack_turf instead
-/obj/item/rogueweapon/hoe/afterattack(obj/target, mob/user, proximity)
-	if((!proximity) || (!wielded))
-		return ..()
-
-	if(istype(target, /turf/open/floor/rogue/dirt))
-		var/obj/machinery/crop/R = locate() in target
-		if(R)
-			to_chat(user,span_warning("There's already a mound here."))
-			return
-		if(prob(10)) //ROGTODO make this farming skill based maybe a stat too
-			user.visible_message(span_notice("[user] tills the soil!"), \
-								span_notice("I till the soil."))
-			new /obj/machinery/crop(target)
-		else
-			to_chat(user,span_warning("I till the soil."))
-		return
-	..()
-*/
 /obj/item/rogueweapon/pitchfork
 
 	force = 10

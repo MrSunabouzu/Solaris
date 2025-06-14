@@ -4,7 +4,7 @@
 	department_flag = MAGES_UNIVERSITY
 	selection_color = JCOLOR_MAGES
 	faction = "Station"
-	total_positions = 1
+	total_positions = 0 //disabled until people come and give it some love, Role at the moment is replaced both by head mage and archivist.
 	spawn_positions = 1
 
 	allowed_races = RACES_ALL_KINDS

@@ -31,8 +31,9 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/storage/keyring/mages_university
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backr = /obj/item/rogueweapon/woodstaff
+	backr = /obj/item/rogueweapon/woodstaff/amethyst
 	shoes = /obj/item/clothing/shoes/roguetown/gladiator // FANCY SANDALS
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 
 /datum/job/roguetown/wapprentice/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
@@ -59,9 +60,8 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
@@ -69,15 +69,16 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.mind.adjust_spellpoints(5)
+		H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
+		H.mind.adjust_spellpoints(7)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
-			H.mind.adjust_spellpoints(2)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-		H.change_stat("intelligence", 2)
+		ADD_TRAIT(H, TRAIT_MAGIC_TUTOR, TRAIT_GENERIC)
+		H.change_stat("intelligence", 3)
 		H.change_stat("speed", 1)
 		H.change_stat("perception", 1)
 		
@@ -89,16 +90,23 @@
 	category_tags = list(CTAG_WAPPRENTICE)
 	
 /datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
-	backpack_contents = list(/obj/item/roguegem/amethyst = 1)
+	backpack_contents = list(/obj/item/roguegem/amethyst = 1, /obj/item/natural/hide = 1, /obj/item/paper/scroll = 6)
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-		H.mind.adjust_spellpoints(5)
+		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+		H.mind.adjust_spellpoints(4)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/create_campfire)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/guided_bolt)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+		H.mind.AddSpell(/obj/effect/proc_holder/spell/self/light)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/featherfall)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 		H.change_stat("intelligence", 3)
 		H.change_stat("speed", 1)
 		H.change_stat("fortune", 1)
@@ -107,4 +115,3 @@
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
-			H.mind.adjust_spellpoints(1)

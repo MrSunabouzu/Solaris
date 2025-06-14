@@ -48,12 +48,16 @@
 /obj/item/rogueweapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the projectile", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	var/mob/attacker
+	var/obj/projectile/P
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
 		var/obj/item/I = hitby
 		attacker = I.thrownby
 	if(attack_type == PROJECTILE_ATTACK)
-		var/obj/projectile/P = hitby
+		P = hitby
 		attacker = P.firer
+	// Musket bullets penetrate shields
+	if(istype(P, /obj/projectile/bullet/reusable/bullet))
+		return FALSE
 	if(attacker && istype(attacker))
 		if (!owner.can_see_cone(attacker))
 			return FALSE

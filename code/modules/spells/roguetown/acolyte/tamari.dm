@@ -81,7 +81,7 @@
 		to_chat(user, span_boldnotice("The vestige of the hidden moon high above reveals His truth: the knowledge of beast-tongue was in me all along."))
 	
 	if (!first_cast)
-		to_chat(user, span_boldwarning("So it is murmured in the Earth and Air: the Call of the Moon is sacred, and to share knowledge gleaned from it with those not of Him is a SIN."))
+		to_chat(user, span_boldwarning("So it is murmured in the Earth and Air: the Call of the Moon is sacred, and to share knowledge gleaned from it with those not of Her is a SIN."))
 		to_chat(user, span_boldwarning("Ware thee well, child of Tamari."))
 		first_cast = TRUE
 	. = ..()
@@ -120,13 +120,13 @@ var/static/list/druid_forms = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab,
 		"level" = 1
 	),
-	"rous" = list(
-		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
-		"level" = 2
-	),
 	// Intermediate forms (Level 2-3)
 	"wolf" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+		"level" = 2
+	),
+	"rous" = list(
+		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 		"level" = 2
 	),
 	"spider" = list(
@@ -234,6 +234,7 @@ var/static/list/druid_forms = list(
 	shape.melee_damage_lower = initial(shape.melee_damage_lower)
 	shape.melee_damage_upper = initial(shape.melee_damage_upper)
 	shape.dodgetime = 20 // Allow dodging for all forms
+	shape.breedchildren = 0 // Fuck off
 
 	// Enable combat capabilities
 	shape.dextrous = TRUE

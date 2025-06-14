@@ -674,7 +674,7 @@
 					/obj/item/reagent_containers/food/snacks/smallrat = 1)
 	verbage_simple = "assemble"
 	verbage = "assembles"
-	skillcraft = /datum/skill/magic/arcane
+	requires_arcane = TRUE
 	craftdiff = 3
 	wallcraft = TRUE
 	ontile = TRUE

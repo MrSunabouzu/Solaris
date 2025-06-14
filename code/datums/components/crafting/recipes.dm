@@ -23,6 +23,8 @@
 	var/wallcraft = FALSE
 	var/craftdiff = 1
 	var/sellprice = 0
+	var/requires_arcane = FALSE
+	var/requires_divine = FALSE
 	//crafting diff, every diff removes 25% chance to craft
 /*
 /datum/crafting_recipe/example

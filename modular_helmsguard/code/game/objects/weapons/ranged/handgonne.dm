@@ -37,7 +37,7 @@
 	var/spread_num = 10
 	var/damfactor = 2
 	var/reloaded = FALSE
-	var/load_time = 45
+	var/load_time = 40
 	var/gunpowder = FALSE
 	var/obj/item/ramrod/myrod = null
 	var/gunchannel
@@ -175,6 +175,7 @@
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 		var/obj/projectile/BB = CB.BB
 		BB.damage = BB.damage * damfactor
+		BB.firer = user
 	gunpowder = FALSE
 	reloaded = FALSE
 	spark_act()
@@ -222,6 +223,11 @@
 /datum/intent/shoot/handgonne
 	chargedrain = 0
 
+/datum/intent/shoot/handgonne/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] prepares [masteritem] to fire!"))
+		playsound(mastermob, pick('sound/foley/musketcock.ogg'), 100, FALSE)
+
 /datum/intent/shoot/handgonne/can_charge()
 	if(mastermob && masteritem.wielded)
 		if(!masteritem.wielded)
@@ -257,6 +263,11 @@
 			return FALSE*/
 		return TRUE
 
+/datum/intent/arc/handgonne/prewarning()
+	if(mastermob)
+		mastermob.visible_message(span_warning("[mastermob] prepares [masteritem] to fire!"))
+		playsound(mastermob, pick('sound/foley/musketcock.ogg'), 100, FALSE)
+
 /datum/intent/arc/handgonne/get_chargetime()
 	if(mastermob && chargetime)
 		var/newtime = chargetime
@@ -271,5 +282,3 @@
 		else
 			return 1
 	return chargetime
-
-

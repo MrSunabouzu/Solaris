@@ -542,18 +542,33 @@
 
 /obj/projectile/bullet/reusable/bullet/iron
 	name = "iron ball"
-	damage = 37
+	damage = 39
 	damage_type = BRUTE
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "musketball_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bullet
 	range = 12
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
-	embedchance = 100
+	embedchance = 65
 	woundclass = BCLASS_STAB
 	flag = "piercing"
 	armor_penetration = 80
 	speed = 0.1
+
+/obj/projectile/bullet/reusable/bullet/on_hit(atom/target, mob/living/shooter)
+	. = ..()
+
+	if(!shooter)
+		shooter = src.firer
+
+	if(ismob(target))
+		var/mob/living/M = target
+
+		if(shooter && shooter.client)
+			target.visible_message(
+				span_danger("[shooter] hits [M] with a [src.name]!"),
+				span_warning("You shoot [M] with your [src.name]!")
+			)
 
 /obj/item/ammo_casing/caseless/rogue/bullet
 	name = "iron sphere"
@@ -571,17 +586,17 @@
 
 /obj/projectile/bullet/reusable/bullet/steel
 	name = "steel ball"
-	damage = 42
+	damage = 44
 	damage_type = BRUTE
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "musketball_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bullet/steel
 	range = 16
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
-	embedchance = 100
+	embedchance = 80
 	woundclass = BCLASS_STAB
 	flag = "piercing"
-	armor_penetration = 100
+	armor_penetration = 90
 	speed = 0.1
 
 /obj/item/ammo_casing/caseless/rogue/bullet/steel

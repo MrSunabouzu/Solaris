@@ -349,12 +349,12 @@
 /datum/status_effect/buff/wardenbuff
 	id = "wardenbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenbuff
-	effectedstats = list("speed" = 1, "perception" = 3) 
+	effectedstats = list("speed" = 1, "perception" = 3)
 
 /datum/status_effect/buff/guardbuffone
 	id = "guardbuffone"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guardbuffone
-	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "perception" = 2) 
+	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "perception" = 2)
 
 /datum/status_effect/buff/knightbuff
 	id = "knightbuff"
@@ -435,7 +435,7 @@
 
 /datum/status_effect/buff/healing/on_remove()
 	owner.remove_filter(MIRACLE_HEALING_FILTER)
-	
+
 /atom/movable/screen/alert/status_effect/buff/fortify
 	name = "Fortifying Miracle"
 	desc = "Divine intervention bolsters me and aids my recovery."
@@ -717,3 +717,32 @@
 /datum/status_effect/buff/variellian_joy/on_remove()
 	. = ..()
 	to_chat(owner, span_info("My fortune returns to normal."))
+
+//Peaceful notification for 9 minutes because the NINES.
+/datum/status_effect/buff/faithful
+	id = "faithful"
+	duration = 9 MINUTES
+
+/datum/status_effect/buff/faithful/on_apply()
+	owner.visible_message(
+		"<span class='notice'>A calm warmth flows through [owner]’s heart.</span>",
+	)
+	owner.add_stress(/datum/stressevent/faithful)
+	return ..()
+
+/datum/status_effect/buff/faithful/on_remove()
+	owner.visible_message(
+		"<span class='warning'>The calm warmth around [owner] fades away.</span>",
+	)
+	return ..()
+
+/datum/status_effect/buff/ffortune
+	id = "Faith Fortune"
+	alert_type = /atom/movable/screen/alert/status_effect/ffortune
+	effectedstats = list("fortune" = 1)
+	duration = 9 MINUTES
+
+/atom/movable/screen/alert/status_effect/ffortune
+	name = "Faith Fortune"
+	icon_state = "buff"
+	desc = "The Nine see you. The priest’s faith wraps your path in fortune."

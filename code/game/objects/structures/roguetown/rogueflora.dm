@@ -38,45 +38,11 @@
 		return
 	return ..()
 
-/obj/structure/flora/roguetree/Initialize()
-	. = ..()
-
-/*
-	if(makevines)
-		var/turf/target = get_step_multiz(src, UP)
-		if(istype(target, /turf/open/transparent/openspace))
-			target.ChangeTurf(/turf/open/floor/rogue/shroud)
-			var/makecanopy = FALSE
-			for(var/D in GLOB.cardinals)
-				if(!makecanopy)
-					var/turf/NT = get_step(src, D)
-					for(var/obj/structure/flora/roguetree/R in NT)
-						if(R.makevines)
-							makecanopy = TRUE
-							break
-			if(makecanopy)
-				for(var/D in GLOB.cardinals)
-					var/turf/NT = get_step(target, D)
-					if(NT)
-						if(istype(NT, /turf/open/transparent/openspace) || istype(NT, /turf/open/floor/rogue/shroud))
-							NT.ChangeTurf(/turf/closed/wall/shroud)
-							for(var/X in GLOB.cardinals)
-								var/turf/NA = get_step(NT, X)
-								if(NA)
-									if(istype(NA, /turf/open/transparent/openspace))
-										NA.ChangeTurf(/turf/open/floor/rogue/shroud)
-*/
-
-	if(istype(loc, /turf/open/floor/rogue/grass))
-		var/turf/T = loc
-		T.ChangeTurf(/turf/open/floor/rogue/dirt)
-
 /obj/structure/flora/roguetree/obj_destruction(damage_flag)
 	if(stump_type)
 		new stump_type(loc)
 	playsound(src, 'sound/misc/treefall.ogg', 100, FALSE)
 	. = ..()
-
 
 /obj/structure/flora/roguetree/Initialize()
 	. = ..()
@@ -352,6 +318,20 @@
 		return 0
 	return 1
 
+/obj/structure/flora/roguegrass/bush/red
+	icon_state = "bush1red"
+
+/obj/structure/flora/roguegrass/bush/red/Initialize()
+	. = ..()
+	icon_state = "bush[rand(1,4)]red"
+
+/obj/structure/flora/roguegrass/bush/winter
+	icon_state = "bush1winter"
+
+/obj/structure/flora/roguegrass/bush/winter/Initialize()
+	. = ..()
+	icon_state = "bush[rand(1,4)]winter"
+
 /obj/structure/flora/roguegrass/bush/wall
 	name = "great bush"
 	desc = "A bush, this one's roots are thick and block the way."
@@ -372,13 +352,27 @@
 
 /obj/structure/flora/roguegrass/bush/wall/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSGRILLE))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/structure/flora/roguegrass/bush/wall/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && (O.pass_flags & PASSGRILLE))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
+
+/obj/structure/flora/roguegrass/bush/wall/red
+	icon_state = "bushwall1red"
+
+/obj/structure/flora/roguegrass/bush/wall/red/Initialize()
+	. = ..()
+	icon_state = "bushwall[pick(1,2)]red"
+
+/obj/structure/flora/roguegrass/bush/wall/winter
+	icon_state = "bushwall1winter"
+
+/obj/structure/flora/roguegrass/bush/wall/winter/Initialize()
+	. = ..()
+	icon_state = "bushwall[pick(1,2)]winter"
 
 /obj/structure/flora/roguegrass/bush/wall/tall
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
@@ -391,6 +385,13 @@
 /obj/structure/flora/roguegrass/bush/wall/tall/Initialize()
 	. = ..()
 	icon_state = "tallbush[pick(1,2)]"
+
+/obj/structure/flora/roguegrass/bush/wall/tall/red
+	icon_state = "tallbush1red"
+
+/obj/structure/flora/roguegrass/bush/wall/tall/red/Initialize()
+	. = ..()
+	icon_state = "tallbush[pick(1,2)]red"
 
 
 /obj/structure/flora/rogueshroom

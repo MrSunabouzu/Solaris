@@ -5,8 +5,9 @@
 	school = "transmutation"
 	recharge_time = 300
 	clothes_req = TRUE
-	invocation = "none"
-	invocation_type = "none"
+	invocation_type = "emote"
+	invocation = span_warning("%user% casts Ethereal Jaunt!")
+	invocation_emote_self = span_warning("I cast Ethereal Jaunt!")
 	range = -1
 	cooldown_min = 100 //50 deciseconds reduction per rank
 	include_user = TRUE

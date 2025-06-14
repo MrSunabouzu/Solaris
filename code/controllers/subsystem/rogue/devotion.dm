@@ -133,6 +133,7 @@
 		LAZYADD(granted_spells, newspell)
 	level = CLERIC_T0
 	max_devotion = CLERIC_REQ_1 //Max devotion limit - Paladins are stronger but cannot pray to gain all abilities beyond t1
+	devotion = max_devotion
 	max_progression = CLERIC_REQ_1
 
 /datum/devotion/proc/grant_spells_churchling(mob/living/carbon/human/H)
@@ -148,6 +149,7 @@
 		LAZYADD(granted_spells, newspell)
 	level = CLERIC_T0
 	max_devotion = CLERIC_REQ_1 //Max devotion limit - Churchlings only get diagnose and lesser miracle.
+	devotion = max_devotion
 	max_progression = CLERIC_REQ_0
 
 /datum/devotion/proc/grant_spells_priest(mob/living/carbon/human/H)

@@ -30,8 +30,13 @@
 			beltl = /obj/item/rogueweapon/huntingknife
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/woodstaff
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/spellbook_unfinished/pre_arcane = 1, /obj/item/roguekey/mages_university = 1)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+			backpack_contents = list(\
+				/obj/item/flashlight/flare/torch = 1, \
+				/obj/item/spellbook_unfinished/pre_arcane = 1, \
+				/obj/item/roguegem/amethyst = 1, \
+				/obj/item/roguekey/adventurers_guild = 1, \
+				)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
@@ -39,16 +44,20 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 			if(H.age == AGE_OLD)
 				H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-				H.mind.adjust_spellpoints(2)
 			H.change_stat("intelligence", 3)
-			H.change_stat("perception", 2)
+			H.change_stat("perception", 1)
 			H.change_stat("speed", 1)
-			H.mind.adjust_spellpoints(5)
+			H.change_stat("endurance", 1)
+			H.mind.adjust_spellpoints(7)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_MAGIC_TUTOR, TRAIT_GENERIC)
 		if("Spellsinger")
 			to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
 			head = /obj/item/clothing/head/roguetown/bucklehat
@@ -68,7 +77,7 @@
 				/obj/item/flashlight/flare/torch = 1, \
 				/obj/item/spellbook_unfinished/pre_arcane = 1, \
 				/obj/item/roguegem/amethyst = 1, \
-				/obj/item/roguekey/mages_university = 1, \
+				/obj/item/roguekey/adventurers_guild = 1, \
 				)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
@@ -81,10 +90,13 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 			H.change_stat("intelligence", 2)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)
-			H.mind.adjust_spellpoints(3)
+			H.mind.adjust_spellpoints(5)
 			H.cmode_music = 'sound/music/combat_bard.ogg'
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)

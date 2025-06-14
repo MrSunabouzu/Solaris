@@ -3,7 +3,7 @@ body
 	font-family: Pterra, TrueType;
 	padding: 0;
 	margin: 0;
-	background-color: #000000;
+	background-color: #0d0d0d;
 	font-size: 14px;
 	color: #897472;
 	line-height: 170%;
@@ -11,7 +11,7 @@ body
 
 hr
 {
-	background-color: #000000;
+	background-color: #0d0d0d;
 	height: 2px;
 }
 
@@ -20,8 +20,8 @@ a, button, a:link, a:visited, a:active, .linkOn, .linkOff
 	font-family: Pterra, TrueType;
 	color: #7b5353;
 	text-decoration: none;
-	background: #000000;
-	border: 1px solid #000000;
+	background: #0d0d0d;
+	border: 1px solid #0d0d0d;
 	padding: 1px 4px 1px 4px;
 	margin: 0 2px 0 0;
 	cursor:pointer;
@@ -30,8 +30,8 @@ a, button, a:link, a:visited, a:active, .linkOn, .linkOff
 a:hover
 {
 	color: #eac0b9;
-	background: #000000;
-	border-color: #000000;
+	background: #0d0d0d;
+	border-color: #0d0d0d;
 	text-decoration-line: underline; 
 }
 
@@ -39,8 +39,8 @@ a.white, a.white:link, a.white:visited, a.white:active
 {
 	color: #7b5353;
 	text-decoration: none;
-	background: #000000;
-	border: 1px solid #000000;
+	background: #0d0d0d;
+	border: 1px solid #0d0d0d;
 	padding: 1px 4px 1px 4px;
 	margin: 0 2px 0 0;
 	cursor:default;
@@ -49,22 +49,22 @@ a.white, a.white:link, a.white:visited, a.white:active
 a.white:hover
 {
 	color: #eac0b9;
-	background: #000000;
+	background: #0d0d0d;
 	text-decoration-line: underline; 
 }
 
 .linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover
 {
 	color: #7b5353;
-	background: #000000;
+	background: #0d0d0d;
 	border-color: #7b5353;
 }
 
 .linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover
 {
 	color: #5e5959;
-	background: #000000;
-	border-color: #000000;
+	background: #0d0d0d;
+	border-color: #0d0d0d;
 }
 
 a.icon, .linkOn.icon, .linkOff.icon
@@ -139,7 +139,7 @@ h4
 	clear: both;
 	padding: 6px 8px 6px 8px;
 	border-bottom: 2px solid #161616;
-	background: #000000;
+	background: #0d0d0d;
 	color: #ae3636;
 	font-size: 18px;
 }
@@ -180,13 +180,13 @@ h4
 
 .dark
 {
-	color: #000000;
+	color: #0d0d0d;
 }
 
 .notice
 {
 	position: relative;
-	background: #000000;
+	background: #0d0d0d;
 	color: #ae3636;
 	font-size: 10px;
 	font-style: italic;
@@ -215,8 +215,8 @@ div.notice
 
 .statusDisplay
 {
-	background: #000000;
-	color: #ffffff;
+	background: #0d0d0d;
+	color: #3b2e22;
 	border: 1px solid #2f1c37;
 	padding: 4px;
 	margin: 3px 0;

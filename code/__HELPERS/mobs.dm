@@ -608,3 +608,21 @@ GLOBAL_LIST_EMPTY(species_list)
 		sleep(1)
 	if(set_original_dir)
 		AM.setDir(originaldir)
+
+/proc/is_combat_class(mob/living/carbon/human/recipient)
+	if (!HAS_TRAIT_FROM(recipient, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) && !HAS_TRAIT_FROM(recipient, TRAIT_HEAVYARMOR, TRAIT_GENERIC) && !HAS_TRAIT_FROM(recipient, TRAIT_DODGEEXPERT, TRAIT_GENERIC) && !HAS_TRAIT_FROM(recipient, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC))
+		return FALSE
+	else
+		return TRUE
+
+/proc/is_arcane(mob/living/carbon/human/recipient)
+	if (!recipient.mind?.get_skill_level(/datum/skill/magic/arcane)) //placed here because if in the future we want to check in a different manner, we can and we wont have so much trouble.
+		return FALSE
+	else
+		return TRUE
+
+/proc/is_divine(mob/living/carbon/human/recipient)
+	if (!recipient.devotion) //placed here because if in the future we want to check in a different manner, we can and we wont have so much trouble.
+		return FALSE
+	else
+		return TRUE

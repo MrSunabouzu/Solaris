@@ -50,7 +50,9 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item
 	name = "Summon weapon"
 	desc = ""
-	invocation_type = "none"
+	invocation_type = "emote"
+	invocation = span_warning("%user% casts Summon weapon!")
+	invocation_emote_self = span_warning("I cast Summon weapon!")
 	include_user = TRUE
 	range = -1
 	clothes_req = FALSE

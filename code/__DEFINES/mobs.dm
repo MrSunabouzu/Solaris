@@ -255,6 +255,7 @@
 #define SLIP_WHEN_CRAWLING		(1<<4) //clown planet ruin
 
 #define MAX_CHICKENS 50
+#define MAX_MOTHCATS 50
 
 ///Flags used by the flags parameter of electrocute act.
 
@@ -481,7 +482,7 @@
 #define SKIN_COLOR_MURKWALKER "716646"
 #define SKIN_COLOR_ICEBLOOD "D6D5E2"
 #define SKIN_COLOR_RAWHIDE "7A372B"
-#define SKIN_COLOR_MARINE "50715C"
+#define SKIN_COLOR_MARINE "313F84"
 #define SKIN_COLOR_PYRITE "948D46"
 #define SKIN_COLOR_TEAK "739446"
 #define SKIN_COLOR_UNDERGROWTH "588753"

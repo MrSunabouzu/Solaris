@@ -27,6 +27,11 @@
 	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 6, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/random
 	pants = /obj/item/clothing/under/roguetown/trou
@@ -44,6 +49,6 @@
 						)
 	H.change_stat("strength", 4)
 	H.change_stat("constitution", 1)
+	H.change_stat("endurance", 1)
 	H.change_stat("perception", 1)
-	H.change_stat("intelligence", 2)
-
+	H.change_stat("intelligence", 1)

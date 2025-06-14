@@ -62,6 +62,8 @@
 		if(/datum/patron/three_sisters/tamari)
 			neck = /obj/item/clothing/neck/roguetown/psicross/tamari
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tamari
+			H.mind.adjust_skillrank(/datum/skill/magic/druidic, 2, TRUE) //SOLARIS EDIT. better than templar at the funny shapeshifting because you're already punching things. Worse than unarmed usually anyways.
+			to_chat(H, span_notice("As a follower of Tamari, you have innate knowledge of druidic magic."))
 		if(/datum/patron/lording_three/tsoridys)
 			neck = /obj/item/clothing/neck/roguetown/psicross/tsoridys
 			cloak = /obj/item/clothing/cloak/templar/tsoridian
@@ -170,6 +172,9 @@
 			wrists = /obj/item/clothing/neck/roguetown/psicross/tamari
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/tamarihelm
 			cloak = /obj/item/clothing/cloak/tabard/crusader/tamari
+			H.grant_language(/datum/language/beast)
+			H.mind.adjust_skillrank(/datum/skill/magic/druidic, 1, TRUE) //SOLARIS EDIT. worse than Monk because there's no reason you should be using this over your weapon skills. You get the goofy ones as a ribbon.
+			to_chat(H, span_notice("As a follower of Tamari, you have innate knowledge of druidic magic.")) 
 		if(/datum/patron/lording_three/tsoridys)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/tsoridys
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/tsoridian

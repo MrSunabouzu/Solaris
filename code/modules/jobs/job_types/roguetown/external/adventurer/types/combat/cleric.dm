@@ -55,6 +55,19 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+			if(H.patron?.type == /datum/patron/three_sisters/nunos)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
+			if(H.patron?.type == /datum/patron/lording_three/tsoridys)
+				ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/varielle)
+				ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/cinella)
+				H.mind.adjust_skillrank(/datum/skill/labor/fishing, 3, TRUE)
+				ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			var/weapons = list("Katar","Knuckle Dusters","MY BARE HANDS!!!")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -109,7 +122,7 @@
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			gloves = /obj/item/clothing/gloves/roguetown/chain
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/roguekey/adventurers_guild = 1)
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
@@ -121,6 +134,19 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+			if(H.patron?.type == /datum/patron/three_sisters/nunos)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
+			if(H.patron?.type == /datum/patron/lording_three/tsoridys)
+				ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/varielle)
+				ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/cinella)
+				H.mind.adjust_skillrank(/datum/skill/labor/fishing, 3, TRUE)
+				ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_holy.ogg'
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			switch(H.patron?.type)
@@ -189,7 +215,7 @@
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
 			C.grant_spells_templar(H)
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/roguekey/adventurers_guild = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -199,6 +225,19 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+			if(H.patron?.type == /datum/patron/three_sisters/nunos)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
+			if(H.patron?.type == /datum/patron/lording_three/tsoridys)
+				ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/varielle)
+				ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/cinella)
+				H.mind.adjust_skillrank(/datum/skill/labor/fishing, 3, TRUE)
+				ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_bard.ogg'
@@ -256,7 +295,7 @@
 			backr = /obj/item/rogueweapon/woodstaff
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/flashlight/flare/torch/lantern
-			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch = 1, /obj/item/roguekey/adventurers_guild = 1)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
@@ -266,6 +305,19 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+			if(H.patron?.type == /datum/patron/three_sisters/nunos)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
+			if(H.patron?.type == /datum/patron/lording_three/tsoridys)
+				ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_SOUL_EXAMINE, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/varielle)
+				ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
+			if(H.patron?.type == /datum/patron/peoples_pantheon/cinella)
+				H.mind.adjust_skillrank(/datum/skill/labor/fishing, 3, TRUE)
+				ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_holy.ogg'
 			H.change_stat("intelligence", 2)
 			H.change_stat("endurance", 1)
@@ -298,7 +350,7 @@
 					cloak = /obj/item/clothing/suit/roguetown/shirt/robe //placeholder, anyone who doesn't have cool patron drip sprites just gets generic robes
 					head = /obj/item/clothing/head/roguetown/roguehood
 			var/datum/devotion/C = new /datum/devotion(H, H.patron)
-			C.grant_spells(H)
+			C.grant_spells_monk(H)
 			START_PROCESSING(SSobj, C)
 		if("Druid")
 			if(!istype(H.patron, /datum/patron/three_sisters/tamari)) // I see your bitchass
@@ -315,7 +367,7 @@
 			backr = /obj/item/rogueweapon/woodstaff
 			head = /obj/item/clothing/head/roguetown/tamarimask
 			shirt = /obj/item/clothing/suit/roguetown/shirt/robe/tamari
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/stoneknife = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/stoneknife = 1, /obj/item/roguekey/adventurers_guild = 1)
 			if(H.mind) // Mostly based off the old druid job with some minor tweaks and cuts. THESE druids are still ambushable
 				H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE)

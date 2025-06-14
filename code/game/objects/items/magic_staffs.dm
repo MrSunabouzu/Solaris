@@ -79,6 +79,7 @@
 	icon_state = "topazstaff"
 	cast_time_reduction = TOPAZ_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF //imagine the salt
+	static_debris = list(/obj/item/roguegem/yellow = 1)
 
 /obj/item/rogueweapon/woodstaff/amethyst
 	name = "amethyst-focused staff"
@@ -86,6 +87,7 @@
 	icon_state = "amethyststaff"
 	cast_time_reduction = TOPAZ_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem/amethyst = 1)
 
 /obj/item/rogueweapon/woodstaff/emerald
 	name = "emerald-focused staff"
@@ -93,6 +95,7 @@
 	icon_state = "emeraldstaff"
 	cast_time_reduction = EMERALD_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem/green = 1)
 
 /obj/item/rogueweapon/woodstaff/sapphire
 	name = "sapphire-focused staff"
@@ -100,6 +103,7 @@
 	icon_state = "sapphirestaff"
 	cast_time_reduction = SAPPHIRE_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem/violet = 1)
 
 /obj/item/rogueweapon/woodstaff/quartz
 	name = "quartz-focused staff"
@@ -107,6 +111,7 @@
 	icon_state = "quartzstaff"
 	cast_time_reduction = QUARTZ_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem/blue = 1)
 
 /obj/item/rogueweapon/woodstaff/ruby
 	name = "ruby-focused staff"
@@ -114,6 +119,7 @@
 	icon_state = "rubystaff"
 	cast_time_reduction = RUBY_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem = 1)
 
 /obj/item/rogueweapon/woodstaff/diamond
 	name = "diamond-focused staff"
@@ -121,6 +127,7 @@
 	icon_state = "diamondstaff"
 	cast_time_reduction = DIAMOND_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem/diamond = 1)
 
 /obj/item/rogueweapon/woodstaff/riddle_of_steel
 	name = "\improper Staff of the Riddle-Steel"
@@ -129,16 +136,19 @@
 	icon_state = "riddlestaff"
 	cast_time_reduction = RIDDLE_OF_STEEL_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/riddleofsteel = 1)
 
 /obj/item/rogueweapon/woodstaff/riddle_of_steel/head_mage
 	name = "\improper Staff of the Head Mage"
 	icon_state = "courtstaff"
+	static_debris = list(/obj/item/riddleofsteel = 1)
 
 /obj/item/rogueweapon/woodstaff/halfs_moon
 	name = "staff of the halfs-moon"
 	icon_state = "naledistaff"
 	cast_time_reduction = DIAMOND_CAST_TIME_REDUCTION
 	resistance_flags = FIRE_PROOF
+	static_debris = list(/obj/item/roguegem/diamond = 1)
 
 //slapcrafting stuff
 

@@ -198,6 +198,16 @@
 	cost = 20
 	contains = list(/obj/item/cooking/pan)
 
+/datum/supply_pack/rogue/tools/mess_kit
+	name = "Mess Kit"
+	cost = 50
+	contains = list(/obj/item/storage/gadget/messkit)
+
+/datum/supply_pack/rogue/tools/folding_table
+	name = "Folding Table"
+	cost = 30
+	contains = list(/obj/item/folding_table_stored)
+
 /datum/supply_pack/rogue/tools/needles
 	name = "Needles"
 	cost = 15

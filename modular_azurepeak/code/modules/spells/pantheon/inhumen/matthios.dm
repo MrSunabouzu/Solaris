@@ -10,7 +10,9 @@
 	range = 2
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
-	invocation_type = "none"
+	invocation_type = "emote"
+	invocation = span_warning("%user% casts Appraise!")
+	invocation_emote_self = span_warning("I cast Appraise!")
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 5 SECONDS 
@@ -19,7 +21,7 @@
 
 /obj/effect/proc_holder/spell/invoked/appraise/secular
 	name = "Secular Appraise"
-	overlay_state = "appraise"
+	invocation_type = "none" // Merchants are not chuunibyou, much as it'd be funny
 	range = 2
 	associated_skill = /datum/skill/misc/reading // idk reading is like Accounting right
 	miracle = FALSE

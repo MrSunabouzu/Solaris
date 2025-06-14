@@ -1750,3 +1750,38 @@
 	message = "salutes their faith."
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = TRUE
+
+/datum/emote/living/quest
+	key = "quest"
+	key_third_person = "looks like they need help."
+	message = "looks like they need help."
+	emote_type = EMOTE_VISIBLE
+	show_runechat = FALSE
+	var/toggled = FALSE
+	var/static/mutable_appearance/quest_marker
+
+/datum/emote/living/quest/run_emote(mob/living/user, params, type_override, intentional, targetted, animal)
+	. = ..()
+	if(!quest_marker)
+		quest_marker = mutable_appearance('icons/mob/overhead_effects.dmi', "questmarker", OBJ_LAYER, EMISSIVE_PLANE)
+		quest_marker.pixel_y = 34
+	if(!toggled)
+		user.overlays_standing[OBJ_LAYER] = quest_marker
+		user.apply_overlay(OBJ_LAYER)
+		playsound(user, 'sound/magic/inspire_02.ogg', 100, FALSE, 9)
+		key_third_person = "no longer needs help."
+		message = "no longer needs help."
+		toggled = TRUE
+	else
+		user.remove_overlay(OBJ_LAYER)
+		playsound(user, 'sound/misc/portal_enter.ogg', 100, FALSE, 9)
+		key_third_person = initial(key_third_person)
+		message = initial(message)
+		sound = initial(sound)
+		toggled = FALSE
+
+/mob/living/carbon/human/verb/emote_quest()
+	set name = "Quest Marker"
+	set category = "Emotes"
+
+	emote("quest", intentional =  TRUE)

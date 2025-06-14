@@ -53,7 +53,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation_type = "none"
+	invocation_type = "none" // No emote feedback intentionally.
 	sound = 'sound/misc/area.ogg' //This sound doesnt play for some reason. Fix me.
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE

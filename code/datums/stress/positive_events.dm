@@ -206,3 +206,9 @@
 
 /datum/stressevent/noble_bowed_to/can_apply(mob/living/user)
 	return HAS_TRAIT(user, TRAIT_NOBLE)
+
+// Fsalute mood event that lasts 9 minutes
+/datum/stressevent/faithful
+	desc = span_green("The Nine watch over me.")
+	stressadd = -2
+	timer = 9 MINUTES

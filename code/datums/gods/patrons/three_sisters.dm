@@ -10,7 +10,7 @@
 			It is said that she stole light from the sun and created life, and it is under her guiding hand that life was free to change, to adapt, to grow, to alter the world around \
 			it and permit itself be altered. There are ancient and wild places of the earth still yet untouched by civilization, and it is in these places that Tamari's primal song of creation may yet still be heard."
 	worshippers = "Druids, Nomads, Naturalists, Outsiders, and Wanderers."
-	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_LEECHIMMUNE)
+	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_LEECHIMMUNE, TRAIT_BEASTKIN)
 	t1 = /obj/effect/proc_holder/spell/self/tamari_shapeshift
 	t2 = /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
 	t3 = /obj/effect/proc_holder/spell/self/howl/call_of_the_moon

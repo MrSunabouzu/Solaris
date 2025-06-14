@@ -13,6 +13,7 @@
 	rotprocess = 15 MINUTES
 
 	var/fertile = FALSE
+	var/mob/living/mob_type = /mob/living/simple_animal/chick
 
 /obj/item/reagent_containers/food/snacks/egg/become_rotten()
 	. = ..()

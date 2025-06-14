@@ -128,9 +128,6 @@
 	SStreesetup.initialize_me |= src
 	build_trees()
 	update_icon()
-	if(istype(loc, /turf/open/floor/rogue/grass))
-		var/turf/T = loc
-		T.ChangeTurf(/turf/open/floor/rogue/dirt)
 
 /obj/structure/flora/newtree/proc/build_trees()
 	var/turf/target = get_step_multiz(src, UP)

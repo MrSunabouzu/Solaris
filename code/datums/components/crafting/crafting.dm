@@ -172,6 +172,12 @@
 	var/list/contents = get_surroundings(user)
 //	var/send_feedback = 1
 	var/turf/T = get_step(user, user.dir)
+	if(R.requires_arcane && !is_arcane(user))
+		to_chat(user, span_warning("I dont have the arcane knowledge for doing this!"))
+		return
+	if(R.requires_divine && !is_divine(user))
+		to_chat(user, span_warning("I need a stronger spiritual connection to attempt this!"))
+		return
 	if(isopenturf(T) && R.wallcraft)
 		to_chat(user, span_warning("Need to craft this on a wall."))
 		return

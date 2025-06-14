@@ -333,6 +333,15 @@
 		if(known_skills[S] > old_level)
 			to_chat(current, span_nicegreen("My [S.name] grows to [SSskills.level_names[known_skills[S]]]!"))
 			S.skill_level_effect(src, known_skills[S])
+			if (skill == /datum/skill/magic/arcane && get_skill_level(skill) == SKILL_LEVEL_LEGENDARY)
+				if (!HAS_TRAIT(current, TRAIT_MAGIC_TALENT))
+					ADD_TRAIT(current, TRAIT_ARCANE_GATES, TRAIT_GENERIC)
+					to_chat(current, span_nicegreen("I have peeked into the arcane gates and obtained an important truth!"))
+				if (HAS_TRAIT(current, TRAIT_ARCANE_T3))
+					adjust_spellpoints(1)
+			if ((skill == /datum/skill/magic/arcane && get_skill_level(skill) == SKILL_LEVEL_MASTER) && HAS_TRAIT(current, TRAIT_MAGIC_TUTOR))
+				current.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/tutor)
+				to_chat(current, span_nicegreen("I am confident enough to take students of the Arcane under my wing!"))
 	else
 		to_chat(current, span_warning("My [S.name] has weakened to [SSskills.level_names[known_skills[S]]]!"))
 
@@ -384,6 +393,15 @@
 			known_skills[S] = SKILL_LEVEL_NOVICE
 		if(0 to SKILL_EXP_NOVICE)
 			known_skills[S] = SKILL_LEVEL_NONE
+	if (skill == /datum/skill/magic/arcane && get_skill_level(skill) == SKILL_LEVEL_LEGENDARY)
+		if (!HAS_TRAIT(current, TRAIT_MAGIC_TALENT))
+			ADD_TRAIT(current, TRAIT_ARCANE_GATES, TRAIT_GENERIC)
+			to_chat(current, span_nicegreen("I have peeked into the arcane gates and obtained an important truth!"))
+		if (HAS_TRAIT(current, TRAIT_ARCANE_T3))
+			adjust_spellpoints(1)
+	if ((skill == /datum/skill/magic/arcane && get_skill_level(skill) == SKILL_LEVEL_MASTER) && HAS_TRAIT(current, TRAIT_MAGIC_TUTOR))
+		current.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/tutor)
+		to_chat(current, span_nicegreen("I am confident enough to take students of the Arcane under my wing!"))
 	if(known_skills[S] == old_level)
 		return //same level or we just started earning xp towards the first level.
 	if(silent)

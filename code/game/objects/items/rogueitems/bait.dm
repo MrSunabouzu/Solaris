@@ -99,7 +99,7 @@
 							/mob/living/simple_animal/hostile/retaliate/rogue/goatmale = 33,
 							/mob/living/simple_animal/hostile/retaliate/rogue/saiga = 20,
 							/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck = 20,
-							/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 20)
+							/mob/living/simple_animal/hostile/retaliate/rogue/mothcat = 40)
 
 
 /obj/item/bait/bloody
