@@ -26,6 +26,7 @@
 	if(prob(50))
 		head = /obj/item/clothing/head/roguetown/hatblu
 	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/labor/mining, 3, TRUE) // You do what you gotta do when times are tough.
 		H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
@@ -36,11 +37,8 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/smelting, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-		if(H.age == AGE_OLD)
-			H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) //Have you TRIED to hit an anvil for hours?
+		//removed the old trait related to be more inline with others
 	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/trou
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random

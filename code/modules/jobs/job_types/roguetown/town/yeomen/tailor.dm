@@ -22,11 +22,12 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/tanning, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/tanning, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/labor/butchering, 3, TRUE) // sometimes you have to find your own leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights
 	belt = /obj/item/storage/belt/rogue/leather/cloth
@@ -39,7 +40,8 @@
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress
 	else if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
-	H.change_stat("intelligence", 2)
-	H.change_stat("perception", 1)
-	H.change_stat("speed", 1)
-	H.change_stat("strength", -1)
+	H.change_stat("intelligence", 3)
+	H.change_stat("perception", 2)
+	H.change_stat("speed", 2)
+	
+	//change the -1 strength, now its statline is in line with the blacksmith

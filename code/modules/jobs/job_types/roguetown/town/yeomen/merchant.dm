@@ -59,7 +59,8 @@
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	else if(should_wear_femme_clothes(H))
 		shoes = /obj/item/clothing/shoes/roguetown/gladiator
-	H.change_stat("intelligence", 2)
+	H.change_stat("intelligence", 3)
 	H.change_stat("perception", 3)
-	H.change_stat("strength", -1)
+	H.change_stat("fortune", 3) //unsure if this is a mistake or not. But point to one person who's gotten rich without luck.
+	H.change_stat("strength", -1)// before weighted at 3 total, giving them a bit of an up 
 

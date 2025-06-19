@@ -104,7 +104,8 @@ GLOBAL_LIST_INIT(yeoman_positions, list(
 	/datum/job/roguetown/blacksmith::title,
 	/datum/job/roguetown/bapprentice::title,
 	/datum/job/roguetown/janitor::title,
-	/datum/job/roguetown/tailor::title
+	/datum/job/roguetown/tailor::title,
+	/datum/job/roguetown/ghandler::title,
 ))
 
 GLOBAL_LIST_INIT(peasant_positions, list(

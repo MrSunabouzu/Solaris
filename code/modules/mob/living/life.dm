@@ -58,8 +58,6 @@
 	if(machine)
 		machine.check_eye(src)
 
-	handle_typing_indicator()
-
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 
@@ -78,7 +76,6 @@
 		handle_blood()
 	update_sneak_invis()
 	handle_fire()
-	handle_typing_indicator()
 	if(istype(loc, /turf/open/water))
 		handle_inwater(loc)
 

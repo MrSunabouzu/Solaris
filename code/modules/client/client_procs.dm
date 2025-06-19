@@ -923,13 +923,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 //			to_chat(src, span_danger("My previous click was ignored because you've done too many in a second"))
 			return
 
-	if (prefs.hotkeys)
-		// If hotkey mode is enabled, then clicking the map will automatically
-		// unfocus the text bar. This removes the red color from the text bar
-		// so that the visual focus indicator matches reality.
-		winset(src, null, "command=disableInput input.background-color=[COLOR_INPUT_DISABLED] input.text-color = #ad9eb4")
-
-	else
+	if (!prefs.hotkeys)
 		winset(src, null, "input.focus=true command=activeInput input.background-color=[COLOR_INPUT_ENABLED] input.text-color = #EEEEEE")
 
 	..()

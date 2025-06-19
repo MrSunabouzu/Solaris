@@ -143,6 +143,7 @@
 #define SHOPHAND				(1<<4)
 #define JANITOR					(1<<5)
 #define TAILOR					(1<<6)
+#define GHANDLER				(1<<7)
 
 #define PEASANTS					(1<<5)
 
@@ -241,18 +242,19 @@
 #define JDO_SOILSON 40
 #define JDO_JANITOR 41
 #define JDO_TAILOR 42
+#define JDO_GHANDLER 43
 
-#define JDO_VILLAGER 43
+#define JDO_VILLAGER 44
 
 /// External
-#define JDO_ADVENTURER 44
-#define JDO_PILGRIM 45
-#define JDO_MIGRANT 46
-#define JDO_BANDIT 47
-#define JDO_COURTAGENT 48
-#define JDO_WRETCH 49
+#define JDO_ADVENTURER 45
+#define JDO_PILGRIM 46
+#define JDO_MIGRANT 47
+#define JDO_BANDIT 48
+#define JDO_COURTAGENT 49
+#define JDO_WRETCH 50
 
-#define JDO_LUNATIC 50 // ALWAYS keep lunatic last. It's a reward role for being a true sport.
+#define JDO_LUNATIC 51 // ALWAYS keep lunatic last. It's a reward role for being a true sport.
 
 #define MANOR_ROLES \
 	/datum/job/roguetown/jester,\
@@ -302,8 +304,8 @@
 	/datum/job/roguetown/blacksmith,\
 	/datum/job/roguetown/merchant,\
 	/datum/job/roguetown/tailor,\
-	/datum/job/roguetown/janitor
-
+	/datum/job/roguetown/janitor,\
+	/datum/job/roguetown/ghandler
 
 
 #define WANDERER_ROLES \

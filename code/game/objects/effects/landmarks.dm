@@ -257,6 +257,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = /datum/job/roguetown/lunatic::title
 	icon_state = "arrow"
 
+/obj/effect/landmark/start/ghandler
+	name = /datum/job/roguetown/ghandler::title
+	icon_state = "arrow"
+
 //yrf
 
 /obj/effect/landmark/start/squire

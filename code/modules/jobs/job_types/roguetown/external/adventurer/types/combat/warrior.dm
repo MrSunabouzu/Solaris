@@ -126,7 +126,7 @@
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_gronn.ogg'
 			H.set_blindness(0)
-			var/weapons = list("Katar","Battle Axe","MY BARE HANDS!!!")
+			var/weapons = list("Katar","Battle Axe","Falchion","MY BARE HANDS!!!")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if ("Katar")
@@ -138,6 +138,9 @@
 				if ("MY BARE HANDS!!!")
 					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+				if ("Falchion")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					beltr = /obj/item/rogueweapon/sword/falchion
 			H.change_stat("strength", 3)
 			H.change_stat("endurance", 1)
 			H.change_stat("constitution", 2)

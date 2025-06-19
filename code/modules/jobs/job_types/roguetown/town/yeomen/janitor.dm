@@ -57,6 +57,6 @@
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 1)
 	H.change_stat("intelligence", 1)
-	H.change_stat("speed", 1) //5 points (weighted)
+	H.change_stat("speed", 1) //5 points (weighted) 
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)

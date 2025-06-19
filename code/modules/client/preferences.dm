@@ -2091,11 +2091,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					save_preferences()
 
 				if("keybindings_reset")
-					var/choice = tgalert(user, "Do you really want to reset your keybindings?", "Setup keybindings", "Do It", "Cancel")
+					var/choice = tgalert(user, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
 					if(choice == "Cancel")
-						ShowChoices(user,3)
+						ShowChoices(user)
 						return
-					hotkeys = (choice == "Do It")
+					hotkeys = (choice == "Hotkey")
 					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 					user.client.update_movement_keys()
 				if("chat_on_map")

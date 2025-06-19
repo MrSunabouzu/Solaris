@@ -161,7 +161,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE) 
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
@@ -430,5 +430,6 @@
 	H.change_stat("perception", 2)
 	H.change_stat("speed", 2)
 	H.change_stat("intelligence", 1)
+	H.change_stat("fortune", 1) // brings in line with the other knights total of 9 (weighted), reason:Lucky for this thing to not blow your hand off
 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)

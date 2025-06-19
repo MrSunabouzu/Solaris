@@ -227,6 +227,7 @@
 			H.mind.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
 			ADD_TRAIT (H, TRAIT_DECEIVING_MEEKNESS, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) // gets them inline defensively with the other rogues and also at the same time makes them unable to use things like devotion with full efficacy. Crazy stuff
 			H.change_stat("perception", 1)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)

@@ -28,11 +28,12 @@
 /datum/outfit/job/roguetown/marshal/pre_equip(mob/living/carbon/human/H)
 	..()
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-	pants = /obj/item/clothing/under/roguetown/tights/black
-	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
+	pants = /obj/item/clothing/under/roguetown/platelegs
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	backl = /obj/item/storage/backpack/rogue/satchel
-	gloves = /obj/item/clothing/gloves/roguetown/angle
+	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	neck = /obj/item/clothing/neck/roguetown/bevor
 	id = /obj/item/scomstone/garrison
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/signal_horn = 1)
 	if(H.mind)
@@ -83,6 +84,7 @@
 	beltl = /obj/item/storage/keyring/sheriff
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE) // was told that Marshal should be a rough equivalent to knight captain
 
 /datum/advclass/marshal/kcommander
 	name = "Knight Commander"
@@ -98,7 +100,7 @@
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	beltl = /obj/item/storage/keyring/sheriff
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
 
 /mob/living/carbon/human/proc/request_law()
 	set name = "Request Law"

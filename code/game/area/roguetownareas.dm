@@ -646,6 +646,17 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	converted_type = /area/rogue/outdoors/dungeon1
 	brief_descriptor = "in old sunmarch, in the endless halls of academia lost"
 
+/area/rogue/under/cave/dungeon/toybox_dungeon
+	name = "Giuseppe's Toybox"
+	icon_state = "manor"
+	first_time_text = "GIUSEPPE'S TOYBOX"
+	droning_sound = 'sound/music/area/dungeon_toybox.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	ambush_times = list("night","dawn","dusk","day")
+	converted_type = /area/rogue/outdoors/dungeon1
+	brief_descriptor = "in old sunmarch, among mechanical laughter and wind-up toy soldiers"
+
 //////
 /////
 ////     TOWN AREAS
