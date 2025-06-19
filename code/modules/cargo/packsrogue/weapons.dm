@@ -223,6 +223,12 @@
 					/obj/item/storage/belt/rogue/leather/knifebelt/black/steel,
 				)
 
-
+/datum/supply_pack/rogue/weapons/surplus_weapon
+	name = "Random surplus weapon"
+	cost = 80
+	static_cost = TRUE
+	contains = list(
+					/obj/effect/spawner/lootdrop/roguetown/dungeon/weapons,
+				)
 
 

@@ -13,7 +13,7 @@
 	advclass_cat_rolls = list(CTAG_GHANDLER = 20)
 	display_order = JDO_GHANDLER
 	give_bank_account = 43
-	min_pq = -4
+	min_pq = 1
 	max_pq = null
 	round_contrib_points = 2
 
@@ -35,15 +35,17 @@
 	category_tags = list(CTAG_GHANDLER)
 
 /datum/outfit/job/roguetown/ghandler/ace/pre_equip(mob/living/carbon/human/H)
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
-	shirt = /obj/item/clothing/suit/roguetown/shirt/guildwaistcoat
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/ghandler
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+	neck = /obj/item/clothing/neck/roguetown/horus
 	backl = /obj/item/storage/backpack/rogue/satchel
+	backr = /obj/item/rogueweapon/mace/silver
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/keyring/ghandler
-	beltr = /obj/item/rogueweapon/mace/silver
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/paper = 2, /obj/item/natural/feather = 1)
 	if(H.mind)
@@ -80,16 +82,17 @@
 	category_tags = list(CTAG_GHANDLER)
 
 /datum/outfit/job/roguetown/ghandler/receptionist/pre_equip(mob/living/carbon/human/H)
-	shirt = /obj/item/clothing/suit/roguetown/shirt/guildwaistcoat
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/ghandler
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
 	pants = /obj/item/clothing/under/roguetown/tights/black
-	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
+	neck = /obj/item/clothing/neck/roguetown/horus
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	backl = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/keyring/ghandler
-	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/
-	backpack_contents = list(/obj/item/paper = 4, /obj/item/natural/feather = 1)
+	backpack_contents = list(/obj/item/paper = 4, /obj/item/natural/feather = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)

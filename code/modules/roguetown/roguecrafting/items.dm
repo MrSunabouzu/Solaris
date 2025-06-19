@@ -629,7 +629,7 @@
 	verbage = "puts together"
 
 /datum/crafting_recipe/roguetown/paperscroll
-	name = "scroll of parchment"
+	name = "scroll of parchment (x3)"
 	result = list(/obj/item/paper/scroll,
 				  /obj/item/paper/scroll,
 				  /obj/item/paper/scroll)
@@ -637,6 +637,19 @@
 	/datum/reagent/water = 48)
 	structurecraft = /obj/machinery/tanningrack
 	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/survival/ration_wrapper
+	name = "ration wrapping paper (x2)"
+	result = list(
+		/obj/item/ration,
+		/obj/item/ration,
+		)
+	reqs = list(
+		/obj/item/paper = 1,
+		/obj/item/reagent_containers/food/snacks/tallow = 1,
+		)
+	skillcraft = /datum/skill/craft/cooking
+	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/tribalrags
 	name = "tribal rags (1 fibers, 1 hide)"

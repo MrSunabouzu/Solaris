@@ -43,14 +43,14 @@
 	result = /obj/item/storage/backpack/rogue/backpack
 	reqs = list(/obj/item/natural/hide/cured = 2,
 				/obj/item/natural/fibers = 1)
-	sellprice = 45
+	sellprice = 15
 
 /datum/crafting_recipe/roguetown/leather/waterskin
 	name = "waterskin (2 fibers, 1 leather)"
 	result = /obj/item/reagent_containers/glass/bottle/waterskin
 	reqs = list(/obj/item/natural/hide/cured = 1,
 				/obj/item/natural/fibers = 2)
-	sellprice = 45
+	sellprice = 12
 
 /datum/crafting_recipe/roguetown/leather/quiver
 	name = "quiver (2 fibers, 2 leather)"
@@ -417,7 +417,7 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 3
 	sellprice = 11
-		
+
 /datum/crafting_recipe/roguetown/leather/gladsandals
 	name = "gladiator sandals (1 fibers, 2 leather)"
 	result = list(/obj/item/clothing/shoes/roguetown/gladiator)

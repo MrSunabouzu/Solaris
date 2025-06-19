@@ -153,6 +153,17 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/suit/roguetown/armor/gambeson/ghandler
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "guild jacket"
+	desc = "A sleeveless jacket worn by the travelling bureaucrats of Rasura's various Guilds as cheap yet fashionable armor for the torso. Unlikely to stop a bolt."
+	icon_state = "atgervi_shaman_coat"
+	color = "#D63333" //royal red
+	body_parts_covered = CHEST|GROIN|LEGS|VITALS
+	r_sleeve_status = SLEEVE_TORN
+	l_sleeve_status = SLEEVE_TORN
+	sellprice = 15
+
 /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
 	color = "#646464"
 

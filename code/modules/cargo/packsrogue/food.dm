@@ -40,6 +40,17 @@
 				)
 
 /datum/supply_pack/rogue/food/meat
+	name = "Hardtack"
+	cost = 15
+	contains = list(
+					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+					/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+				)
+
+/datum/supply_pack/rogue/food/hardtacks
 	name = "Dry Meat"
 	cost = 15
 	contains = list(

@@ -131,7 +131,7 @@
 	name = "sinew"
 	icon_state = "sinew"
 	dropshrink = 0.9
-	sellprice = 7
+	sellprice = 3
 	major_pot = /datum/alch_cauldron_recipe/stam_poison
 	med_pot = /datum/alch_cauldron_recipe/end_potion
 	minor_pot = /datum/alch_cauldron_recipe/health_potion

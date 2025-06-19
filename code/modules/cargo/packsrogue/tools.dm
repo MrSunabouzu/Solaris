@@ -108,14 +108,24 @@
 					/obj/item/natural/worms/leech,
 				)
 
+/datum/supply_pack/rogue/tools/firstaid
+	name = "First aid pouch"
+	cost = 10
+	contains = list(/obj/item/storage/belt/rogue/pouch/medicine)
+
+/datum/supply_pack/rogue/tools/surgery_bag
+	name = "Surgeon's bag"
+	cost = 50
+	contains = list(/obj/item/storage/belt/rogue/surgery_bag)
+
 /datum/supply_pack/rogue/tools/prarml
 	name = "Prosthetic Wood Arm (L)"
-	cost = 40
+	cost = 15
 	contains = list(/obj/item/bodypart/l_arm/prosthetic/woodleft)
 
 /datum/supply_pack/rogue/tools/prarmr
 	name = "Prosthetic Wood Arm (R)"
-	cost = 40
+	cost = 15
 	contains = list(/obj/item/bodypart/r_arm/prosthetic/woodright)
 
 /datum/supply_pack/rogue/tools/prlegl
@@ -138,6 +148,11 @@
 	cost = 20
 	contains = list(/obj/item/bedroll)
 
+/datum/supply_pack/rogue/tools/bucket
+	name = "Wooden bucket"
+	cost = 5
+	contains = list(/obj/item/reagent_containers/glass/bucket/wooden,)
+
 /datum/supply_pack/rogue/tools/hoe
 	name = "Hoe"
 	cost = 10
@@ -158,11 +173,20 @@
 	cost = 10
 	contains = list(/obj/item/rogueweapon/pitchfork,)
 
-
 /datum/supply_pack/rogue/tools/plough
 	name = "Plough"
 	cost = 50
 	contains = list(/obj/structure/plough,)
+
+/datum/supply_pack/rogue/tools/huntingknife
+	name = "Hunting knife"
+	cost = 10 //12 force weapon, more used as a tool if anything. The iron dagger has 15 force and the steel has 20 force.
+	contains = list(/obj/item/rogueweapon/huntingknife)
+
+/datum/supply_pack/rogue/tools/hatchet
+	name = "Hatchet"
+	cost = 10 //19 force weapon, but you can't two wield. Weaker than the iron axe overall.
+	contains = list(/obj/item/rogueweapon/stoneaxe/handaxe)
 
 /datum/supply_pack/rogue/tools/ironpick
 	name = "Iron Pickaxe"
@@ -193,19 +217,28 @@
 					/obj/item/flashlight/flare/torch/lantern,
 					/obj/item/flashlight/flare/torch/lantern)
 
+/datum/supply_pack/rogue/tools/torches_metal
+	name = "Metal torches"
+	cost = 15
+	contains = list(/obj/item/flashlight/flare/torch/metal,
+					/obj/item/flashlight/flare/torch/metal,
+					/obj/item/flashlight/flare/torch/metal,
+					/obj/item/flashlight/flare/torch/metal,
+					/obj/item/flashlight/flare/torch/metal)
+
 /datum/supply_pack/rogue/tools/fryingpan
 	name = "Frying Pan"
-	cost = 20
+	cost = 20 // May actually be the most dangerous tool with 20 force in it. So a little bit more expensive.
 	contains = list(/obj/item/cooking/pan)
 
 /datum/supply_pack/rogue/tools/mess_kit
 	name = "Mess Kit"
-	cost = 50
+	cost = 25
 	contains = list(/obj/item/storage/gadget/messkit)
 
 /datum/supply_pack/rogue/tools/folding_table
 	name = "Folding Table"
-	cost = 30
+	cost = 15
 	contains = list(/obj/item/folding_table_stored)
 
 /datum/supply_pack/rogue/tools/needles
@@ -215,6 +248,12 @@
 					/obj/item/needle,
 					/obj/item/needle)
 
+/datum/supply_pack/rogue/tools/scissor
+	name = "Iron scissors"
+	cost = 30
+	contains = list(/obj/item/rogueweapon/huntingknife/scissors)
+
+
 /datum/supply_pack/rogue/tools/shopkeyy
 	name = "Spare Shopkey"
 	cost = 10
@@ -223,15 +262,17 @@
 /datum/supply_pack/rogue/tools/alch_bottle
 	name = "Alchemy Bottle"
 	cost = 1
+	static_cost = TRUE //Somehow this doesn't work ?
 	contains = list(/obj/item/reagent_containers/glass/alchemical,)
 
 /datum/supply_pack/rogue/tools/alch_bottles
-	name = "Bulk Alchemy Bottles" //Buy 8 now get 1 free!
-	cost = 8
+	name = "Bulk Alchemy Bottles" //Bulk order, less expensive normally.
+	cost = 7
+	static_cost = TRUE
 	contains = list(/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,
 	/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,
 	/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical)
-	
+
 
 /datum/supply_pack/rogue/tools/gwstrap
 	name = "Greatweapon Strap"

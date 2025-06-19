@@ -140,7 +140,6 @@
 					/obj/item/clothing/under/roguetown/platelegs,
 				)
 
-
 /datum/supply_pack/rogue/armor/boots
 	name = "Steel Boots"
 	cost = 50
@@ -148,3 +147,10 @@
 					/obj/item/clothing/shoes/roguetown/boots/armor,
 				)
 
+/datum/supply_pack/rogue/armor/surplus_armor
+	name = "Random surplus armor"
+	cost = 50
+	static_cost = TRUE
+	contains = list(
+					/obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
+				)

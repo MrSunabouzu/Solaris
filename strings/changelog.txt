@@ -1,8 +1,19 @@
 Welcome back to Solaris Ridge!
 
-We're testing the first rounds of our newer tileset! Visibility should be drastically upped, no matter where you go.
-The ENTIRE game's HTML/CSS skin has been revamped in this vain as well. THe actual HUD has remained untouched so far.
-These are the 'monster' changes for the time being, the big ones.
-Nearly every spell in the game now has some form of feedback for casting.
+Tiefling lore has been written.
+Faith Saluting now has proper effects.
+Several classes and roles have been heavily rebalanced.
+You can now summon a quest marker.
+Noticeboards are here! Check them out to see the buzz about town!
+Some. Crazy characters are here - Cat'erpillars. Mothcats...
+Several new dungeons are here!
+Even MORE of the aesthetic has rapidly shifted.
+Old people no longer get free spellpoints.
+It's not Marquise, it's Marquess.
+Flagellant has been disabled pending balance rework.
+Ambient Occlusion has been re-enabled!
+Speaking & Emoting have been refactored internally. If you can't do either; UPDATE YOUR KEYBINDS.
+There is now a jobrole overseeing the adventurer's guild.
+Ration packs are in!
 
 Have fun!

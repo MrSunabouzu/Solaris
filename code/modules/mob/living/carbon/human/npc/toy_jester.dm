@@ -124,8 +124,6 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 			shirt = /obj/item/clothing/suit/roguetown/shirt/jester
 			pants = /obj/item/clothing/under/roguetown/tights/jester
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			if(prob(50))
-				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			mask = /obj/item/clothing/mask/rogue/facemask
 			if(prob(50))
 				mask = /obj/item/clothing/mask/rogue/ragmask/black
@@ -154,8 +152,6 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 			pants = /obj/item/clothing/under/roguetown/tights/jester
 			cloak = /obj/item/clothing/cloak/cape
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			if(prob(50))
-				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			mask = /obj/item/clothing/mask/rogue/facemask
 			if(prob(50))
 				mask = /obj/item/clothing/mask/rogue/ragmask/black
@@ -169,7 +165,7 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 			shoes = /obj/item/clothing/shoes/roguetown/jester
 			H.STASTR = rand(15,17)
 			H.STASPD = rand(15,17)
-			H.STACON = rand(15,17)
+			H.STACON = rand(16,18)
 			H.STAEND = rand(14,16)
 			H.STAPER = rand(16,18)
 			H.STAINT = rand(12,13)
@@ -180,8 +176,6 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 			shirt = /obj/item/clothing/suit/roguetown/shirt/jester
 			pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			if(prob(50))
-				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			mask = /obj/item/clothing/mask/rogue/facemask
 			head = /obj/item/clothing/head/roguetown/helmet/skullcap
 			neck = /obj/item/clothing/neck/roguetown/gorget

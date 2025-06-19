@@ -362,3 +362,17 @@
 		/obj/item/book/granter/spell/blackstone/greaterfireball = 1
 	)
 	lootcount = 1
+
+/obj/effect/spawner/lootdrop/roguetown/dungeon/gadgets
+	loot = list(
+		//Adventuring Gear
+		/obj/item/bedroll = 3,
+		/obj/item/reagent_containers/glass/bottle/waterskin = 3,
+		/obj/item/reagent_containers/glass/bottle/waterskin/purifier = 1,
+		/obj/item/storage/gadget/messkit = 3,
+		/obj/item/gwstrap = 2,
+		/obj/item/flashlight/flare/torch/lantern/bronzelamptern = 2,
+		/obj/item/storage/backpack/rogue/artibackpack = 1,
+		/obj/item/grapplinghook = 1
+	)
+	lootcount = 1

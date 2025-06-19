@@ -32,6 +32,8 @@
 	icon_state = "foldingTableStored"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FIRE_PROOF
+	grid_height = 32
+	grid_width = 64
 
 /obj/item/folding_table_stored/attack_self(mob/user)
 	. = ..()
