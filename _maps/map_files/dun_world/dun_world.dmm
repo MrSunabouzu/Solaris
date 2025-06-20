@@ -2517,13 +2517,11 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/town/basement)
 "aTR" = (
-/obj/effect/mapping_helpers/access/yeomen/tavern,
-/obj/structure/mineral_door/wood/fancywood{
-	locked = 1;
-	name = "Handler's Quarters"
-	},
+/obj/structure/chair/stool/rogue,
 /obj/machinery/light/rogue/wallfire/candle/directional/west,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
 /area/rogue/indoors/town)
 "aTS" = (
 /obj/structure/handcart{
@@ -10869,6 +10867,13 @@
 /obj/structure/bars/cemetery,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/dungeon/licharena)
+"dUj" = (
+/obj/machinery/light/rogue/wallfire/candle/directional/west,
+/obj/structure/fireaxecabinet/south,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/indoors/town)
 "dUs" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
@@ -15040,16 +15045,10 @@
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/outdoors/beach/forest)
 "fpF" = (
-/obj/structure/closet/crate/roguecloset/inn,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/natural/feather,
-/obj/machinery/light/rogue/wallfire/candle/directional/north,
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
+/obj/structure/fluff/walldeco/sparrowflag{
+	pixel_x = -32
 	},
+/turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
 "fpG" = (
 /obj/machinery/light/rogue/torchholder/directional/west,
@@ -32381,6 +32380,17 @@
 /obj/item/natural/stone,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/dungeon/dungeon1/gethsmane)
+"lAe" = (
+/obj/structure/closet/crate/roguecloset/inn,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/natural/feather,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/indoors/town)
 "lAf" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -52877,12 +52887,12 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "sTl" = (
-/obj/structure/fluff/walldeco/sparrowflag{
-	pixel_y = 32
+/obj/effect/mapping_helpers/access/yeomen/tavern,
+/obj/structure/mineral_door/wood/fancywood{
+	locked = 1;
+	name = "Handler's Quarters"
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
+/turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town)
 "sTt" = (
 /obj/effect/decal/cobbleedge{
@@ -368159,11 +368169,11 @@ mKy
 oKc
 oKc
 htL
-sYZ
+aTR
 uBc
-sYZ
+dUj
 pRK
-cMj
+fpF
 uBc
 pYH
 bGf
@@ -368612,7 +368622,7 @@ oKc
 xcp
 uee
 sYZ
-aTR
+uBc
 sYZ
 twr
 aJc
@@ -369063,9 +369073,9 @@ gPs
 iUr
 faj
 cMj
-uGt
-uBc
+sYZ
 sTl
+sYZ
 cMj
 kgj
 hjx
@@ -369517,9 +369527,9 @@ guo
 akl
 guo
 uBc
-fpF
+wTY
 sYZ
-rUf
+lAe
 uBc
 bCk
 kSK

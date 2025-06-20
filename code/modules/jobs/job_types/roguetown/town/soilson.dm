@@ -15,7 +15,6 @@
 	fish from the waters - and maybe you'll be more than an unsung hero someday."
 
 	outfit = /datum/outfit/job/roguetown/soilson
-	display_order = 24
 	give_bank_account = 17
 	min_pq = -10
 	max_pq = null
