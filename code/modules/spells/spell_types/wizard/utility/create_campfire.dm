@@ -24,6 +24,7 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_FIRE
 	glow_intensity = GLOW_INTENSITY_LOW
+	xp_gain = TRUE
 
 	var/fire_type = /obj/machinery/light/rogue/campfire/create_campfire
 

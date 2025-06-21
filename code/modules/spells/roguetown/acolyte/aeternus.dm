@@ -94,6 +94,8 @@
 			ghost.mind.transfer_to(target, TRUE)
 		target.grab_ghost(force = TRUE) // even suicides
 		target.emote("breathgasp")
+		if(istype(target, /mob/living/simple_animal/pet/familiar)) // scuffed but i've been told this is needed.
+			target.revive(full_heal = TRUE, admin_revive = TRUE)
 		target.Jitter(100)
 		target.update_body()
 		target.visible_message(span_notice("[target] is revived by holy light!"), span_green("I awake from the void."))

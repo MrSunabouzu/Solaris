@@ -18,6 +18,7 @@
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "rune2"
+	xp_gain = TRUE
 
 /obj/effect/proc_holder/spell/invoked/counterspell/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))

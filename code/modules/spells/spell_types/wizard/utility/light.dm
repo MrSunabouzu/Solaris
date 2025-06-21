@@ -14,6 +14,7 @@
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
 	cost = 1
 	miracle = FALSE
+	xp_gain = TRUE
 
 	invocation = "Fiat lux."
 	invocation_type = "whisper" //can be none, whisper, emote and shout

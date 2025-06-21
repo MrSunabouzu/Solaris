@@ -11,6 +11,7 @@
 	glow_intensity = GLOW_INTENSITY_HIGH
 	wall_type = /obj/structure/forcefield_weak/arcane_prison
 	cost = 2
+	xp_gain = TRUE
 
 /obj/effect/proc_holder/spell/invoked/forcewall/arcane_prison/cast(list/targets,mob/user = usr)
 	var/turf/target = get_turf(targets[1])

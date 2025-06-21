@@ -23,6 +23,7 @@
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1
+	xp_gain = TRUE
 
 /obj/projectile/magic/aoe/fireball/rogue2
 	name = "spitfire"

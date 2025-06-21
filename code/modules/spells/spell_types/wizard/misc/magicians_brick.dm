@@ -21,6 +21,7 @@
 
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
+	xp_gain = TRUE
 
 /obj/effect/proc_holder/spell/self/magicians_brick/cast(list/targets, mob/living/user = usr)
 	var/obj/item/rogueweapon/R = new /obj/item/rogueweapon/magicbrick(user.drop_location())

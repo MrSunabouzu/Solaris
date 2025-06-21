@@ -23,6 +23,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1
+	xp_gain = TRUE
 
 /obj/projectile/energy/guided_bolt
 	name = "Guided Bolt"

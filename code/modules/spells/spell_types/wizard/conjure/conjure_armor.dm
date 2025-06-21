@@ -21,6 +21,7 @@
 	antimagic_allowed = FALSE
 	charging_slowdown = 3
 	cost = 2
+	xp_gain = TRUE
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Armatura Creetur!"

@@ -21,6 +21,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	antimagic_allowed = FALSE
+	xp_gain = TRUE
 
 	charging_slowdown = 3
 	cost = 1

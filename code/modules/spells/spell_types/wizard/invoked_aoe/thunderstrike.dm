@@ -23,6 +23,7 @@
 	var/strike_delay = 3 // delay between each individual strike. 3 delays seems to make someone stupid able to walk into every single strikes.
 	var/strikerange = 7 // how many tiles the strike can reach
 	var/damage = 65
+	xp_gain = TRUE
 
 /obj/effect/proc_holder/spell/invoked/thunderstrike/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])

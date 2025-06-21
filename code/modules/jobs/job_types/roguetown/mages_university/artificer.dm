@@ -40,6 +40,7 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 
 	head = /obj/item/clothing/head/roguetown/articap
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket
@@ -62,4 +63,5 @@
 	H.change_stat("intelligence", 3) //Nerd
 	H.change_stat("endurance", 2) //Innate mining should have some gains
 	H.change_stat("constitution", 1)
-	ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_MAGIC_TALENT, TRAIT_GENERIC) // Arcane potential Trait, so they dont get to T2
+	H.mind?.adjust_spellpoints(2)

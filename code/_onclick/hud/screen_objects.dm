@@ -1009,7 +1009,7 @@
 		hovering = null
 
 /atom/movable/screen/zone_sel/proc/get_zone_at(icon_x, icon_y, gender = MALE)
-	if(gender == MALE)
+	if(gender == MALE || gender == NEUTER)
 		switch(icon_y)
 			if(1 to 3)
 				switch(icon_x)

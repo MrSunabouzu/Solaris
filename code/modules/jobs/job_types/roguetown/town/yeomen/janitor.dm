@@ -43,6 +43,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/roguekey/janitor
 	backr = /obj/item/storage/backpack/rogue/satchel
@@ -59,4 +60,5 @@
 	H.change_stat("intelligence", 1)
 	H.change_stat("speed", 1) //5 points (weighted) 
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_MAGIC_TALENT, TRAIT_GENERIC) // Arcane potential Trait, so they dont get to T2
+	H.mind?.adjust_spellpoints(2)

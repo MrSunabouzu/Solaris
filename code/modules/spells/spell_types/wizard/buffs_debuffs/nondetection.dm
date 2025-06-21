@@ -24,6 +24,7 @@
 	icon_state = "pulling"
 	icon_state = "grabbing_greyscale"
 	color = "#3FBAFD"
+	associated_skill = /datum/skill/magic/arcane
 
 /obj/item/melee/touch_attack/nondetection/attack_self()
 	attached_spell.remove_hand()
@@ -58,6 +59,7 @@
 
 		qdel(sacrifice)
 		ADD_TRAIT(spelltarget, TRAIT_ANTISCRYING, MAGIC_TRAIT)
+		user.mind.add_sleep_experience(associated_skill, 15, FALSE) // XP Magic number, just set it to 15, need to cast it 100 times to get to legendary from 0
 		if(spelltarget != user)
 			user.visible_message("[user] draws a glyph in the air and blows some ash onto [spelltarget].")
 		else

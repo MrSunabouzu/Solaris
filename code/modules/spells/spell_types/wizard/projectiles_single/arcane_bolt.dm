@@ -24,6 +24,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
+	xp_gain = TRUE
 
 /obj/projectile/energy/rogue3
 	name = "Arcane Bolt"
