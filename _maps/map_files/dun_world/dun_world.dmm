@@ -2219,7 +2219,7 @@
 /obj/structure/fluff/littlebanners{
 	pixel_y = -5
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "aOq" = (
 /obj/structure/bars/passage/shutter{
@@ -2849,7 +2849,7 @@
 /obj/machinery/light/roguestreet{
 	dir = 1
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "aZj" = (
 /obj/structure/mirror/fancy,
@@ -7024,6 +7024,13 @@
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/grassred,
 /area/rogue/under/cave/dungeon/old_university_garden)
+"cyC" = (
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/obj/item/storage/belt/rogue/pouch/coins/rich,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "cyE" = (
 /obj/structure/fluff/railing/border{
 	dir = 9
@@ -7502,7 +7509,7 @@
 	dir = 8
 	},
 /obj/item/bouquet/matricaria,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "cGs" = (
 /obj/structure/fluff/statue/gargoyle,
@@ -7763,6 +7770,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/dwarfin)
+"cLM" = (
+/mob/living/carbon/human/species/construct/metal/toyjester,
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "cLP" = (
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/stoneaxe/woodcut/steel,
@@ -8163,6 +8174,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/cave/dungeon/vulnafir)
+"cTp" = (
+/mob/living/carbon/human/species/construct/metal/toyjester,
+/turf/open/floor/rogue/metal,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "cTs" = (
 /obj/structure/chair/bench/couch,
 /turf/open/floor/carpet/stellar,
@@ -9876,6 +9891,13 @@
 /obj/structure/fluff/statue/knight/r,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/dungeon/goblinfort)
+"dzK" = (
+/obj/machinery/light/roguestreet/midlamp,
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/metal/barograte/open,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "dzS" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/carpet/red,
@@ -9954,7 +9976,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 6
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "dBY" = (
 /obj/structure/table/wood{
@@ -12186,6 +12208,15 @@
 "erl" = (
 /mob/living/carbon/human/species/construct/metal/toyjester,
 /turf/open/floor/rogue/tile/checkeralt,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
+"erp" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 4
+	},
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "err" = (
 /obj/item/natural/bone,
@@ -17235,6 +17266,12 @@
 /obj/structure/fluff/wallclock/directional/south,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon/fort_dusk)
+"gbT" = (
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/metal,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "gbU" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8
@@ -17650,7 +17687,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 8
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "gjF" = (
 /obj/machinery/light/rogue/torchholder/directional/east,
@@ -19341,7 +19378,7 @@
 	dir = 4
 	},
 /obj/item/bouquet/rosa,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "gPs" = (
 /obj/structure/fluff/railing/border,
@@ -25184,7 +25221,7 @@
 /obj/structure/fluff/littlebanners{
 	pixel_y = -5
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "iTb" = (
 /obj/structure/chair/bench{
@@ -26535,6 +26572,13 @@
 /obj/structure/fluff/psycross,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach/forest)
+"jps" = (
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/obj/item/storage/belt/rogue/pouch/coins/rich,
+/turf/open/floor/rogue/metal,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "jpy" = (
 /turf/closed/wall/mineral/rogue/wooddark/end{
 	dir = 1
@@ -28699,7 +28743,7 @@
 /obj/structure/fluff/littlebanners{
 	pixel_y = -5
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "kgg" = (
 /obj/structure/flora/roguegrass/bush/wall,
@@ -33736,6 +33780,15 @@
 /obj/structure/bookcase/random/archive,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"lYj" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "lYo" = (
 /obj/structure/fluff/statue/gargoyle,
 /turf/open/floor/rogue/blocks,
@@ -36599,7 +36652,7 @@
 /area/rogue/under/cave/dungeon/fort_dusk)
 "naH" = (
 /obj/effect/decal/cobble/mossy,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "naO" = (
 /obj/structure/chair/wood/rogue{
@@ -36719,7 +36772,7 @@
 /obj/structure/fluff/littlebanners{
 	pixel_y = -5
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "ncY" = (
 /obj/effect/decal/cobbleedge{
@@ -37596,7 +37649,7 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /obj/item/roguegem/random,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "nqn" = (
 /turf/open/floor/carpet/purple,
@@ -38678,7 +38731,7 @@
 	dir = 8
 	},
 /obj/item/bouquet/salvia,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "nJF" = (
 /obj/item/chair/stool/bar/rogue/crafted{
@@ -46847,7 +46900,7 @@
 	pixel_y = -5
 	},
 /obj/item/bouquet/calendula,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "qGk" = (
 /obj/structure/fluff/statue/small,
@@ -49562,6 +49615,10 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/sewer)
+"rEx" = (
+/obj/item/storage/belt/rogue/pouch/coins/rich,
+/turf/open/floor/rogue/metal,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "rEG" = (
 /obj/structure/chair/wood/rogue/chair3{
 	dir = 1
@@ -50411,7 +50468,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 4
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "rTB" = (
 /obj/structure/spider/stickyweb,
@@ -53863,7 +53920,7 @@
 /obj/structure/fluff/littlebanners{
 	pixel_y = -5
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "thx" = (
 /obj/machinery/light/small{
@@ -54055,7 +54112,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 10
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "tly" = (
 /obj/effect/decal/remains/human,
@@ -55630,7 +55687,7 @@
 /obj/structure/fluff/littlebanners{
 	pixel_y = -5
 	},
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "tQC" = (
 /turf/open/floor/rogue/dirt/road,
@@ -59556,6 +59613,12 @@
 /obj/effect/decal/wood/herringbone,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/dungeon/old_university)
+"vig" = (
+/obj/structure/fluff/littlebanners{
+	pixel_y = -5
+	},
+/turf/open/floor/rogue/metal/barograte,
+/area/rogue/under/cave/dungeon/toybox_dungeon)
 "vih" = (
 /turf/closed/wall/mineral/rogue/decostone/center{
 	max_integrity = 99999
@@ -59634,7 +59697,7 @@
 /obj/structure/closet/crate/chest/neu_fancy,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
 /obj/item/roguegem/random,
-/turf/open/floor/rogue/grassyel,
+/turf/open/floor/rogue/metal,
 /area/rogue/under/cave/dungeon/toybox_dungeon)
 "vjN" = (
 /obj/item/natural/rock,
@@ -508364,7 +508427,7 @@ flX
 flX
 flX
 xJj
-wBO
+fjf
 dKs
 tYg
 gpJ
@@ -509297,9 +509360,9 @@ flX
 tZU
 cQk
 kgc
-voP
-rdN
-rdN
+cLM
+gBn
+uwa
 kgc
 nGW
 oAX
@@ -509747,13 +509810,13 @@ flX
 flX
 tZU
 cQk
-rdN
-fZQ
-voP
-rdN
-voP
-faV
-rdN
+gBn
+vig
+cTp
+gBn
+cTp
+cyC
+gBn
 nGW
 oAX
 flX
@@ -510198,15 +510261,15 @@ flX
 flX
 tZU
 jdl
-rdN
-voP
-fZQ
-fcl
-rdN
-rdN
-fZQ
-voP
-rdN
+gBn
+cTp
+gbT
+rEx
+gBn
+gBn
+gbT
+cTp
+gBn
 sea
 flX
 flX
@@ -510639,7 +510702,7 @@ wBO
 wBO
 wBO
 wBO
-wBO
+fjf
 wBO
 cRS
 flX
@@ -511100,17 +511163,17 @@ flX
 flX
 tZU
 cQk
-rdN
-fZQ
-rdN
-rdN
-rdN
-fZQ
-rdN
-rdN
-rdN
-fZQ
-rdN
+gBn
+vig
+gBn
+gBn
+gBn
+vig
+gBn
+gBn
+gBn
+vig
+gBn
 ljy
 voP
 wRP
@@ -511551,18 +511614,18 @@ mRj
 mRj
 tLN
 hwX
-rdN
-rdN
-dvC
-rdN
-rdN
-rdN
-dvC
-rdN
-rdN
-rdN
-dvC
-rdN
+gBn
+uwa
+dzK
+uwa
+gBn
+uwa
+dzK
+uwa
+gBn
+uwa
+dzK
+uwa
 ljy
 voP
 rdN
@@ -512005,16 +512068,16 @@ aOj
 gjD
 cGd
 gjD
-tho
+lYj
 gjD
 gjD
 gjD
-tho
+lYj
 gjD
 gjD
 tln
-fZQ
-rdN
+vig
+gBn
 ljy
 voP
 fcl
@@ -512465,8 +512528,8 @@ xVU
 sfW
 bsk
 naH
-fZQ
-rdN
+gbT
+gBn
 hwX
 rdN
 uqF
@@ -512909,16 +512972,16 @@ ncW
 rTy
 rTy
 rTy
-ncW
+erp
 rTy
 gPn
 rTy
-ncW
+erp
 rTy
 rTy
 dBW
-fZQ
-rdN
+vig
+gBn
 ljy
 voP
 rdN
@@ -513359,18 +513422,18 @@ mRj
 mRj
 tLN
 hwX
-rdN
-rdN
-dvC
-rdN
-rdN
-rdN
-dvC
-rdN
-rdN
-rdN
-dvC
-rdN
+gBn
+uwa
+dzK
+uwa
+gBn
+uwa
+dzK
+uwa
+gBn
+uwa
+dzK
+uwa
 ljy
 voP
 rdN
@@ -513812,17 +513875,17 @@ flX
 flX
 nGW
 oAX
-rdN
-fZQ
-rdN
-rdN
-rdN
-fZQ
-rdN
-rdN
-rdN
-fZQ
-rdN
+gBn
+vig
+gBn
+gBn
+gBn
+vig
+gBn
+gBn
+gBn
+vig
+gBn
 ljy
 voP
 wRP
@@ -514255,7 +514318,7 @@ wBO
 wBO
 wBO
 wBO
-wBO
+fjf
 wBO
 cRS
 flX
@@ -514718,15 +514781,15 @@ flX
 flX
 nGW
 jdl
-rdN
-rdN
-faV
-voP
-voP
-rdN
-fZQ
-rdN
-rdN
+gBn
+gBn
+jps
+cTp
+cTp
+gBn
+gbT
+gBn
+gBn
 sea
 flX
 flX
@@ -515171,13 +515234,13 @@ flX
 flX
 nGW
 oAX
-rdN
+gBn
 iTa
-rdN
-rdN
-fcl
+gBn
+gBn
+rEx
 iTa
-rdN
+gBn
 tZU
 cQk
 flX
@@ -515625,9 +515688,9 @@ flX
 nGW
 oAX
 tQp
-rdN
-voP
-rdN
+uwa
+cTp
+uwa
 tQp
 tZU
 cQk
