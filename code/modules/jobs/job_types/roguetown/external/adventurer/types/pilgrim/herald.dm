@@ -34,7 +34,7 @@ GLOBAL_VAR_INIT(herald_spawned, FALSE)
 
 		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
 		if(do_after(src, 30 SECONDS, target = src))
-			priority_announce("[inputty]", "The Herald Proclaims", 'sound/misc/bell.ogg')
+			priority_announce("[inputty]", "The Herald Proclaims", 'sound/misc/bell.ogg', sender = src)
 			last_herald_announce = world.time
 		else
 			to_chat(src, span_warning("Your announcement was interrupted!"))

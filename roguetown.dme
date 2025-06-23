@@ -797,6 +797,8 @@
 #include "code\game\objects\effects\spawners\roguemapgen.dm"
 #include "code\game\objects\effects\spawners\structure.dm"
 #include "code\game\objects\effects\spawners\traps.dm"
+#include "code\game\objects\effects\spawners\lootdrops\dungeons.dm"
+#include "code\game\objects\effects\spawners\lootdrops\sewers.dm"
 #include "code\game\objects\effects\temporary_visuals\cult.dm"
 #include "code\game\objects\effects\temporary_visuals\miscellaneous.dm"
 #include "code\game\objects\effects\temporary_visuals\surrender_flag.dm"

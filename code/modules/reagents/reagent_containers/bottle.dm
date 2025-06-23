@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 	icon_state = "clear_bottle1"
 	amount_per_transfer_from_this = 6
 	possible_transfer_amounts = list(6)
-	volume = 48
+	volume = 54
 	fill_icon_thresholds = list(0, 25, 50, 75, 100)
 	dropshrink = 0.8
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(wisdoms, world.file2list("strings/rt/wisdoms.txt"))
 /obj/item/reagent_containers/glass/bottle/proc/shatter(turf/T)
 	if(istransparentturf(T))
 		shatter(GET_TURF_BELOW(T))
-		return 
+		return
 	new /obj/item/natural/glass/shard(get_turf(T))
 	new /obj/effect/decal/cleanable/glass(get_turf(T))
 	qdel(src)

@@ -20,7 +20,8 @@
 	experimental_onhip = FALSE
 	experimental_inhand = FALSE
 	sellprice = 1
-
+	grid_height = 32
+	grid_width = 32
 
 /*
 	The next two functions are copies from ..(), but edited to give the max per transfer.

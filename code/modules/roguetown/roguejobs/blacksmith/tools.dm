@@ -35,7 +35,7 @@
 			return
 		if(blacksmith_mind.get_skill_level(attacked_prosthetic.anvilrepair) <= 0)
 			if(prob(30))
-				repair_percent = 0.01
+				repair_percent = 0.1
 			else
 				repair_percent = 0
 		else
@@ -49,7 +49,7 @@
 			attacked_prosthetic.burn_dam = max(attacked_prosthetic.burn_dam - 10, 0)
 			attacked_prosthetic.wounds = null //Fixing fractures
 			attacked_prosthetic.disabled = BODYPART_NOT_DISABLED
-			if(repair_percent == 0.01) // If an inexperienced repair attempt has been successful
+			if(repair_percent == 0.1) // If an inexperienced repair attempt has been successful
 				to_chat(user, span_warning("You fumble your way into slightly repairing [attacked_prosthetic]."))
 			else
 				user.visible_message(span_info("[user] repairs [attacked_prosthetic]!"))
@@ -74,7 +74,7 @@
 			if(HAS_TRAIT(user, TRAIT_SQUIRE_REPAIR) && locate(/obj/machinery/anvil) in attacked_object.loc)
 				repair_percent = 0.035
 			else if(prob(30))
-				repair_percent = 0.01
+				repair_percent = 0.1
 			else
 				repair_percent = 0
 		else
@@ -85,7 +85,7 @@
 			repair_percent *= attacked_item.max_integrity
 			exp_gained = min(attacked_item.obj_integrity + repair_percent, attacked_item.max_integrity) - attacked_item.obj_integrity
 			attacked_item.obj_integrity = min(attacked_item.obj_integrity + repair_percent, attacked_item.max_integrity)
-			if(repair_percent == 0.01) // If an inexperienced repair attempt has been successful
+			if(repair_percent == 0.1) // If an inexperienced repair attempt has been successful
 				to_chat(user, span_warning("You fumble your way into slightly repairing [attacked_item]."))
 			else
 				user.visible_message(span_info("[user] repairs [attacked_item]!"))
@@ -98,7 +98,6 @@
 			return
 		else
 			user.visible_message(span_warning("[user] fumbles trying to repair [attacked_item]!"))
-			attacked_item.obj_integrity = max(0, attacked_item.obj_integrity - (10 - repair_percent))
 			return
 
 	if(isstructure(attacked_object) && !user.cmode)
