@@ -96,6 +96,30 @@
 	sellprice = 7
 	bundletype = /obj/item/natural/bundle/curred_hide
 
+/obj/item/natural/hide/cured/attack_right(mob/user)
+	var/is_legendary = FALSE
+	if(user.mind.get_skill_level(/datum/skill/craft/tanning) == SKILL_LEVEL_LEGENDARY) //check if the user has legendary farming skill
+		is_legendary = TRUE //they do
+	var/work_time = 1 SECONDS //time to gather fibers
+	if(is_legendary)
+		work_time = 2 //if legendary skill, the move_after is fast, 0.2 seconds
+	to_chat(user, span_warning("I start to collect [src]..."))
+	if(move_after(user, work_time, target = src))
+		var/cured_hidecount = 0
+		for(var/obj/item/natural/hide/cured/F in get_turf(src))
+			cured_hidecount++
+		while(cured_hidecount > 0)
+			if(cured_hidecount == 1)
+				new /obj/item/natural/hide/cured(get_turf(user))
+				cured_hidecount--
+			else if(cured_hidecount >= 2)
+				var/obj/item/natural/bundle/curred_hide/B = new(get_turf(user))
+				B.amount = clamp(cured_hidecount, 2, 10)
+				B.update_bundle()
+				cured_hidecount -= clamp(cured_hidecount, 2, 10)
+		for(var/obj/item/natural/hide/cured/F in get_turf(src))
+			qdel(F)
+
 /obj/item/natural/bundle/curred_hide
 	name = "bundle of cured leather"
 	desc = "A bunch of cured leather pieces bundled together."

@@ -18356,6 +18356,8 @@
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/pitchfork,
 /obj/item/reagent_containers/glass/bucket,
+/obj/item/rogueweapon/shovel,
+/obj/item/rogueweapon/shovel/small,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/shop)
 "gvs" = (
