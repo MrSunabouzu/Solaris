@@ -959,7 +959,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 	if(user.mind)
 		if(user.mind.assigned_role == "Priest")
 			if(istype(W, /obj/item/reagent_containers/food/snacks/grown/apple))
-				if(!istype(get_area(user), /area/rogue/indoors/town/church/chapel))
+				if(!istype(get_area(user), /area/provincial/indoors/town/church))
 					to_chat(user, span_warning("I need to do this in the chapel."))
 					return FALSE
 				var/marriage

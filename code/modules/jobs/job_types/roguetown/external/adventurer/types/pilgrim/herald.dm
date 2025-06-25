@@ -28,7 +28,7 @@ GLOBAL_VAR_INIT(herald_spawned, FALSE)
 		if(world.time < last_herald_announce + 300 SECONDS)
 			to_chat(src, span_warning("You must wait [round((last_herald_announce + 300 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
 			return FALSE
-		if(!istype(get_area(src), /area/rogue/indoors/town/tavern))
+		if(!istype(get_area(src), /area/provincial/indoors/town/tavern))
 			to_chat(src, span_warning("You need to be in the tavern to make an announcement!"))
 			return FALSE
 

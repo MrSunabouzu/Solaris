@@ -29,7 +29,7 @@
 		if(msg)
 			L.whisper(msg)
 			L.roguepray(msg)
-			if(istype(C, /area/rogue/underworld))
+			if(istype(C, /area/underworld))
 				L.check_prayer_underworld(L,msg)
 				return
 			L.check_prayer(L,msg)
@@ -71,7 +71,7 @@
 	for(var/T in bannedwords)
 		var/list/turfs = list()
 		if(findtext(message, T))
-			for(var/turf/U in /area/rogue/underworld)
+			for(var/turf/U in /area/underworld)
 				if(U.density)
 					continue
 				turfs.Add(U)

@@ -140,3 +140,44 @@
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
 	sellprice = 20
+
+/obj/item/natural/carapace
+	name = "carapace"
+	icon_state = "carapace"
+	desc = "Carapace from a watery creature."
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/food_drop.ogg'
+	sellprice = 14
+
+/obj/item/natural/carapace/dragon
+	name = "dragonscale"
+	icon_state = "carapace"
+	desc = "Carapace from a fiery creature."
+	color = "red"
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/food_drop.ogg'
+	sellprice = 14
+
+/obj/item/natural/dragon_head
+	name = "dragon head"
+	icon_state = "dragon_head"
+	desc = "Dismembered head of a dragon."
+	dropshrink = 0.90
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	sellprice = 100
+
+/obj/item/natural/dragon_head/brood
+	name = "Broodmother head"
+	desc = "Dismembered head of a big dragon."
+	w_class = WEIGHT_CLASS_SMALL
+	sellprice = 200
