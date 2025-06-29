@@ -1,7 +1,7 @@
 /obj/structure/roguemachine/questgiver
 	name = "grand quest book"
 	desc = "A large wooden notice board, carrying postings from all across Sunmarch. A crow's perch sits atop it."
-	icon = 'code/modules/roguetown/roguemachine/questing.dmi'
+	icon = 'code/modules/roguetown/roguemachine/questing/questing.dmi'
 	icon_state = "questgiver"
 	density = TRUE
 	anchored = TRUE
@@ -49,25 +49,26 @@
 		if("Print Issued Quests")
 			print_quests(user)
 
-
-//Quest generator. Guild one's better (permits high difficulty quests, has better rewards and requires no deposit fees). Requires a small deposit to spawn it in.
+//Quest generator. Guild one's better (permits high difficulty quests, has better rewards and requires no deposit fees). Requires a small deposit to spawn otherwise.
 /obj/structure/roguemachine/questgiver/proc/consult_quests(mob/user)
+	var/deposit
 
-	// Has user a bank account?
-	if(!(user in SStreasury.bank_accounts))
-		say("You have no bank account.")
-		return
+	if(!guild)
+		// Has user a bank account?
+		if(!(user in SStreasury.bank_accounts))
+			say("You have no bank account.")
+			return
 
-	// Has user enough money?
-	if(SStreasury.bank_accounts[user] < amount)
-		say("Insufficient balance funds.")
-		return
+		// Has user enough money?
+		if(SStreasury.bank_accounts[user] < deposit)
+			say("Insufficient balance funds.")
+			return
 
 //Turn in completed scrolls. Click your scroll on some item or a landmark where it'll spawn to activate it and make it turnable in.
 /obj/structure/roguemachine/questgiver/proc/turn_in_quest(mob/user)
 	var/reward
 	if(guild)
-		reward *= 2 //So guild handlers get some profit you know.
+		reward *= 1.5 //So guild handlers get some profit you know.
 	switch(scroll.difficulty) //deposit returns
 		if(1)
 			reward += 10
