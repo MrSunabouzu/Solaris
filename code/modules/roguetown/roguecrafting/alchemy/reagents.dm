@@ -107,34 +107,31 @@
 	M.regenerate_icons()
 	..()
 
-//Someone please remember to change this to actually do mana at some point?
-/datum/reagent/medicine/manapot
-	name = "Mana Potion"
-	description = "Gradually regenerates energy."
+/datum/reagent/medicine/energypot
+	name = "Energy Potion"
+	description = "Gradually regenerates energy; almost as good as a day's rest."
 	reagent_state = LIQUID
 	color = "#0000ff"
-	taste_description = "sweet mana"
+	taste_description = "an intense vigor"
 	overdose_threshold = 0
 	metabolization_rate = REAGENTS_METABOLISM
 	alpha = 173
 
-//Turns out that Stamina is in reality the Blue bar.
-/datum/reagent/medicine/manapot/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(30) //15 oz of mana potion = 45u. With default metabolism ticking 1u, you can regen 1350 rogstam in one bottle. A 10 Endurance character has by default 1000 rogstam maximum
+/datum/reagent/medicine/energypot/on_mob_life(mob/living/carbon/M)
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_ENERGY))
+		M.energy_add(30) //15 oz of energy potion = 45u. With default metabolism ticking 1u, you can regen 1350 energy in one bottle. A 10 Endurance character has by default 1000 energy maximum
 	..()
 
-/datum/reagent/medicine/strongmana
-	name = "Strong Mana Potion"
+/datum/reagent/medicine/strongenergy
+	name = "Strong Energy Potion"
 	description = "Rapidly regenerates energy."
 	color = "#000080"
 	taste_description = "raw power"
 	metabolization_rate = REAGENTS_METABOLISM * 3
 
-//Turns out that Stamina is in reality the Blue bar.
-/datum/reagent/medicine/strongmana/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(120)
+/datum/reagent/medicine/strongenergy/on_mob_life(mob/living/carbon/M)
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_ENERGY))
+		M.energy_add(120)
 	..()
 
 /datum/reagent/medicine/stampot
@@ -149,8 +146,8 @@
 
 //Despite the name, the green bar is actually Fatigue in the code.
 /datum/reagent/medicine/stampot/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogfat_add(-20) //The less rogfat you have, the fuller the green bar is. This should make sprinting last longer, and mitigate combat consumption. Your maximum rogfat is a tenth of your maximum rogstam
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
+		M.stamina_add(-20) //The less stamina you have, the fuller the green bar is. This should make sprinting last longer, and mitigate combat consumption. Your maximum stamina is a tenth of your maximum energy
 	..()
 
 /datum/reagent/medicine/strongstam
@@ -162,8 +159,8 @@
 
 //Despite the name, the green bar is actually Fatigue in the code.
 /datum/reagent/medicine/strongstam/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogfat_add(-50)  //The less rogfat you have, the fuller the green bar is. Should make sprinting last forever while you chug this. But metabolizes only twice per sip. More like of a second wind if using mid combat.
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
+		M.stamina_add(-50)  //The less stamina you have, the fuller the green bar is. Should make sprinting last forever while you chug this. But metabolizes only twice per sip. More like of a second wind if using mid combat.
 	..()
 
 /datum/reagent/medicine/antidote
@@ -314,13 +311,14 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 
 /datum/reagent/berrypoison/on_mob_life(mob/living/carbon/M)
-	if(volume > 0.09)
-		if(isdwarf(M))
-			M.add_nausea(1)
-			M.adjustToxLoss(0.5)
-		else
-			M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
-			M.adjustToxLoss(2)
+	if(!HAS_TRAIT(M, TRAIT_NASTY_EATER))	
+		if(volume > 0.09)
+			if(isdwarf(M))
+				M.add_nausea(1)
+				M.adjustToxLoss(0.5)
+			else
+				M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
+				M.adjustToxLoss(2)
 	return ..()
 
 
@@ -366,8 +364,8 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM * 3
 
 /datum/reagent/stampoison/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogfat_add(2) //Slowly leech the green bar. Sort of similar at how fast sprinting drains your stamina. With a slow metabolization, this poison is more of a stamina blocker. Can still lock someone in stam crit if thex exhert too much while this poison is active.
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
+		M.stamina_add(2) //Slowly leech the green bar. Sort of similar at how fast sprinting drains your stamina. With a slow metabolization, this poison is more of a stamina blocker. Can still lock someone in stam crit if thex exhert too much while this poison is active.
 	return ..()
 
 /datum/reagent/strongstampoison
@@ -379,8 +377,8 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM * 9
 
 /datum/reagent/strongstampoison/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogfat_add(20) //Rapidly leech stamina. Drains faster, but lasts less. Should ideally be able to neutralize someone out of combat in one application.
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
+		M.stamina_add(20) //Rapidly leech stamina. Drains faster, but lasts less. Should ideally be able to neutralize someone out of combat in one application.
 	return ..()
 
 
@@ -408,9 +406,9 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 /datum/chemical_reaction/alch/strongmana
 	name = "Strong Mana Potion"
-	id = /datum/reagent/medicine/strongmana
-	results = list(/datum/reagent/medicine/strongmana = 1)
-	required_reagents = list(/datum/reagent/medicine/manapot = 1, /datum/reagent/additive = 1)
+	id = /datum/reagent/medicine/strongenergy
+	results = list(/datum/reagent/medicine/strongenergy = 1)
+	required_reagents = list(/datum/reagent/medicine/energypot = 1, /datum/reagent/additive = 1)
 	mix_message = "The cauldron glows for a moment."
 
 /datum/chemical_reaction/alch/strongstam

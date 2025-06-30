@@ -6,7 +6,7 @@
 	list_reagents = list(/datum/reagent/medicine/stronghealth = 45)
 
 /obj/item/reagent_containers/glass/bottle/rogue/manapot
-	list_reagents = list(/datum/reagent/medicine/manapot = 45)
+	list_reagents = list(/datum/reagent/medicine/energypot = 45)
 
 /obj/item/reagent_containers/glass/bottle/rogue/poison
 	list_reagents = list(/datum/reagent/toxin/killersice = 1)
@@ -16,7 +16,7 @@
 
 //vanderlin potion stuff//
 /obj/item/reagent_containers/glass/bottle/rogue/strongmanapot
-	list_reagents = list(/datum/reagent/medicine/strongmana = 45)
+	list_reagents = list(/datum/reagent/medicine/strongenergy = 45)
 
 /obj/item/reagent_containers/glass/bottle/rogue/stampot
 	list_reagents = list(/datum/reagent/medicine/stampot = 45)

@@ -2,12 +2,11 @@ GLOBAL_LIST_INIT(ziraguard_aggro, world.file2list("strings/rt/drowaggrolines.txt
 
 /mob/living/carbon/human/species/elf/dark/ziraguard
 	aggressive=1
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	faction = list("ziraguard","drow")
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	possible_rmb_intents = list()
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 
@@ -42,7 +41,7 @@ GLOBAL_LIST_INIT(ziraguard_aggro, world.file2list("strings/rt/drowaggrolines.txt
 	job = "Guardian of Secrets"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/elf/dark/ziraguard)
 	gender = pick(MALE, FEMALE)
@@ -109,7 +108,7 @@ GLOBAL_LIST_INIT(ziraguard_aggro, world.file2list("strings/rt/drowaggrolines.txt
 		face_atom(get_step(src,pick(GLOB.cardinals)))
 
 /mob/living/carbon/human/species/elf/dark/ziraguard/handle_combat()
-	if(mode == AI_HUNT)
+	if(mode == NPC_AI_HUNT)
 		if(prob(5))
 			emote("laugh")
 	. = ..()

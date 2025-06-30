@@ -27,6 +27,13 @@
 	//No nobility for you, being a member of the clergy means you gave UP your nobility. It says this in many of the church tutorial texts.
 	virtue_restrictions = list(/datum/virtue/utility/noble, /datum/virtue/utility/outlander) //Local priests probably shouldn't be from Not Here, though monks and the like make sense.
 
+/datum/job/roguetown/priest/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/psicross/aeternus

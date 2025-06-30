@@ -518,6 +518,11 @@
 //			if(SSshuttle.emergency.timeLeft() < 30 MINUTES)
 //				. += span_warning("The last boat will leave in [round(SSshuttle.emergency.timeLeft()/600)] minutes.")
 
+/obj/structure/fluff/clock/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
+
 /obj/structure/fluff/clock/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, mover) == dir)
 		return 0
@@ -733,6 +738,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 						user.put_in_hands(I)
 			return
 
+/obj/structure/fluff/statue/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
 
 /obj/structure/fluff/statue/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, mover) == dir)
@@ -853,7 +862,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 					user.changeNext_move(CLICK_CD_MELEE)
 					if(W.max_blade_int)
 						W.remove_bintegrity(5)
-					L.rogfat_add(rand(4,6))
+					L.stamina_add(rand(4,6))
 					if(!(L.mobility_flags & MOBILITY_STAND))
 						probby = 0
 					if(L.STAINT < 3)
@@ -936,6 +945,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 	if(get_dir(loc, mover) == dir)
 		return 0
 	return !density
+
+/obj/structure/fluff/psycross/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
 
 /obj/structure/fluff/psycross/CheckExit(atom/movable/O, turf/target)
 	if(get_dir(O.loc, target) == dir)

@@ -292,6 +292,10 @@
 			return FALSE
 		if(!lying_attack_check(L))
 			return FALSE
+		// snowflake check for blocking mouthgrabs on biting deadites
+		if(L.zone_selected == BODY_ZONE_PRECISE_MOUTH && istype(mouth, /obj/item/grabbing/bite))
+			to_chat(L, span_warning("You can't grab [src]'s mouth while [p_theyre()] biting something!"))
+			return FALSE
 	return TRUE
 
 /mob/living/carbon/proc/kick_attack_check(mob/living/L)
@@ -1072,7 +1076,7 @@
 	if(moving_resist && client) //we resisted by trying to move
 		client.move_delay = world.time + 20
 	if(prob(resist_chance))
-		rogfat_add(rand(5,15))
+		stamina_add(rand(5,15))
 		visible_message(span_warning("[src] breaks free of [pulledby]'s grip!"), \
 						span_notice("I break free of [pulledby]'s grip!"), null, null, pulledby)
 		to_chat(pulledby, span_danger("[src] breaks free of my grip!"))
@@ -1082,7 +1086,7 @@
 		pulledby.stop_pulling()
 		return FALSE
 	else
-		rogfat_add(rand(5,15))
+		stamina_add(rand(5,15))
 		var/shitte = ""
 //		if(client?.prefs.showrolls)
 //			shitte = " ([resist_chance]%)"
@@ -1345,9 +1349,6 @@
 		to_chat(src, span_warning("I try to fire [G], but can't use the trigger!"))
 		return FALSE
 	return TRUE
-
-/mob/living/proc/update_stamina()
-	return
 
 /mob/living/proc/owns_soul()
 	if(mind)

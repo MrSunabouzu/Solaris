@@ -47,6 +47,10 @@ GLOBAL_LIST_EMPTY(lord_titles)
 
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
 	if(L)
 		SSticker.rulermob = L
 		if(should_wear_femme_clothes(L))

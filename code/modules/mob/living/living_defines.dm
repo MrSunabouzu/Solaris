@@ -124,10 +124,10 @@
 	var/list/ownedSoullinks //soullinks we are the owner of
 	var/list/sharedSoullinks //soullinks we are a/the sharer of
 
-	var/maxrogstam = 1000
-	var/maxrogfat = 100
-	var/rogstam = 1000
-	var/rogfat = 0
+	var/maxenergy = 1000
+	var/max_stamina = 100
+	var/energy = 1000
+	var/stamina = 0
 
 	var/last_fatigued = 0
 	var/last_ps = 0
@@ -178,5 +178,9 @@
 	var/rogue_sneaking_light_threshhold = 0.15
 
 	var/voice_pitch = 1
+	/// Var used to regulate the body size.
+	var/body_size = 100
+	/// Var used to compare and check if we have to transform or not their size.
+	var/base_body_size = 100
 
 	var/domhand = 0

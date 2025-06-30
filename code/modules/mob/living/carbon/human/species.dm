@@ -990,7 +990,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	switch(H.nutrition)
 //		if(NUTRITION_LEVEL_FAT to INFINITY) //currently disabled/999999 define
-//			if(H.rogstam >= H.maxrogstam)
+//			if(H.energy >= H.maxenergy)
 //				H.apply_status_effect(/datum/status_effect/debuff/fat)
 		if(NUTRITION_LEVEL_FAT to INFINITY)
 			H.add_stress(/datum/stressevent/stuffed)
@@ -1186,6 +1186,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				target.next_attack_msg += " <span class='warning'>Armor absorbs the blow.</span>"
 			else
 				target.next_attack_msg += " <span class='warning'>The attack has no effect.</span>"
+		else
+			affecting.bodypart_attacked_by(user.used_intent.blade_class, damage, user, selzone, crit_message = TRUE)
 
 		log_combat(user, target, "punched")
 
@@ -1363,7 +1365,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 		to_chat(user, span_notice("I can't move my leg!"))
 		return
-	if(user.rogfat >= user.maxrogfat)
+	if(user.stamina >= user.max_stamina)
 		return FALSE
 	if(!(user.mobility_flags & MOBILITY_STAND))
 		return FALSE
@@ -1425,7 +1427,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					target_table = locate(/obj/structure/table) in target_shove_turf.contents
 					shove_blocked = TRUE
 			else
-				if(stander && target.rogfat >= target.maxrogfat) //if you are kicked while fatigued, you are knocked down no matter what
+				if(stander && target.stamina >= target.max_stamina) //if you are kicked while fatigued, you are knocked down no matter what
 					target.Knockdown(100)
 
 		if(shove_blocked && !target.is_shove_knockdown_blocked() && !target.buckled)
@@ -1482,7 +1484,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		target.lastattackerckey = user.ckey
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
-		user.rogfat_add(15)
+		user.stamina_add(15)
 		target.forcesay(GLOB.hit_appends)
 
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
@@ -1876,6 +1878,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.remove_movespeed_modifier(MOVESPEED_ID_COLD)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
+
+// A general-purpose proc used to centralise checks to skip turf, movement, step, etc. 
+// For if a mob is floating, flying, intangible, etc.
+/datum/species/proc/is_floor_hazard_immune(mob/living/carbon/human/owner)
+	return FALSE
 
 //////////
 // FIRE //

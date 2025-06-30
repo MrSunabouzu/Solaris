@@ -36,7 +36,7 @@
 		if(!do_after(user, 5 SECONDS, target = spelltarget))
 			return
 		spelltarget.apply_status_effect(/datum/status_effect/buff/darkvision)
-		user.rogfat_add(80)
+		user.stamina_add(80)
 		user.mind.add_sleep_experience(associated_skill, 48, FALSE) // XP Magical number should be 60% of stamina used (so 80*0.6 = 48)
 		if(spelltarget != user)
 			user.visible_message("[user] draws a glyph in the air and touches [spelltarget] with an arcane focus.")

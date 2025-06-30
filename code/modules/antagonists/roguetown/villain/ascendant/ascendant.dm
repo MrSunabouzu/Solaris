@@ -9,7 +9,7 @@
 	rogue_enabled = TRUE
 	/// Traits we apply to the owner
 	var/static/list/applied_traits = list(
-		TRAIT_NOROGSTAM,
+		TRAIT_INFINITE_STAMINA,
 		TRAIT_CREEPY_AMBIENCE,
 		TRAIT_SHOCKIMMUNE,
 	)

@@ -4,6 +4,8 @@
 	icon_state = "dragon"
 	icon_living = "dragon"
 	icon_dead = "dragon_dead"
+	pixel_x = -32
+	pixel_y = -16
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	gender = MALE
 	emote_hear = null
@@ -64,7 +66,7 @@
 		gender = FEMALE
 	update_icon()
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)

@@ -168,12 +168,12 @@
 			if(!(M.status_flags & CANPUSH) || HAS_TRAIT(M, TRAIT_PUSHIMMUNE))
 				to_chat(user, span_warning("Can't get a grip!"))
 				return FALSE
-			user.rogfat_add(rand(7,15))
+			user.stamina_add(rand(7,15))
 			M.grippedby(user)
 		if(/datum/intent/grab/choke)
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
 				if(iscarbon(M) && M != user)
-					user.rogfat_add(rand(1,3))
+					user.stamina_add(rand(1,3))
 					var/mob/living/carbon/C = M
 					if(get_location_accessible(C, BODY_ZONE_PRECISE_NECK))
 						if(prob(25))
@@ -185,15 +185,15 @@
 		if(/datum/intent/grab/twist)
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
 				if(iscarbon(M))
-					user.rogfat_add(rand(3,8))
+					user.stamina_add(rand(3,8))
 					twistlimb(user)
 		if(/datum/intent/grab/twistitem)
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
 				if(ismob(M))
-					user.rogfat_add(rand(3,8))
+					user.stamina_add(rand(3,8))
 					twistitemlimb(user)
 		if(/datum/intent/grab/remove)
-			user.rogfat_add(rand(3,13))
+			user.stamina_add(rand(3,13))
 			if(isitem(sublimb_grabbed))
 				removeembeddeditem(user)
 			else
@@ -208,7 +208,7 @@
 					return
 				var/stun_dur = max(((65 + (skill_diff * 10) + (user.STASTR * 5) - (M.STASTR * 5)) * combat_modifier), 20)
 				var/pincount = 0
-				user.rogfat_add(rand(1,3))
+				user.stamina_add(rand(1,3))
 				while(M == grabbed && !(M.mobility_flags & MOBILITY_STAND))
 					if(M.IsStun())
 						if(!do_after(user, stun_dur + 1, needhand = 0, target = M))
@@ -216,18 +216,18 @@
 							break
 						M.Stun(stun_dur - pincount * 2)	
 						M.Immobilize(stun_dur)	//Made immobile for the whole do_after duration, though
-						user.rogfat_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
+						user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
 						M.visible_message(span_danger("[user] keeps [M] pinned to the ground!"))
 						pincount += 2
 					else
 						M.Stun(stun_dur - 10)
 						M.Immobilize(stun_dur)
-						user.rogfat_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
+						user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
 						pincount += 2
 						M.visible_message(span_danger("[user] pins [M] to the ground!"), \
 							span_userdanger("[user] pins me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 			else
-				user.rogfat_add(rand(5,15))
+				user.stamina_add(rand(5,15))
 				if(prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
 					M.visible_message(span_danger("[user] shoves [M] to the ground!"), \
 									span_userdanger("[user] shoves me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
@@ -276,7 +276,7 @@
 		if(QDELETED(I) || QDELETED(L) || !L.remove_embedded_object(I))
 			return FALSE
 		L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class) //It hurts to rip it out, get surgery you dingus.
-		user.dropItemToGround(src)
+		user.dropItemToGround(src) // this will unset vars like limb_grabbed
 		user.put_in_hands(I)
 		C.emote("paincrit", TRUE)
 		playsound(C, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
@@ -284,13 +284,12 @@
 			user.visible_message(span_notice("[user] rips [I] out of [user.p_their()] [L.name]!"), span_notice("I rip [I] from my [L.name]."))
 		else
 			user.visible_message(span_notice("[user] rips [I] out of [C]'s [L.name]!"), span_notice("I rip [I] from [C]'s [L.name]."))
-		sublimb_grabbed = limb_grabbed.body_zone
 	else if(HAS_TRAIT(M, TRAIT_SIMPLE_WOUNDS))
 		var/obj/item/I = locate(sublimb_grabbed) in M.simple_embedded_objects
 		if(QDELETED(I) || !M.simple_remove_embedded_object(I))
 			return FALSE
 		M.apply_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class, BRUTE) //It hurts to rip it out, get surgery you dingus.
-		user.dropItemToGround(src)
+		user.dropItemToGround(src) // this will unset vars like limb_grabbed
 		user.put_in_hands(I)
 		M.emote("paincrit", TRUE)
 		playsound(M, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
@@ -298,7 +297,6 @@
 			user.visible_message(span_notice("[user] rips [I] out of [user.p_them()]self!"), span_notice("I remove [I] from myself."))
 		else
 			user.visible_message(span_notice("[user] rips [I] out of [M]!"), span_notice("I rip [I] from [src]."))
-		sublimb_grabbed = M.simple_limb_hit(user.zone_selected)
 	user.update_grab_intents(grabbed)
 	return TRUE
 
@@ -480,7 +478,6 @@
 			*/
 			var/datum/antagonist/zombie/zombie_antag = user.mind.has_antag_datum(/datum/antagonist/zombie)
 			if(zombie_antag && zombie_antag.has_turned)
-				zombie_antag.last_bite = world.time
 				var/datum/antagonist/zombie/existing_zombie = C.mind?.has_antag_datum(/datum/antagonist/zombie) //If the bite target is a zombie
 				if(!existing_zombie && caused_wound?.zombie_infect_attempt())   // infect_attempt on wound
 					to_chat(user, span_danger("You feel your gift trickling into [C]'s wound...")) //message to the zombie they infected the target

@@ -642,14 +642,14 @@
 	return ..()
 
 /obj/item/rogueweapon/armknife
-	force = 10
+	force = 13
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust, /datum/intent/dagger/chop, /datum/intent/dagger/sucker_punch)
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
 	name = "Bronze Field Knife"
 	desc = "A magitek field knife fabricated by a Trick Arm. It can be recalled and reconstructed at will by its owner."
-	icon_state = "huntingknife"
+	icon_state = "armknife"
 	icon = 'icons/roguetown/weapons/32.dmi'
-	item_state = "bone_dagger"
+	item_state = "crysknife"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	gripsprite = FALSE
@@ -657,8 +657,8 @@
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_SMALL
 	parrysound = list('sound/combat/parry/bladed/bladedsmall (1).ogg','sound/combat/parry/bladed/bladedsmall (2).ogg','sound/combat/parry/bladed/bladedsmall (3).ogg')
-	max_blade_int = 100
-	max_integrity = 175
+	max_blade_int = 75
+	max_integrity = 125
 	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
 	associated_skill = /datum/skill/combat/knives
 	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'

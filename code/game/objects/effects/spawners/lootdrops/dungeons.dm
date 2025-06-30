@@ -184,6 +184,16 @@
 	icon_state = "coins"
 	loot = list(
 		// Money
+		/obj/item/roguecoin/copper = 10,
+		/obj/item/roguecoin/silver = 10,
+		/obj/item/roguecoin/gold = 10,
+		/obj/item/roguecoin/copper/pile = 1
+	)
+	lootcount = 2
+
+/obj/effect/spawner/lootdrop/roguetown/dungeon/money/rich
+	loot = list(
+		// Money (Fat Stacks)
 		/obj/item/roguecoin/copper = 5,
 		/obj/item/roguecoin/silver = 5,
 		/obj/item/roguecoin/gold = 5,
@@ -191,7 +201,6 @@
 		/obj/item/roguecoin/silver/pile = 2,
 		/obj/item/roguecoin/gold/pile = 1
 	)
-	lootcount = 2
 
 /obj/effect/spawner/lootdrop/roguetown/dungeon/misc
 	loot = list(
@@ -346,7 +355,6 @@
 		/obj/item/book/granter/spell/blackstone/guidance = 4,
 		/obj/item/book/granter/spell/blackstone/fortitude = 4,
 		/obj/item/book/granter/spell/blackstone/leap = 4,
-		/obj/item/book/granter/spell/blackstone/enlarge = 4,
 		/obj/item/book/granter/spell/blackstone/repel = 3,
 		/obj/item/book/granter/spell/blackstone/fetch = 3,
 		/obj/item/book/granter/spell/blackstone/fireball = 3,

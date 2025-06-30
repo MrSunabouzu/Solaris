@@ -192,6 +192,10 @@
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
 				prob2defend += 15
 
+			if(user.has_status_effect(/datum/status_effect/buff/chargedriposte)) // one-time use attack
+				prob2defend -= 200
+				remove_status_effect(/datum/status_effect/buff/chargedriposte)
+
 			if(HAS_TRAIT(user, TRAIT_GUIDANCE))
 				prob2defend -= 15
 
@@ -209,6 +213,22 @@
 			if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
 				prob2defend = clamp(prob2defend, 5, 70)
 
+			if(src.dodgecharges > 0 && has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges, with flourish
+				prob2defend = 100
+				src.dodgecharges--
+				src.visible_message(span_info("[src] moves with unnatural grace, effortlessly fending off [user]'s attack"))
+
+			if(src.dodgecharges > 0 && !has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges
+				prob2defend = 100
+				src.dodgecharges--
+				src.visible_message(span_info("[src]'s arm snaps out, fending off [user] at the last second"))
+
+			if(src.dodgecharges == 0 && has_status_effect(/datum/status_effect/buff/carthusinstinct)) //if you have the buff and use all your charges, gain a riposte
+				src.remove_status_effect(/datum/status_effect/buff/carthusinstinct)
+				src.remove_status_effect(/datum/status_effect/buff/carthusgrace)
+				src.visible_message(span_info("[src]'s arms glow with the vestiges of their divine boon, while the rest of them slows down"))
+				src.apply_status_effect(/datum/status_effect/buff/chargedriposte)
+				
 			//Dual Wielding
 			var/attacker_dualw
 			var/defender_dualw
@@ -236,8 +256,8 @@
 					else//If we're defending against or as a dual wielder, we roll disadv. But if we're both dual wielding it cancels out.
 						text += " Twice! Disadvantage! ([(prob2defend / 100) * (prob2defend / 100) * 100]%)"
 				to_chat(src, span_info("[text]"))
-			
-			var/attacker_feedback 
+
+			var/attacker_feedback
 			if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
 				attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 
@@ -416,10 +436,34 @@
 			else
 				return FALSE
 
+// origin is used for multi-step dodges like jukes
+/mob/living/proc/get_dodge_destinations(mob/living/attacker, atom/origin = src)
+	var/dodge_dir = get_dir(attacker, origin)
+	if(!dodge_dir)
+		return null
+	var/list/dirry = list()
+	// pick a random dir
+	var/list/turf/dodge_candidates = list()
+	for(var/dir_to_check in dirry)
+		var/turf/dodge_candidate = get_step(origin, dir_to_check)
+		if(!dodge_candidate)
+			continue
+		if(dodge_candidate.density)
+			continue
+		var/has_impassable_atom = FALSE
+		for(var/atom/movable/AM in dodge_candidate)
+			if(!AM.CanPass(src, dodge_candidate))
+				has_impassable_atom = TRUE
+				break
+		if(has_impassable_atom)
+			continue
+		dodge_candidates += dodge_candidate
+	return dodge_candidates
+
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.rogfat_add(parrydrain))
+		if(H.stamina_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(istype(rmb_intent, /datum/rmb_intent/riposte))
@@ -438,7 +482,7 @@
 /mob/proc/do_unarmed_parry(parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.rogfat_add(parrydrain))
+		if(H.stamina_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
 			return TRUE
@@ -465,7 +509,7 @@
 		UH = user
 		I = UH.used_intent.masteritem
 	var/prob2defend = U.defprob
-	if(L.rogfat >= L.maxrogfat)
+	if(L.stamina >= L.max_stamina)
 		return FALSE
 	if(L)
 		if(H?.check_dodge_skill())
@@ -518,6 +562,10 @@
 		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
 			prob2defend -= 15
 
+		if(U.has_status_effect(/datum/status_effect/buff/chargedriposte)) // one-time use attack
+			prob2defend -= 200
+			U.remove_status_effect(/datum/status_effect/buff/chargedriposte)
+
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))
 			prob2defend *= 0.25
@@ -528,6 +576,22 @@
 
 		prob2defend = clamp(prob2defend, 5, 90)
 
+		if(L.dodgecharges > 0 && L.has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges, with flourish
+			prob2defend = 100
+			L.dodgecharges--
+			L.visible_message(span_info("[L] moves with unnatural grace, effortlessly dancing around [U]'s attack"))
+
+		if(L.dodgecharges > 0 && !L.has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges
+			prob2defend = 100
+			L.dodgecharges--
+			L.visible_message(span_info("[L]'s suddenly sidesteps, dodging [U]'s blow"))
+
+		if(L.dodgecharges == 0 && L.has_status_effect(/datum/status_effect/buff/carthusinstinct)) //if you have the buff and use all your charges, gain a riposte
+			L.remove_status_effect(/datum/status_effect/buff/carthusinstinct)
+			L.remove_status_effect(/datum/status_effect/buff/carthusgrace)
+			L.visible_message(span_info("[L]'s arms glow with the vestiges of their divine boon, while the rest of them slows down"))
+			L.apply_status_effect(/datum/status_effect/buff/chargedriposte)
+			
 		//------------Dual Wielding Checks------------
 		var/attacker_dualw
 		var/defender_dualw
@@ -551,7 +615,7 @@
 				attacker_dualw = TRUE
 		//----------Dual Wielding check end---------
 
-		var/attacker_feedback 
+		var/attacker_feedback
 		if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
 			attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 
@@ -582,7 +646,7 @@
 
 		if(!dodge_status)
 			return FALSE
-		if(!H.rogfat_add(max(drained,5)))
+		if(!H.stamina_add(max(drained,5)))
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human

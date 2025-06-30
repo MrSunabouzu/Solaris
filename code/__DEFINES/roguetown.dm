@@ -246,6 +246,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_SERVANT		"CAT_SERVANT"		// Servant's aesthetic choices.
 #define CTAG_CAPTAIN		"CAT_CAPTAIN"		// Handles Captain class selector
 #define CTAG_WAPPRENTICE	"CTAG_WAPPRENTICE"	// Mage Apprentice Classes - Handles Mage Apprentices class selector
+#define CTAG_WARDEN			"CTAG_WARDEN"		// Warden / Bogguard Class
 
 /*
 	Defines for the triumph buy datum categories
