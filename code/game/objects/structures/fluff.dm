@@ -550,6 +550,8 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	var/broke = FALSE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock, 32)
+
 /obj/structure/fluff/wallclock/Destroy()
 	if(soundloop)
 		soundloop.stop()
@@ -597,8 +599,6 @@
 			soundloop.stop()
 		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
 	..()
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock, 32)
 
 //vampire
 /obj/structure/fluff/wallclock/vampire

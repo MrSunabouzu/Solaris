@@ -293,6 +293,9 @@
 	icon = 'icons/roguetown/misc/tables.dmi'
 	icon_state = "tablefine2"
 
+/obj/structure/table/wood/tree
+	icon_state = "tablewood_tree"
+
 /obj/structure/table/cooling //cooling table made by artificers
 	name = "Cooling Table"
 	desc = "Used to keep your food cool and rot free"
@@ -470,8 +473,12 @@
 	icon_state = "shelf"
 	density = FALSE
 	climbable = FALSE
+	climb_offset = 0
 	dir = SOUTH
 	pixel_y = 32
+
+/obj/structure/rack/rogue/shelf/tree
+	icon_state = "shelf_tree"
 
 /obj/structure/rack/rogue/shelf/big
 	icon = 'icons/roguetown/misc/structure.dmi'
@@ -480,9 +487,16 @@
 	dir = SOUTH
 	pixel_y = 16
 
+/obj/structure/rack/rogue/shelf/big/tree
+	icon_state = "shelf_big_tree"
+
 /obj/structure/rack/rogue/shelf/biggest
 	icon_state = "shelf_biggest"
 	pixel_y = 0
+	climb_offset = 10
+
+/obj/structure/rack/rogue/shelf/biggest/tree
+	icon_state = "shelf_biggest_tree"
 
 /obj/structure/rack/rogue/shelf/notdense // makes the wall mounted one less weird in a way, got downside of offset when loaded again tho
 	density = FALSE

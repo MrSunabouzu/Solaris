@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(ziraguard_aggro, world.file2list("strings/rt/drowaggrolines.txt
 /mob/living/carbon/human/species/elf/dark/ziraguard/handle_combat()
 	if(mode == NPC_AI_HUNT)
 		if(prob(5))
-			emote("laugh")
+			emote("warcry")
 	. = ..()
 
 /datum/outfit/job/roguetown/human/species/elf/dark/ziraguard/pre_equip(mob/living/carbon/human/H)
@@ -132,10 +132,10 @@ GLOBAL_LIST_INIT(ziraguard_aggro, world.file2list("strings/rt/drowaggrolines.txt
 		neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/leather/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots
-	H.STASTR = rand(16,18)
-	H.STASPD = rand(16,18)
+	H.STASTR = rand(14,16)
+	H.STASPD = rand(12,14)
 	H.STACON = rand(14,16)
-	H.STAEND = rand(14,16)
+	H.STAEND = rand(12,14)
 	H.STAPER = rand(12,14)
 	H.STAINT = rand(12,14)
 	if(prob(50))

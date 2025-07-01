@@ -42,6 +42,7 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/self/light,
 		/obj/effect/proc_holder/spell/invoked/conjure_weapon,
 		/obj/effect/proc_holder/spell/invoked/conjure_armor,
+		/obj/effect/proc_holder/spell/invoked/conjure_tool,
 		/obj/effect/proc_holder/spell/self/magicians_brick,
 		/obj/effect/proc_holder/spell/invoked/projectile/guided_bolt,
 		/obj/effect/proc_holder/spell/invoked/thunderstrike,
@@ -52,5 +53,12 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/celestial_vigil,
 		/obj/effect/proc_holder/spell/invoked/void_vigil,
 		/obj/effect/proc_holder/spell/invoked/umbral_volley,
+		/obj/effect/proc_holder/spell/invoked/lightninglure,
+		/obj/effect/proc_holder/spell/invoked/chilltouch,
+		/obj/effect/proc_holder/spell/invoked/boomingblade,
+		/obj/effect/proc_holder/spell/self/bladeward,
+		/obj/effect/proc_holder/spell/invoked/greenflameblade,
+		/obj/effect/proc_holder/spell/invoked/mending,
+		/obj/effect/proc_holder/spell/invoked/projectile/firebolt,
 		)
 ))

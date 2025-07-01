@@ -4,6 +4,7 @@
 	icon_state = "MinotaurMale"
 	icon_living = "MinotaurMale"
 	icon_dead = "MinotaurMale_dead"
+	pixel_x = -16
 	gender = MALE
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	emote_hear = null
