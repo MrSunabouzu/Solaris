@@ -305,6 +305,28 @@
 /turf/open/floor/rogue/grass/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)
 
+/turf/open/floor/rogue/leaves
+	name = "leaves"
+	desc = "Leaves, they look lovely this time of year."
+	icon = 'icons/roguetown/misc/tree.dmi'
+	icon_state = "center-leaf1"
+	layer = MID_TURF_LAYER
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_SOFT_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+	landsound = 'sound/foley/jumpland/grassland.wav'
+	slowdown = 0
+	// smooth = SMOOTH_TRUE
+	canSmoothWith = list(
+		/turf/open/floor/rogue/leaves,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/innercorner,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/ground,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/tree,
+	)
+
 /turf/open/floor/rogue/dirt/ambush
 	name = "dirt"
 	desc = "The dirt is pocked with the scars of countless wars."

@@ -113,10 +113,14 @@
 /obj/structure/chair/wood/rogue/chair3
 	icon_state = "chair3"
 	icon = 'icons/roguetown/misc/structure.dmi'
-	item_chair = /obj/item/chair/rogue
+	item_chair = /obj/item/chair/rogue/wood
 	blade_dulling = DULLING_BASHCHOP
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
+
+/obj/structure/chair/wood/rogue/tree
+	icon_state = "chair_tree"
+	item_chair = /obj/item/chair/rogue/wood/tree
 
 /obj/structure/chair/wood/rogue/throne
 	icon_state = "thronechair"
@@ -149,6 +153,14 @@
 			if("wielded")
 				return list("shrink" = 0.7,"sx" = 2,"sy" = 1,"nx" = -17,"ny" = 0,"wx" = -11,"wy" = 0,"ex" = 2,"ey" = 0,"westabove" = 1,"eastbehind" = 0,"nturn" = 9,"sturn" = -42,"wturn" = 21,"eturn" = -27,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,)
 	..()
+
+/obj/item/chair/rogue/wood
+	icon_state = "chair3"
+	origin_type = /obj/structure/chair/wood/rogue/chair3
+
+/obj/item/chair/rogue/wood/tree
+	icon_state = "chair_tree"
+	origin_type = /obj/structure/chair/wood/rogue/tree
 
 /obj/structure/chair/wood/rogue/CanPass(atom/movable/mover, turf/target)
 	if(isliving(mover))
@@ -404,3 +416,8 @@
 	can_buckle = TRUE
 	buckle_lying = 90
 	sleepy = 3
+
+/obj/structure/bed/rogue/double/tree
+	name = "bed"
+	desc = "This one doesn't seem man-made... Wait, are those leaves?"
+	icon_state = "double_tree"

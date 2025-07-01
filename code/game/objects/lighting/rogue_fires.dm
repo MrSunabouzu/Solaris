@@ -156,6 +156,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire/candle, 32)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire/candle/blue, 32)
 
+/obj/machinery/light/rogue/wallfire/candle/tree
+	name = "livingwood candles"
+	icon_state = "wallcandle_tree1"
+	base_state = "wallcandle_tree"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire/candle/tree, 32)
+
 /obj/machinery/light/rogue/wallfire/candle/weak
 	light_power = 0.9
 	light_outer_range =  6
