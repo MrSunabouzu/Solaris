@@ -6,23 +6,28 @@
 	var/quest_type = list("Fetch", "Courier", "Clear Out", "Kill", "Beacon", "Miniboss")
 	/// List of possible fetch items for this landmark
 	var/list/fetch_items = list(
-		/obj/item/rogueweapon/sword,
+		/obj/item/rogueweapon/huntingknife/throwingknife/steel,
+		/obj/item/rogueweapon/huntingknife,
+		/obj/item/reagent_containers/glass/bottle/rogue/whitewine,
+
 	)
 	/// List of possible mobs for kill/clear quests
 	var/list/kill_mobs = list(
-		/mob/living/simple_animal/hostile/rogue/skeleton,
-		/mob/living/simple_animal/hostile/rogue/skeleton,
+		/mob/living/carbon/human/species/goblin/npc/ambush/sea,
+		/mob/living/carbon/human/species/skeleton/npc/ambush,
+		/mob/living/carbon/human/species/human/northern/searaider/ambush,
 	)
 	/// Mob type for miniboss quests
-	var/miniboss_mob = /mob/living/simple_animal/hostile/rogue/skeleton
+	var/miniboss_mob = /mob/living/carbon/human/species/elf/dark/drowraider/ambush
 
 /obj/effect/landmark/quest_spawner/Initialize()
 	. = ..()
 
 /obj/effect/landmark/quest_spawner/proc/generate_quest(datum/quest/new_quest, mob/user)
 	new_quest.quest_difficulty = quest_difficulty
-	new_quest.quester_reference = WEAKREF(user)
-	new_quest.quester_name = user.real_name
+	new_quest.quest_receiver_reference = WEAKREF(user)
+	new_quest.quest_receiver_name = user.real_name
+	new_quest.target_spawn_area = get_area_name(get_turf(src))
 
 	// Set reward based on difficulty
 	switch(quest_difficulty)

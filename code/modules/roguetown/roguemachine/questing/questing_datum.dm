@@ -1,9 +1,9 @@
 /datum/quest
 	var/title = ""
-	var/datum/weakref/questee_reference
-	var/questee_name = ""
-	var/datum/weakref/quester_reference
-	var/quester_name = ""
+	var/datum/weakref/quest_giver_reference
+	var/quest_giver_name = ""
+	var/datum/weakref/quest_receiver_reference
+	var/quest_receiver_name = ""
 	var/quest_type = ""
 	var/quest_difficulty = ""
 	var/reward_amount = 0
@@ -20,6 +20,8 @@
 	var/area/beacon_activation_location
 	/// Location for courier quests
 	var/area/provincial/indoors/town/target_delivery_location
+	/// Location name for kill/clear quests
+	var/target_spawn_area = ""
 	/// Fallback reference to the spawned scroll
 	var/obj/item/paper/scroll/quest/quest_scroll
 	/// Weak reference to the quest scroll
@@ -32,3 +34,19 @@
 	var/list/possible_beacons = list()
 	/// Whether the beacon has been activated for this quest
 	var/beacon_activated = FALSE
+
+/datum/quest/Destroy()
+	// Clean up references
+	quest_scroll = null
+	if(quest_scroll_ref)
+		var/obj/item/paper/scroll/quest/Q = quest_scroll_ref.resolve()
+		if(Q)
+			Q.assigned_quest = null
+			qdel(Q)
+		quest_scroll_ref = null
+	
+	// Clean up beacon references
+	target_beacon = null
+	possible_beacons = null
+	
+	return ..()

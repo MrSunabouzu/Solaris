@@ -21,30 +21,84 @@
 	else
 		icon_state = "[base_icon_state]_closed"
 
+/obj/item/paper/scroll/quest/examine(mob/user)
+	. = ..()
+	if(assigned_quest)
+		if(!assigned_quest.quest_receiver_reference && assigned_quest.quest_giver_name == "Adventurer's Guild")
+			. += span_notice("This quest hasn't been claimed yet. Open it to claim it for yourself!")
+
+/obj/item/paper/scroll/quest/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
+	
+	if(!assigned_quest)
+		return
+	
+	// Handle claiming of guild-issued quests
+	if(!assigned_quest.quest_receiver_reference && assigned_quest.quest_giver_name == "Adventurer's Guild")
+		assigned_quest.quest_receiver_reference = WEAKREF(user)
+		assigned_quest.quest_receiver_name = user.real_name
+		to_chat(user, span_notice("You claim this quest for yourself!"))
+		update_quest_text()
+		return TRUE
+
 /obj/item/paper/scroll/quest/proc/update_quest_text()
 	if(!assigned_quest)
 		return
 	
 	var/scroll_text = "<center>HELP NEEDED</center><br>"
-	scroll_text += " <center>[assigned_quest.title]<br><br>"
-	scroll_text += " issued by [assigned_quest.questee_name ? assigned_quest.questee_name : "The Adventurer's Guild."]<br>"
-	scroll_text += " issued to [assigned_quest.quester_name].<br>"
-	scroll_text += " a [assigned_quest.quest_type] quest.<br>"
-	scroll_text += " of [assigned_quest.quest_difficulty] difficulty.<br>"
+	scroll_text += "<center><b>[assigned_quest.title]</b></center><br><br>"
+	scroll_text += "<b>Issued by:</b> [assigned_quest.quest_giver_name ? assigned_quest.quest_giver_name : "The Adventurer's Guild"].<br>"
+	scroll_text += "<b>Issued to:</b> [assigned_quest.quest_receiver_name ? assigned_quest.quest_receiver_name : "whoever it may concern"].<br>"
+	scroll_text += "<b>Type:</b> [assigned_quest.quest_type] quest.<br>"
+	scroll_text += "<b>Difficulty:</b> [assigned_quest.quest_difficulty].<br><br>"
 	
-	if(assigned_quest.quest_type == "Beacon")
-		if(assigned_quest.target_beacon)
-			scroll_text += " Locate and activate the Kasmidian beacon of [get_area(assigned_quest.target_beacon)].<br>"
-			scroll_text += " The beacon is also known as [assigned_quest.target_beacon.name]<br>"
-
-	if(assigned_quest.quest_type == "Courier" && assigned_quest.target_delivery_location)
-		var/area_name = initial(assigned_quest.target_delivery_location.name)
-		scroll_text += " Deliver the package to [area_name].<br>"
-
-	scroll_text += "A minimum of [assigned_quest.reward_amount] marks plus deposit to be paid upon completion."
-
+	// Quest-specific details
+	switch(assigned_quest.quest_type)
+		if("Fetch")
+			var/obj/item/example_item = assigned_quest.target_item_type
+			scroll_text += "<b>Objective:</b> Retrieve [assigned_quest.target_amount] [initial(example_item.name)].<br>"
+			scroll_text += "<b>Last Seen Location:</b> Reported sighting in [assigned_quest.target_spawn_area] region.<br>"
+		
+		if("Kill", "Miniboss")
+			var/mob/example_mob = assigned_quest.target_mob_type
+			scroll_text += "<b>Objective:</b> Slay [assigned_quest.target_amount] [initial(example_mob.name)].<br>"
+			if(assigned_quest.target_spawn_area)
+				scroll_text += "<b>Last Seen Location:</b> Reported sighting in [assigned_quest.target_spawn_area] region.<br>"
+			else
+				scroll_text += "<b>Likely Locations:</b> Reported sighting in Sunmarch region.<br>"
+		
+		if("Clear Out")
+			var/mob/example_mob = assigned_quest.target_mob_type
+			scroll_text += "<b>Objective:</b> Eliminate [assigned_quest.target_amount] [initial(example_mob.name)].<br>"
+			if(assigned_quest.target_spawn_area)
+				scroll_text += "<b>Infestation Location:</b> Reported sighting in [assigned_quest.target_spawn_area] region.<br>"
+			else
+				scroll_text += "<b>Likely Locations:</b> Reported infestations in Sunmarch region.<br>"
+				
+		if("Courier")
+			var/obj/item/example_item = assigned_quest.target_delivery_item
+			var/area_name = initial(assigned_quest.target_delivery_location.name)
+			scroll_text += "<b>Objective:</b> Deliver [initial(example_item.name)] to [area_name].<br>"
+			scroll_text += "<b>Delivery Instructions:</b> Package must remain intact and be delivered directly to the recipient.<br>"
+			scroll_text += "<b>Destination Description:</b> [initial(assigned_quest.target_delivery_location.brief_descriptor)].<br>"
+		
+		if("Beacon")
+			if(assigned_quest.target_beacon)
+				var/area/beacon_area = get_area(assigned_quest.target_beacon)
+				scroll_text += "<b>Objective:</b> Activate the Kasmidian beacon in [beacon_area.name]<br>"
+				scroll_text += "<b>Beacon Name:</b> [assigned_quest.target_beacon.name]<br>"
+				scroll_text += "<b>Location Description:</b> [beacon_area.desc]<br>"
+				scroll_text += "<b>Activation Method:</b> Simply interact with the beacon once found<br>"
+	
+	scroll_text += "<br><b>Reward:</b> [assigned_quest.reward_amount] marks upon completion<br>"
+	
 	if(assigned_quest.complete)
-		scroll_text += "<center><b>QUEST COMPLETE</b></center>"
+		scroll_text += "<br><center><b>QUEST COMPLETE</b></center>"
+	else
+		scroll_text += "<br><i>The magic in this scroll will update as you progress.</i>"
+	
 	info = scroll_text
 
 /obj/item/parcel

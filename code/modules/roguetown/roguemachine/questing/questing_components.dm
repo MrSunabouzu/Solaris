@@ -14,14 +14,24 @@
 	is_mob = ismob(parent)
 	
 	if(is_mob)
+		var/mob/M = parent
+		M.add_filter(outline_filter_id, 2, list("type" = "outline", "color" = "#ff0000", "size" = 0.5))
 		RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(on_target_death))
+		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_mob_examine))
 	else
 		var/obj/item/item_parent = parent
-		item_parent.add_filter(outline_filter_id, 2, list("type" = "outline", "color" = "#FFD700", "size" = 1))
+		item_parent.add_filter(outline_filter_id, 2, list("type" = "outline", "color" = "#008cff", "size" = 0.5))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
-		
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_item_dropped))
 		RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_dropped))
+
+/datum/component/quest_object/Destroy()
+	var/datum/quest/Q = quest_ref?.resolve()
+	if(Q)
+		// If this is a courier item and the quest is being deleted (not completed)
+		if(!Q.complete && isitem(parent) && (Q.target_delivery_item && istype(parent, Q.target_delivery_item)))
+			qdel(parent) // Delete the item if its quest is being abandoned
+	return ..()
 
 /datum/component/quest_object/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -37,6 +47,25 @@
 		if(user_quest && user_quest.quest_type == "Fetch" && istype(parent, user_quest.target_item_type))
 			examine_list += span_notice("This looks like an item you need for your quest: [user_quest.title]!")
 			break
+		if(user_quest && user_quest.quest_type == "Courier" && istype(parent, user_quest.target_delivery_item))
+			examine_list += span_notice("This looks like an item you need for your quest: [user_quest.title]!")
+			break
+
+/datum/component/quest_object/proc/on_mob_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	
+	var/datum/quest/Q = quest_ref.resolve()
+	if(!Q || Q.complete)
+		return
+
+	var/list/user_scrolls = find_quest_scrolls(user)
+	for(var/obj/item/paper/scroll/quest/scroll in user_scrolls)
+		var/datum/quest/user_quest = scroll.assigned_quest
+		if(user_quest && user_quest.quest_type == "Kill" || user_quest.quest_type == "Clear Out"  || user_quest.quest_type == "Miniboss" && istype(parent, user_quest.target_mob_type))
+			examine_list += span_notice("This looks like the target of your quest: [user_quest.title]!")
+			break
+		if(Q.target_spawn_area != get_area(get_turf(src)))
+			examine_list += span_notice("It was last reported in the [Q.target_spawn_area] area, however.")
 
 /datum/component/quest_object/proc/find_quest_scrolls(atom/container)
 	var/list/scrolls = list()
@@ -85,6 +114,7 @@
 						scroll = Q.quest_scroll
 					if(scroll)
 						scroll.update_quest_text()
+				do_sparks(3, TRUE, get_turf(dropped_item))
 				qdel(dropped_item)
 				return
 			

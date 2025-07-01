@@ -14,7 +14,7 @@
 	///Place to spawn scrolls or rewards at.
 	var/scroll_point
 	///Items that can be sold off directly through the guild.
-	var/sellable_items
+	var/list/sellable_items = list()
 
 	/// Timer for the quest giving cooldown.
 	COOLDOWN_DECLARE(heal_timer)
@@ -55,7 +55,7 @@
 		if("Print Issued Quests")
 			print_quests(user)
 
-///Quest generator. Guild one's better (permits high difficulty quests, has better rewards and takes deposit fees from the guild's fund). Requires a small deposit to spawn otherwise.
+///Quest generator. Requires a small deposit to spawn otherwise.
 /obj/structure/roguemachine/questgiver/proc/consult_quests(mob/user)
 	var/deposit
 	var/scroll_icon
@@ -107,11 +107,18 @@
 	spawned_scroll.base_icon_state = scroll_icon
 	attached_quest.quest_difficulty = difficulty_selection
 	attached_quest.quest_type = type_selection
-	attached_quest.quester_reference = WEAKREF(user)
-	attached_quest.quester_name = user.real_name
+	
+	// Only set quest_giver if not a guild handler
+	if(!guild && user.job != "Guild Handler")
+		attached_quest.quest_receiver_reference = WEAKREF(user)
+		attached_quest.quest_receiver_name = user.real_name
+	else
+		attached_quest.quest_giver_name = "Adventurer's Guild"
+		attached_quest.quest_giver_reference = WEAKREF(user)
+	
 	spawned_scroll.assigned_quest = attached_quest
-	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)  // This is the correct way to store the reference
-	attached_quest.quest_scroll = spawned_scroll  // Keep this for backward compatibility if needed
+	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
+	attached_quest.quest_scroll = spawned_scroll
 	
 	// Find an appropriate landmark for this quest
 	var/obj/effect/landmark/quest_spawner/chosen_landmark
@@ -227,6 +234,24 @@
 		turn_in_quest(user)
 		return
 	
+	// Clean up courier quest items
+	if(quest.quest_type == "Courier" && quest.target_delivery_item)
+		// Find and delete any existing delivery items in the world
+		for(var/obj/item/parcel/P in world)
+			if(P.contained_item && istype(P.contained_item, quest.target_delivery_item))
+				qdel(P)
+				continue
+			else if(istype(P, quest.target_delivery_item))
+				qdel(P)
+				continue
+		
+		// Also check for unwrapped items
+		for(var/obj/item/I in world)
+			if(istype(I, quest.target_delivery_item))
+				var/datum/component/quest_object/Q = I.GetComponent(/datum/component/quest_object)
+				if(Q && Q.quest_ref == WEAKREF(quest))
+					qdel(I)
+	
 	// Delete the quest and scroll
 	qdel(quest)
 	qdel(abandoned_scroll)
@@ -275,12 +300,15 @@
 		var/area/quest_area = get_area(quest_scroll)
 		var/area_name = quest_area ? quest_area.name : "Unknown Location"
 		
-		report_text += "<b>Title:</b> [quest.title]<br>"
-		report_text += "<b>Recipient:</b> [quest.quester_name]<br>"
-		report_text += "<b>Type:</b> [quest.quest_type]<br>"
-		report_text += "<b>Difficulty:</b> [quest.quest_difficulty]<br>"
-		report_text += "<b>Last Known Location:</b> [area_name]<br>"
-		report_text += "<b>Reward:</b> [quest.reward_amount] marks<br><br>"
+		report_text += "<b>Title:</b> [quest.title].<br>"
+		if(quest.quest_receiver_name) // Only show recipient if claimed
+			report_text += "<b>Recipient:</b> [quest.quest_receiver_name].<br>"
+		else
+			report_text += "<b>Recipient:</b> Unclaimed.<br>"
+		report_text += "<b>Type:</b> [quest.quest_type].<br>"
+		report_text += "<b>Difficulty:</b> [quest.quest_difficulty].<br>"
+		report_text += "<b>Last Known Location:</b> [area_name].<br>"
+		report_text += "<b>Reward:</b> [quest.reward_amount] marks.<br><br>"
 	
 	report.info = report_text
 	say("Quest report printed.")
