@@ -3,6 +3,8 @@
 	var/datum/weakref/quest_ref
 	/// Whether this is a mob target (true) or item (false)
 	var/is_mob = FALSE
+	/// Filter ID for the gold outline
+	var/outline_filter_id = "quest_item_outline"
 
 /datum/component/quest_object/Initialize(datum/quest/target_quest)
 	if(!isitem(parent) && !ismob(parent))
@@ -14,7 +16,38 @@
 	if(is_mob)
 		RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(on_target_death))
 	else
+		var/obj/item/item_parent = parent
+		item_parent.add_filter(outline_filter_id, 2, list("type" = "outline", "color" = "#FFD700", "size" = 1))
+		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+		
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_item_dropped))
+		RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_dropped))
+
+/datum/component/quest_object/proc/on_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	
+	var/datum/quest/Q = quest_ref.resolve()
+	if(!Q || Q.complete)
+		return
+	
+	// Check if user has any active fetch quests that match this item
+	var/list/user_scrolls = find_quest_scrolls(user)
+	for(var/obj/item/paper/scroll/quest/scroll in user_scrolls)
+		var/datum/quest/user_quest = scroll.assigned_quest
+		if(user_quest && user_quest.quest_type == "Fetch" && istype(parent, user_quest.target_item_type))
+			examine_list += span_notice("This looks like an item you need for your quest: [user_quest.title]!")
+			break
+
+/datum/component/quest_object/proc/find_quest_scrolls(atom/container)
+	var/list/scrolls = list()
+	for(var/obj/item/paper/scroll/quest/Q in container)
+		scrolls += Q
+	
+	// Recursively check contents of containers
+	for(var/obj/item/storage/S in container)
+		scrolls += find_quest_scrolls(S)
+
+	return scrolls
 
 /datum/component/quest_object/proc/on_target_death(mob/living/dead_mob, gibbed)
 	SIGNAL_HANDLER

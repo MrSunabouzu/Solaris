@@ -267,7 +267,7 @@
 	report.desc = "A list of currently active quests issued by the Adventurers' Guild."
 	
 	// Generate report text
-	var/report_text = "<center><b>ADVENTURERS' GUILD - ACTIVE QUESTS</b></center><br><br>"
+	var/report_text = "<center><b>ADVENTURER'S GUILD - ACTIVE QUESTS</b></center><br><br>"
 	report_text += "<i>Generated on [station_time_timestamp()]</i><br><br>"
 	
 	for(var/obj/item/paper/scroll/quest/quest_scroll in active_quests)
