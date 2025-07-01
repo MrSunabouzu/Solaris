@@ -70,8 +70,8 @@
 		//heart attack stuff
 		handle_heart()
 		handle_liver()
-		update_stamina()
-		update_energy()
+		update_rogfat()
+		update_rogstam()
 		if(charflaw && !charflaw.ephemeral)
 			charflaw.flaw_on_life(src)
 		if(health <= 0)

@@ -363,7 +363,7 @@
 /mob/proc/aftermiss()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		H.stamina_add(used_intent.misscost)
+		H.rogfat_add(used_intent.misscost)
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
@@ -505,6 +505,7 @@
 //	swap_hand()
 
 /atom/proc/MiddleClick(mob/user, params)
+	SEND_SIGNAL(src, COMSIG_ATOM_MIDDLE_CLICK, user)
 	return
 
 /turf/open/MiddleClick(mob/user, params)

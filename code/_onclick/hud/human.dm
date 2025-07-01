@@ -408,11 +408,11 @@
 
 	zone_select.update_icon()
 
-	stamina = new /atom/movable/screen/stamina()
-	infodisplay += stamina
+	fats = new /atom/movable/screen/rogfat()
+	infodisplay += fats
 
-	energy = new /atom/movable/screen/energy()
-	infodisplay += energy
+	stams = new /atom/movable/screen/rogstam()
+	infodisplay += stams
 
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))
 		if(inv.slot_id)

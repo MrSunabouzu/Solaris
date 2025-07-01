@@ -82,7 +82,7 @@
 			if(!ismineralturf(src))
 				return
 			src.attackby(item, user, multiplier = 4)
-			user.stamina_add(25)
+			user.rogfat_add(25)
 	..()
 
 /turf/closed/mineral/turf_destruction(damage_flag)

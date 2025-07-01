@@ -906,6 +906,8 @@
 	icon_state = "herringedge"
 	mouse_opacity = 0
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/herringbone, 0)
+
 /obj/effect/decal/wood/herringbone
 	name = ""
 	desc = ""
@@ -913,12 +915,16 @@
 	icon_state = "herringbonewoodedge"
 	mouse_opacity = 0
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/wood/herringbone, 0)
+
 /obj/effect/decal/wood/herringbone2
 	name = ""
 	desc = ""
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "herringbonewood2edge"
 	mouse_opacity = 0
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/wood/herringbone2, 0)
 
 /turf/open/floor/rogue/ruinedwood/herringbone
 	footstep = FOOTSTEP_WOOD
@@ -1024,6 +1030,17 @@
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "cobblestone_edges"
 	mouse_opacity = 0
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/cobbleedge, 0)
+
+/obj/effect/decal/church_line
+	name = ""
+	desc = ""
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "churchslate"
+	mouse_opacity = 0
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/church_line, 0)
 
 /turf/open/floor/rogue/tile
 	icon_state = "chess"

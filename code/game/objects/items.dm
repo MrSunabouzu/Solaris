@@ -637,6 +637,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/oldy = pixel_y
 			pixel_y = pixel_y+5
 			animate(src, pixel_y = oldy, time = 0.5)
+		SEND_SIGNAL(src, COMSIG_ITEM_DROPPED_TURF, user)
 	if(altgripped || wielded)
 		ungrip(user, FALSE)
 	item_flags &= ~IN_INVENTORY

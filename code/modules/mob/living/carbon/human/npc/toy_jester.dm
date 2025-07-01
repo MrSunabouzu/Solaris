@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 	job = "Toy Jester"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, TRAIT_GENERIC) //Tamari devouts log off
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/construct/metal/toyjester)
@@ -135,12 +135,12 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 				neck = /obj/item/clothing/neck/roguetown/gorget
 			gloves = /obj/item/clothing/gloves/roguetown/angle
 			shoes = /obj/item/clothing/shoes/roguetown/jester
-			H.STASTR = rand(8,20)
-			H.STASPD = rand(16,18)
-			H.STACON = rand(16,18)
-			H.STAEND = rand(14,16)
-			H.STAPER = rand(12,14)
-			H.STAINT = rand(12,14)
+			H.STASTR = rand(10,12)
+			H.STASPD = rand(10,12)
+			H.STACON = rand(12,14)
+			H.STAEND = rand(12,14)
+			H.STAPER = rand(10,12)
+			H.STAINT = rand(10,12)
 			if(prob(50))
 				r_hand = /obj/item/rogueweapon/knuckles/bronzeknuckles
 				l_hand = /obj/item/rogueweapon/knuckles/bronzeknuckles
@@ -163,12 +163,12 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 				neck = /obj/item/clothing/neck/roguetown/gorget
 			gloves = /obj/item/clothing/gloves/roguetown/angle
 			shoes = /obj/item/clothing/shoes/roguetown/jester
-			H.STASTR = rand(15,17)
-			H.STASPD = rand(15,17)
-			H.STACON = rand(16,18)
-			H.STAEND = rand(14,16)
-			H.STAPER = rand(16,18)
-			H.STAINT = rand(12,13)
+			H.STASTR = rand(10,12)
+			H.STASPD = rand(12,14)
+			H.STACON = rand(10,12)
+			H.STAEND = rand(12,14)
+			H.STAPER = rand(10,12)
+			H.STAINT = rand(10,12)
 			r_hand = /obj/item/rogueweapon/halberd/toyarquebus
 			beltl = /obj/item/ammopouch/bullets
 		if(3) //Toy Knight
@@ -181,12 +181,12 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 			neck = /obj/item/clothing/neck/roguetown/gorget
 			gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 			shoes = /obj/item/clothing/shoes/roguetown/jester
-			H.STASTR = rand(16,18)
-			H.STASPD = rand(16,18)
-			H.STACON = rand(16,18)
-			H.STAEND = rand(14,16)
-			H.STAPER = rand(12,14)
-			H.STAINT = rand(12,14)
+			H.STASTR = rand(12,14)
+			H.STASPD = rand(10,12)
+			H.STACON = rand(12,14)
+			H.STAEND = rand(10,12)
+			H.STAPER = rand(10,12)
+			H.STAINT = rand(10,12)
 			if(prob(50))
 				r_hand = /obj/item/rogueweapon/sword/iron
 				l_hand = /obj/item/rogueweapon/shield/heater

@@ -21,7 +21,7 @@
 		chance2hit += 10
 
 	if(user.mind)
-		chance2hit += (user.mind.get_skill_level(associated_skill) * 8)
+		chance2hit += (user.mind.get_skill_level_capped(associated_skill) * 8)
 
 	if(used_intent)
 		if(used_intent.blade_class == BCLASS_STAB)
@@ -154,11 +154,11 @@
 
 			if(mainhand)
 				if(mainhand.can_parry)
-					mainhand_defense += (H.mind ? (H.mind.get_skill_level(mainhand.associated_skill) * 20) : 20)
+					mainhand_defense += (H.mind ? (H.mind.get_skill_level_capped(mainhand.associated_skill) * 20) : 20)
 					mainhand_defense += (mainhand.wdefense * 10)
 			if(offhand)
 				if(offhand.can_parry)
-					offhand_defense += (H.mind ? (H.mind.get_skill_level(offhand.associated_skill) * 20) : 20)
+					offhand_defense += (H.mind ? (H.mind.get_skill_level_capped(offhand.associated_skill) * 20) : 20)
 					offhand_defense += (offhand.wdefense * 10)
 
 			if(mainhand_defense >= offhand_defense)
@@ -175,13 +175,13 @@
 				prob2defend += (defender_skill * 20)
 				weapon_parry = FALSE
 			else
-				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				defender_skill = H.mind?.get_skill_level_capped(used_weapon.associated_skill)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 
 			if(U.mind)
 				if(intenty.masteritem)
-					attacker_skill = U.mind.get_skill_level(intenty.masteritem.associated_skill)
+					attacker_skill = U.mind.get_skill_level_capped(intenty.masteritem.associated_skill)
 					prob2defend -= (attacker_skill * 20)
 					if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
 						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
@@ -463,7 +463,7 @@
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.stamina_add(parrydrain))
+		if(H.rogfat_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(istype(rmb_intent, /datum/rmb_intent/riposte))
@@ -482,7 +482,7 @@
 /mob/proc/do_unarmed_parry(parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.stamina_add(parrydrain))
+		if(H.rogfat_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
 			return TRUE
@@ -509,7 +509,7 @@
 		UH = user
 		I = UH.used_intent.masteritem
 	var/prob2defend = U.defprob
-	if(L.stamina >= L.max_stamina)
+	if(L.rogfat >= L.maxrogfat)
 		return FALSE
 	if(L)
 		if(H?.check_dodge_skill())
@@ -524,7 +524,7 @@
 		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		if(UH?.mind)
-			prob2defend = prob2defend - (UH.mind.get_skill_level(I.associated_skill) * 10)
+			prob2defend = prob2defend - (UH.mind.get_skill_level_capped(I.associated_skill) * 10)
 	if(H)
 		if(!H?.check_armor_skill() || H?.legcuffed)
 			H.Knockdown(1)
@@ -542,7 +542,7 @@
 				prob2defend = prob2defend + 10
 			else
 				if(H.mind)
-					prob2defend = prob2defend + (H.mind.get_skill_level(I.associated_skill) * 10)
+					prob2defend = prob2defend + (H.mind.get_skill_level_capped(I.associated_skill) * 10)
 				/* Commented out due to encumbrance being seemingly broken and nonfunctional
 				var/thing = H.encumbrance
 				if(thing > 0)
@@ -646,7 +646,7 @@
 
 		if(!dodge_status)
 			return FALSE
-		if(!H.stamina_add(max(drained,5)))
+		if(!H.rogfat_add(max(drained,5)))
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human

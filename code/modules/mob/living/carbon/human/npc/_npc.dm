@@ -198,7 +198,7 @@
 		return FALSE
 	if(next_move > world.time) // Jumped too recently!
 		return FALSE
-	if(stamina > npc_max_jump_stamina)
+	if(rogfat > npc_max_jump_stamina)
 		return FALSE
 	var/turf/our_turf = get_turf(src)
 	if(our_turf.Distance_cardinal(get_turf(target), src) <= npc_jump_distance)
@@ -569,7 +569,7 @@
 			// Flee before trying to pick up a weapon.
 			if(flee_in_pain && target && (target.stat == CONSCIOUS))
 				var/paine = get_complex_pain()
-				if(paine >= ((STAEND * 10)*0.75)) // pain threshold decreased from END*10*0.9 due to all NPCs having insane END for some reason
+				if(paine >= ((STAEND * 10)*0.9))
 					NPC_THINK("Ouch! Entering flee mode!")
 					mode = NPC_AI_FLEE
 					m_intent = MOVE_INTENT_RUN
@@ -722,7 +722,7 @@
 	var/stam_penalty = used_intent.releasedrain
 	if(istype(rmb_intent, /datum/rmb_intent/strong) || istype(rmb_intent, /datum/rmb_intent/swift))
 		stam_penalty += 4 // as opposed to 10 for a weapon; these are your hands, it's easier to move them
-	stamina_add(stam_penalty)
+	rogfat_add(stam_penalty)
 	if(pulling != victim)
 		aftermiss()
 	rog_intent_change(1) // and back to normal intent to avoid getting stuck on grabs
@@ -761,7 +761,7 @@
 		if(prob(use_grab_chance) && the_grab.grabbee == victim) // already pulling, fuck with them a bit
 			swap_hand() // switch to grab
 			if(grab_state < GRAB_AGGRESSIVE && prob(upgrade_grab_chance)) // upgrade!
-				stamina_add(rand(7,15))
+				rogfat_add(rand(7,15))
 				victim.grippedby(src)
 				return TRUE // used our turn
 			npc_try_use_grab(victim, the_grab) // twist, smash, choke, whatever

@@ -550,6 +550,8 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	var/broke = FALSE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock, 32)
+
 /obj/structure/fluff/wallclock/Destroy()
 	if(soundloop)
 		soundloop.stop()
@@ -597,8 +599,6 @@
 			soundloop.stop()
 		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
 	..()
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock, 32)
 
 //vampire
 /obj/structure/fluff/wallclock/vampire
@@ -862,7 +862,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 					user.changeNext_move(CLICK_CD_MELEE)
 					if(W.max_blade_int)
 						W.remove_bintegrity(5)
-					L.stamina_add(rand(4,6))
+					L.rogfat_add(rand(4,6))
 					if(!(L.mobility_flags & MOBILITY_STAND))
 						probby = 0
 					if(L.STAINT < 3)

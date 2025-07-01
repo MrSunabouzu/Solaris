@@ -544,16 +544,16 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 /mob/living/carbon/proc/handle_sleep()
 	if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !(mobility_flags & MOBILITY_STAND))
-		energy_add(5)
+		rogstam_add(5)
 		if(mind?.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-			energy_add(10)
+			rogstam_add(10)
 		return
 	//Healing while sleeping in a bed
 	if(IsSleeping())
 		var/sleepy_mod = 0.5
 		var/yess = HAS_TRAIT(src, TRAIT_NOHUNGER)
 		if(HAS_TRAIT(src, TRAIT_BETTER_SLEEP))
-			energy_add(sleepy_mod * 4)
+			rogstam_add(sleepy_mod * 4)
 		if(buckled?.sleepy)
 			sleepy_mod = buckled.sleepy
 		else if(isturf(loc)) //No illegal tech.
@@ -561,7 +561,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			if(bed)
 				sleepy_mod = bed.sleepy
 		if(nutrition > 0 || yess)
-			energy_add(sleepy_mod * 15)
+			rogstam_add(sleepy_mod * 15)
 		if(hydration > 0 || yess)
 			if(!bleed_rate)
 				blood_volume = min(blood_volume + (4 * sleepy_mod), BLOOD_VOLUME_NORMAL)
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(fallingas > 15)
 						Sleeping(300)
 			else
-				energy_add(sleepy_mod * 10)
+				rogstam_add(sleepy_mod * 10)
 		// Resting on the ground (not sleeping or with eyes closed and about to fall asleep)
 		else if(!(mobility_flags & MOBILITY_STAND))
 			if(eyesclosed)
@@ -636,6 +636,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(fallingas > 25)
 						Sleeping(300)
 			else
-				energy_add(10)
+				rogstam_add(10)
 		else if(fallingas)
 			fallingas = 0

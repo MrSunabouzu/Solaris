@@ -208,6 +208,9 @@ GLOBAL_LIST_EMPTY(premium_noticeboardposts)
 GLOBAL_LIST_EMPTY(job_respawn_delays)
 GLOBAL_LIST_EMPTY(round_join_times)
 
+//Singing item list
+GLOBAL_LIST_EMPTY(weapon_personality_dialog)
+
 //stress levels
 #define STRESS_MAX 30
 #define STRESS_INSANE 7

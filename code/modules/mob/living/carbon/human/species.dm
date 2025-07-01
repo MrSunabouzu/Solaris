@@ -990,7 +990,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	switch(H.nutrition)
 //		if(NUTRITION_LEVEL_FAT to INFINITY) //currently disabled/999999 define
-//			if(H.energy >= H.maxenergy)
+//			if(H.rogstam >= H.maxrogstam)
 //				H.apply_status_effect(/datum/status_effect/debuff/fat)
 		if(NUTRITION_LEVEL_FAT to INFINITY)
 			H.add_stress(/datum/stressevent/stuffed)
@@ -1365,7 +1365,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 		to_chat(user, span_notice("I can't move my leg!"))
 		return
-	if(user.stamina >= user.max_stamina)
+	if(user.rogfat >= user.maxrogfat)
 		return FALSE
 	if(!(user.mobility_flags & MOBILITY_STAND))
 		return FALSE
@@ -1427,7 +1427,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					target_table = locate(/obj/structure/table) in target_shove_turf.contents
 					shove_blocked = TRUE
 			else
-				if(stander && target.stamina >= target.max_stamina) //if you are kicked while fatigued, you are knocked down no matter what
+				if(stander && target.rogfat >= target.maxrogfat) //if you are kicked while fatigued, you are knocked down no matter what
 					target.Knockdown(100)
 
 		if(shove_blocked && !target.is_shove_knockdown_blocked() && !target.buckled)
@@ -1484,7 +1484,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		target.lastattackerckey = user.ckey
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
-		user.stamina_add(15)
+		user.rogfat_add(15)
 		target.forcesay(GLOB.hit_appends)
 
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)

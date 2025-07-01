@@ -54,7 +54,7 @@
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					var/jadded = max(100-(STASTR*10),5)
-					if(stamina_add(jadded))
+					if(rogfat_add(jadded))
 						visible_message(span_info("[src] pushes [AM]."))
 						PushAM(AM, MOVE_FORCE_STRONG)
 					else
@@ -462,7 +462,7 @@
 				if(ranged_ability?.InterceptClickOn(src, params, A))
 					changeNext_move(mmb_intent.clickcd)
 					if(mmb_intent.releasedrain)
-						stamina_add(mmb_intent.releasedrain)
+						rogfat_add(mmb_intent.releasedrain)
 				return
 
 //Return TRUE to cancel other attack hand effects that respect it.
@@ -632,7 +632,7 @@
 		if((dir & SOUTH) || (dir & WEST))
 			flip_direction = FLIP_DIRECTION_ANTICLOCKWISE
 
-	if(stamina_add(min(jadded,100)))
+	if(rogfat_add(min(jadded,100)))
 		if(do_a_flip)
 			var/flip_angle = flip_direction ? 120 : -120
 			animate(src, pixel_z = pixel_z + 6, transform = turn(transform, flip_angle), time = 1)
@@ -683,7 +683,7 @@
 			var/obj/structure/AM = A
 			if(istype(AM) && !AM.anchored)
 				var/jadded = max(100-(STASTR*10),5)
-				if(stamina_add(jadded))
+				if(rogfat_add(jadded))
 					visible_message(span_info("[src] pushes [AM]."))
 					PushAM(AM, MOVE_FORCE_STRONG)
 				else

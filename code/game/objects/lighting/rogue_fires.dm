@@ -116,6 +116,8 @@
 	crossfire = FALSE
 	cookonme = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire, 32)
+
 /obj/machinery/light/rogue/wallfire/candle
 	name = "candles"
 	icon_state = "wallcandle1"

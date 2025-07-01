@@ -1,55 +1,55 @@
-/mob/living/proc/update_stamina() //update hud and regen after last_fatigued delay on taking
-	max_stamina = maxenergy / 10
+/mob/living/proc/update_rogfat() //update hud and regen after last_fatigued delay on taking
+	maxrogfat = maxrogstam / 10
 
 	var/delay = (HAS_TRAIT(src, TRAIT_APRICITY) && GLOB.tod == "day") ? 13 : 20		// Aeternus
 	if(world.time > last_fatigued + delay) //regen fatigue
-		var/added = energy / maxenergy
+		var/added = rogstam / maxrogstam
 		added = round(-10+ (added*-40))
 		if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
 			added = round(added * 0.5, 1)
-		if(stamina >= 1)
-			stamina_add(added)
+		if(rogfat >= 1)
+			rogfat_add(added)
 		else
-			stamina = 0
+			rogfat = 0
 
 	update_health_hud()
 
-/mob/living/proc/update_energy()
+/mob/living/proc/update_rogstam()
 	var/athletics_skill = 0
 	if(mind)
 		athletics_skill = mind.get_skill_level(/datum/skill/misc/athletics)
-	maxenergy = (STAEND + (athletics_skill/2 ) ) * 100
+	maxrogstam = (STAEND + (athletics_skill/2 ) ) * 100
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
-			energy_add(-2)
+			rogstam_add(-2)
 
-/mob/proc/energy_add(added as num)
+/mob/proc/rogstam_add(added as num)
 	return
 
-/mob/living/energy_add(added as num)
-	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
+/mob/living/rogstam_add(added as num)
+	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
 		return TRUE
-	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
-		return TRUE
+	//if(HAS_TRAIT(src, TRAIT_NOSLEEP))
+	//	return TRUE
 	if(m_intent == MOVE_INTENT_RUN && isnull(buckled))
 		mind && mind.add_sleep_experience(/datum/skill/misc/athletics, (STAINT*0.02))
-	energy += added
-	if(energy > maxenergy)
-		energy = maxenergy
+	rogstam += added
+	if(rogstam > maxrogstam)
+		rogstam = maxrogstam
 		update_health_hud()
 		return FALSE
 	else
-		if(energy <= 0)
-			energy = 0
+		if(rogstam <= 0)
+			rogstam = 0
 			if(m_intent == MOVE_INTENT_RUN) //can't sprint at zero stamina
 				toggle_rogmove_intent(MOVE_INTENT_WALK)
 		update_health_hud()
 		return TRUE
 
-/mob/proc/stamina_add(added as num)
+/mob/proc/rogfat_add(added as num)
 	return TRUE
 
-/mob/living/proc/stamina_nutrition_mod(amt)
+/mob/living/proc/rogfat_nutrition_mod(amt)
 	// to simulate exertion, we deduct a mob's nutrition whenever it takes an action that would give us fatigue.
 	var/nutrition_amount = amt * 0.15 // nutrition goes up to 1k at max (but constantly ticks down) so we need to work at a slightly bigger scale
 	var/athletics_skill = mind?.get_skill_level(/datum/skill/misc/athletics)
@@ -58,14 +58,14 @@
 	if (amt <= chip_amt)
 		if (athletics_skill && prob(athletics_skill * 16)) // 16% chance per athletics skill to straight up negate nutrition loss
 			return 0
-		if (amt == 2 && prob(STACON * 5)) // only sprinting knocks off 2 stamina at a time, so test this vs our con to see if we drop it
+		if (amt == 2 && prob(STACON * 5)) // only sprinting knocks off 2 rogfat at a time, so test this vs our con to see if we drop it
 			return 0
 
 	var/tox_damage = getToxLoss()
 	if (tox_damage >= (maxHealth * 0.2)) // if we have over 20% of our health as toxin damage, add 10% of our toxin damage as base loss
 		nutrition_amount += (tox_damage * 0.1)
 
-	if (stamina >= (max_stamina * 0.7)) // if you've spent 70% of your max fatigue, the base amount you lose is doubled
+	if (rogfat >= (maxrogfat * 0.7)) // if you've spent 70% of your max fatigue, the base amount you lose is doubled
 		nutrition_amount *= 2
 	if (STACON <= 9) // 10% extra nutrition loss for every CON below 9
 		var/low_end_malus = (10 - STACON) * 0.1
@@ -83,22 +83,22 @@
 	if (nutrition >= NUTRITION_LEVEL_WELL_FED) // we've only just eaten recently so just flat out reduce the total loss by half
 		nutrition_amount *= 0.5
 
-	if (reagents?.has_reagent(/datum/reagent/consumable/nutriment)) // we're still digesting so knock off a tiny bit
+	if (reagents.has_reagent(/datum/reagent/consumable/nutriment)) // we're still digesting so knock off a tiny bit
 		nutrition_amount *= 0.9
 
 	return nutrition_amount
 
-/mob/living/stamina_add(added as num, emote_override, force_emote = TRUE) //call update_stamina here and set last_fatigued, return false when not enough fatigue left
-	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
+/mob/living/rogfat_add(added as num, emote_override, force_emote = TRUE) //call update_rogfat here and set last_fatigued, return false when not enough fatigue left
+	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_FORTITUDE))
 		added = added * 0.5
-	stamina = CLAMP(stamina+added, 0, max_stamina)
+	rogfat = CLAMP(rogfat+added, 0, maxrogfat)
 	if(added > 0)
-		energy_add(added * -1)
-		adjust_nutrition(-stamina_nutrition_mod(added))
+		rogstam_add(added * -1)
+		adjust_nutrition(-rogfat_nutrition_mod(added))
 	if(added >= 5)
-		if(energy <= 0)
+		if(rogstam <= 0)
 			if(iscarbon(src))
 				var/mob/living/carbon/C = src
 				if(!HAS_TRAIT(C, TRAIT_NOHUNGER))
@@ -106,8 +106,8 @@
 						if(C.hydration <= 0)
 							C.heart_attack()
 							return FALSE
-	if(stamina >= max_stamina)
-		stamina = max_stamina
+	if(rogfat >= maxrogfat)
+		rogfat = maxrogfat
 		update_health_hud()
 		if(m_intent == MOVE_INTENT_RUN) //can't sprint at full fatigue
 			toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
@@ -120,7 +120,7 @@
 		stop_attack()
 		changeNext_move(CLICK_CD_EXHAUSTED)
 		flash_fullscreen("blackflash")
-		if(energy <= 0)
+		if(rogstam <= 0)
 			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 1 SECONDS) /// SOLARIS NOTE: do we not have invoke_async here? is that why this is done this way?
 		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 1 SECONDS)
 		if(iscarbon(src))
@@ -141,7 +141,7 @@
 	var/heart_attacking = FALSE
 
 /mob/living/carbon/proc/heart_attack()
-	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
+	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
 		return
 	if(!heart_attacking)
 		heart_attacking = TRUE
@@ -180,7 +180,7 @@
 			animate(whole_screen, transform = newmatrix, time = 1, easing = QUAD_EASING)
 			animate(transform = -newmatrix, time = 30, easing = QUAD_EASING)
 
-/mob/living/proc/stamina_reset()
-	stamina = 0
+/mob/living/proc/rogfat_reset()
+	rogfat = 0
 	last_fatigued = 0
 	return

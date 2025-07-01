@@ -2162,7 +2162,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/beer/murkwine/on_mob_life(mob/living/carbon/M)
 	M.apply_status_effect(/datum/status_effect/buff/murkwine)
-	M.stamina_add(0.1)
+	M.rogfat_add(0.1)
 	..()
 	. = 1
 
