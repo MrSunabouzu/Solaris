@@ -32,7 +32,7 @@ var/akimbo = FALSE
 		akimbo = FALSE
 	if((ison) == FALSE && (akimbo) == FALSE) //dealing with one arm, and its off currently
 		target.apply_status_effect(/datum/status_effect/buff/overclock_arm1)
-		target.playsound(target, 'sound/magic/overclock_start.ogg', 90)
+		playsound(target, 'sound/magic/overclock_start.ogg', 90)
 		do_sparks(3, TRUE, target)
 		target.visible_message(span_info("[user] racks their arm, it begins to rev and whirr with mechanical strength!"), span_info("You grip the safety lever on your arm and cock it! The cogs inside begin to hurtle around with centrifugal force!"))
 		ison = TRUE
@@ -40,13 +40,13 @@ var/akimbo = FALSE
 	if((ison) == TRUE && (akimbo) == FALSE) //one arm, on currently
 		ison = FALSE
 		target.remove_status_effect(/datum/status_effect/buff/overclock_arm1)
-		target.playsound(target, 'sound/magic/overclock_end.ogg', 90)
+		playsound(target, 'sound/magic/overclock_end.ogg', 90)
 		do_sparks(3, TRUE, target)
 		target.visible_message(span_info("[user] slaps their arm, the metallic racket slows and dies down..."), span_info("You throw the safety lever back into place, the cogs rattle in relief..."))
 		return
 	if((ison) == FALSE && (akimbo) == TRUE) //Two arms, off currently
 		target.apply_status_effect(/datum/status_effect/buff/overclock_arm2)
-		target.playsound(target, 'sound/magic/overclock_start.ogg', 90)
+		playsound(target, 'sound/magic/overclock_start.ogg', 90)
 		do_sparks(3, TRUE, target)
 		target.visible_message(span_info("[user] slams their arms together, they begin to rev and whirr with mechanical strength!"), span_info("You hook your arms safety levers around each other and let it rip! The cogs inside begin to hurtle around with centrifugal force!"))
 		ison = TRUE
@@ -54,7 +54,7 @@ var/akimbo = FALSE
 	if((ison) == TRUE && (akimbo) == TRUE) //Two arms, on currently
 		ison = FALSE
 		target.remove_status_effect(/datum/status_effect/buff/overclock_arm2)
-		target.playsound(target, 'sound/magic/overclock_end.ogg', 90)
+		playsound(target, 'sound/magic/overclock_end.ogg', 90)
 		do_sparks(3, TRUE, target)
 		target.visible_message(span_info("[user] slaps their arms together, the metallic racket slows and dies down..."), span_info("You throw the safety levers back into place by pressing your arms together, the cogs rattle in relief..."))
 		return
@@ -74,32 +74,32 @@ var/akimbo = FALSE
 	if((!left_arm) || (!right_arm)) //This will stop the buff if an organic arm is severed but thats fine imo. something something pain threshold.
 		target.remove_status_effect(/datum/status_effect/buff/overclock_arm1)
 		target.visible_message(span_info("[owner]'s arm socket sparks madly before sputtering out and dieing!"), span_info("Your arm socket erupts into sparks and heat before the machinery slowly dies!"))
-		target.playsound(target, 'sound/magic/overclock_end.ogg', 90)
+		playsound(target, 'sound/magic/overclock_end.ogg', 90)
 		do_sparks(3, TRUE, target)
 		ison = FALSE
 		return
 	if(right_arm.status == BODYPART_ROBOTIC && right_arm.get_damage() <= 100)
 		if(prob(10))
 			target.apply_damage(3, BRUTE, BODY_ZONE_R_ARM)
-			target.playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 120)
+			playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 120)
 			target.visible_message(span_info("[owner]'s right arm rattles angrily with strength!"), span_info("Your right arm protests loudly and sparks!")) //Right arm tell, informs attackers where to aim to stop buff
 			do_sparks(3, TRUE, target)
 			return
 		target.apply_damage(2, BRUTE, BODY_ZONE_R_ARM)
-		target.playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 90)
+		playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 90)
 		return
 	if(left_arm.status == BODYPART_ROBOTIC && left_arm.get_damage() <= 100)
 		if(prob(10))
 			target.apply_damage(3, BRUTE, BODY_ZONE_L_ARM)
-			target.playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 120)
+			playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 120)
 			target.visible_message(span_info("[owner]'s left arm rattles angrily with strength!"), span_info("Your left arm protests loudly and sparks!")) //Left arm tell, informs attackers where to aim to stop buff
 			do_sparks(3, TRUE, target)
 			return
 		target.apply_damage(2, BRUTE, BODY_ZONE_L_ARM)
-		target.playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 90)
+		playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 90)
 		return
 	target.remove_status_effect(/datum/status_effect/buff/overclock_arm1)
-	target.playsound(target, 'sound/magic/overclock_end.ogg', 90)
+	playsound(target, 'sound/magic/overclock_end.ogg', 90)
 	do_sparks(3, TRUE, target)
 	target.visible_message(span_info("[owner]'s arm makes a horrible noise as it sparks and goes silent!"), span_info("Your arm stills and goes limp, unable to withstand any more punishment!"))
 	ison = FALSE
@@ -124,16 +124,16 @@ var/akimbo = FALSE
 	if((!left_arm) || (!right_arm)) //both your arms still on there chief?
 		target.remove_status_effect(/datum/status_effect/buff/overclock_arm2)
 		target.visible_message(span_info("[owner]'s arm socket sparks madly before sputtering out and dieing!"), span_info("Your arm socket erupts into sparks and heat before the machinery slowly dies!"))
-		target.playsound(target, 'sound/magic/overclock_end.ogg', 90)
+		playsound(target, 'sound/magic/overclock_end.ogg', 90)
 		do_sparks(3, TRUE, target)
 		ison = FALSE
 		return
 	if(right_arm.status == BODYPART_ROBOTIC && right_arm.get_damage() <= 100 && left_arm.status == BODYPART_ROBOTIC && left_arm.get_damage() <= 100)
 		target.apply_damage(2, BRUTE, pick(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM))
-		target.playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 90)
+		playsound(target, pick('sound/magic/overclock_tick1.ogg','sound/magic/overclock_tick2.ogg'), 90)
 		return
 	target.remove_status_effect(/datum/status_effect/buff/overclock_arm2)
-	target.playsound(target, 'sound/magic/overclock_end.ogg', 90)
+	playsound(target, 'sound/magic/overclock_end.ogg', 90)
 	do_sparks(3, TRUE, target)
 	target.visible_message(span_info("[owner]'s arm makes a horrible noise as it sparks and goes silent!"), span_info("Your arm stills and goes limp, unable to withstand any more punishment!"))
 	ison = FALSE
