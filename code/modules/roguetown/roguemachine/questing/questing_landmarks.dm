@@ -4,6 +4,193 @@
 	icon_state = "quest_marker"
 	var/quest_difficulty = list("Easy", "Medium", "Hard")
 	var/quest_type = list("Fetch", "Courier", "Clear Out", "Kill", "Beacon", "Miniboss")
+	/// List of possible fetch items for this landmark
+	var/list/fetch_items = list(
+		/obj/item/rogueweapon/sword,
+	)
+	/// List of possible mobs for kill/clear quests
+	var/list/kill_mobs = list(
+		/mob/living/simple_animal/hostile/rogue/skeleton,
+		/mob/living/simple_animal/hostile/rogue/skeleton,
+	)
+	/// Mob type for miniboss quests
+	var/miniboss_mob = /mob/living/simple_animal/hostile/rogue/skeleton
+
+/obj/effect/landmark/quest_spawner/Initialize()
+	. = ..()
+
+/obj/effect/landmark/quest_spawner/proc/generate_quest(datum/quest/new_quest, mob/user)
+	new_quest.quest_difficulty = quest_difficulty
+	new_quest.quester_reference = WEAKREF(user)
+	new_quest.quester_name = user.real_name
+
+	// Set reward based on difficulty
+	switch(quest_difficulty)
+		if("Easy")
+			new_quest.reward_amount = rand(15, 25)
+		if("Medium")
+			new_quest.reward_amount = rand(30, 50)
+		if("Hard")
+			new_quest.reward_amount = rand(60, 100)
+
+	// Generate quest-specific content based on the selected type
+	switch(new_quest.quest_type)
+		if("Fetch")
+			new_quest.title = "Retrieve [pick("an ancient", "a rare", "a stolen", "a magical")] [pick("artifact", "relic", "doohickey", "treasure")]"
+			new_quest.target_item_type = pick(fetch_items)
+			new_quest.target_amount = rand(1, 3)
+			spawn_fetch_items(new_quest.target_item_type, new_quest.target_amount, new_quest)
+
+		if("Kill")
+			new_quest.title = "Slay [pick("a dangerous", "a fearsome", "a troublesome", "an elusive")] [pick("beast", "monster", "brigand", "creature")]"
+			new_quest.target_mob_type = pick(kill_mobs)
+			new_quest.target_amount = 1
+			spawn_kill_mob(new_quest.target_mob_type, new_quest)
+
+		if("Clear Out")
+			new_quest.title = "Clear out [pick("a nest of", "a den of", "a group of", "a pack of")] [pick("monsters", "bandits", "creatures", "vermin")]"
+			new_quest.target_mob_type = pick(kill_mobs)
+			new_quest.target_amount = rand(3, 6)
+			spawn_clear_out_mobs(new_quest.target_mob_type, new_quest.target_amount, new_quest)
+
+		if("Courier")
+			new_quest.title = "Deliver [pick("an important", "a sealed", "a confidential", "a valuable")] [pick("package", "parcel", "letter", "delivery")]"
+			var/area/delivery_area = pick(
+				/area/provincial/indoors/town/tavern,
+				/area/provincial/indoors/town/church,
+				/area/provincial/indoors/town/farm,
+				/area/provincial/indoors/town/blacksmith,
+				/area/provincial/indoors/town/shop,
+				/area/provincial/indoors/town/province_keep,
+				/area/provincial/indoors/town/mages_university,
+				/area/provincial/indoors/town/mages_university/alchemy_lab,
+				/area/provincial/indoors/town/steward,
+			)
+			new_quest.target_delivery_location = delivery_area
+			spawn_courier_item(new_quest, new_quest.target_delivery_location)
+
+		if("Miniboss")
+			new_quest.title = "Defeat [pick("the terrible", "the dreadful", "the monstrous", "the infamous")] [pick("warlord", "beast", "sorcerer", "abomination")]"
+			new_quest.target_mob_type = miniboss_mob
+			new_quest.target_amount = 1
+			spawn_miniboss(new_quest)
+
+	return new_quest
+
+/obj/effect/landmark/quest_spawner/proc/spawn_fetch_items(item_type, amount, datum/quest/quest)
+	for(var/i in 1 to amount)
+		var/obj/item/new_item = new item_type(get_turf(src))
+		new_item.AddComponent(/datum/component/quest_object, quest)
+
+/obj/effect/landmark/quest_spawner/proc/spawn_kill_mob(mob_type, datum/quest/quest)
+	var/mob/living/new_mob = new mob_type(get_turf(src))
+	new_mob.AddComponent(/datum/component/quest_object, quest)
+
+/obj/effect/landmark/quest_spawner/proc/spawn_courier_item(datum/quest/quest, area/delivery_area)
+	if(!quest || !delivery_area)
+		stack_trace("Invalid quest or delivery area in spawn_courier_item")
+		return null
+
+	// Verify we have a quest scroll
+	if(!quest.quest_scroll)
+		stack_trace("Quest [quest.title] has no associated scroll")
+		return null
+
+	// Create the parcel at the scroll's location
+	var/obj/item/parcel/delivery_parcel = new(get_turf(quest.quest_scroll))
+	
+	// Define delivery items by area type with clear fallbacks
+	var/static/list/area_delivery_items = list(
+		/area/provincial/indoors/town/tavern = list(
+			/obj/item/cooking/pan,
+			/obj/item/reagent_containers/glass/bottle/rogue/beer/aurorian,
+			/obj/item/reagent_containers/food/snacks/rogue/cheddar,
+		),
+		/area/provincial/indoors/town/church = list(
+			/obj/item/natural/cloth,
+			/obj/item/reagent_containers/powder/ozium,
+			/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+		),
+		/area/provincial/indoors/town/farm = list(
+			/obj/item/seeds/wheat,
+			/obj/item/reagent_containers/food/snacks/egg,
+			/obj/item/reagent_containers/food/snacks/egg/mothcat,
+		),
+		/area/provincial/indoors/town/blacksmith = list(
+			/obj/item/ingot/iron,
+			/obj/item/ingot/bronze,
+			/obj/item/rogueore/coal,
+		),
+		/area/provincial/indoors/town/shop = list(
+			/obj/item/roguecoin/gold,
+			/obj/item/clothing/ring/silver,
+			/obj/item/scomstone/bad,
+		),
+		/area/provincial/indoors/town/province_keep = list(
+			/obj/item/clothing/cloak/raincloak/furcloak,
+			/obj/item/reagent_containers/glass/bottle/rogue/whitewine,
+			/obj/item/reagent_containers/food/snacks/rogue/cheddar/aged,
+		),
+		/area/provincial/indoors/town/mages_university = list(
+			/obj/item/book/spellbook,
+			/obj/item/roguegem/yellow,
+			/obj/item/reagent_containers/glass/bottle/rogue/manapot,
+		),
+		/area/provincial/indoors/town/mages_university/alchemy_lab = list(
+			/obj/item/alch/waterdust,
+			/obj/item/alch/viscera,
+			/obj/item/alch/seeddust,
+		),
+		/area/provincial/indoors/town/steward = list(
+			/obj/item/clothing/ring/silver,
+			/obj/item/reagent_containers/glass/cup/silver,
+			/obj/item/reagent_containers/glass/cup/golden,
+		),
+		/area/provincial/indoors/town = list(
+			/obj/item/ration,
+		)
+	)
+
+	// Get appropriate items for this delivery location
+	var/list/possible_items = area_delivery_items[delivery_area] || list(
+		/obj/item/natural/cloth,
+		/obj/item/ration,
+		/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+	)
+
+	// Create the item directly inside the parcel
+	var/contained_item_type = pick(possible_items)
+	var/obj/item/contained_item = new contained_item_type(delivery_parcel)
+	delivery_parcel.contained_item = contained_item
+
+	// Set up parcel appearance and properties
+	var/area_name = initial(delivery_area.name) || "Unknown Location"
+	delivery_parcel.name = "Delivery for [area_name]"
+	delivery_parcel.desc = "A securely wrapped parcel addressed to [area_name]. [pick("Handle with care.", "Do not bend.", "Confidential contents.", "Urgent delivery.")]"
+	
+	// Set icon based on item size
+	delivery_parcel.icon_state = contained_item.w_class >= WEIGHT_CLASS_NORMAL ? "ration_large" : "ration_small"
+	delivery_parcel.dropshrink = 1
+	delivery_parcel.update_icon()
+
+	// Set up quest tracking
+	quest.target_delivery_item = contained_item_type
+	delivery_parcel.AddComponent(/datum/component/quest_object, quest)
+	contained_item.AddComponent(/datum/component/quest_object, quest)
+
+	return delivery_parcel
+
+/obj/effect/landmark/quest_spawner/proc/spawn_clear_out_mobs(mob_type, amount, datum/quest/quest)
+	for(var/i in 1 to amount)
+		var/mob/living/new_mob = new mob_type(get_turf(pick(view(7, src))))
+		new_mob.AddComponent(/datum/component/quest_object, quest)
+		sleep(1)
+
+/obj/effect/landmark/quest_spawner/proc/spawn_miniboss(datum/quest/quest)
+	var/mob/living/new_mob = new miniboss_mob(get_turf(src))
+	new_mob.AddComponent(/datum/component/quest_object, quest)
+	new_mob.maxHealth *= 2
+	new_mob.health = new_mob.maxHealth
 
 /obj/effect/landmark/quest_spawner/easy
 	name = "easy quest landmark"

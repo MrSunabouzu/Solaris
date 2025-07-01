@@ -13,7 +13,7 @@
 	var/input_point
 	///Place to spawn scrolls or rewards at.
 	var/scroll_point
-	///Items that can be sold off directly.
+	///Items that can be sold off directly through the guild.
 	var/sellable_items
 
 	/// Timer for the quest giving cooldown.
@@ -22,8 +22,10 @@
 /obj/structure/roguemachine/questgiver/Initialize()
 	. = ..()
 	SSroguemachine.questgivers += src
-	input_point = locate(x - 1, y, z)
+	input_point = locate(x, y - 1, z)
 	scroll_point = locate(x, y, z)
+
+	new /obj/effect/decal/marker_export(get_turf(input_point))
 
 /obj/structure/roguemachine/questgiver/attack_hand(mob/user, list/modifiers)
 	. = ..()
@@ -59,53 +61,189 @@
 ///Quest generator. Guild one's better (permits high difficulty quests, has better rewards and takes deposit fees from the guild's fund). Requires a small deposit to spawn otherwise.
 /obj/structure/roguemachine/questgiver/proc/consult_quests(mob/user)
 	var/deposit
-	var/obj/item/paper/scroll/quest/spawned_scroll
-	var/datum/bank_account
+	var/scroll_icon
+	var/datum/quest/attached_quest = new()
 
-	if(!guild) //Guildless take deposit from your bank account. Guildful take from the Guild's funds.
-		// Has user a bank account?
-		if(!(user in SStreasury.bank_accounts))
-			say("You have no bank account.")
-			return
+	// Has user a bank account?
+	if(!(user in SStreasury.bank_accounts))
+		say("You have no bank account.")
+		return
+	// Has user enough money?
+	if(SStreasury.bank_accounts[user] < deposit)
+		say("Insufficient balance funds.")
+		return
+	
+	var/list/difficulty_choices = list("Easy", "Medium", "Hard")
+	var/difficulty_selection = input(user, "Select quest difficulty", src) as null|anything in difficulty_choices
+	if(!difficulty_selection)
+		return
+	
+	// Set deposit and reward based on difficulty
+	switch(difficulty_selection)
+		if("Easy")
+			deposit = 5
+			attached_quest.reward_amount = rand(15, 25)
+			scroll_icon = "scroll_quest_low"
+		if("Medium")
+			deposit = 10
+			attached_quest.reward_amount = rand(30, 50)
+			scroll_icon = "scroll_quest_mid"
+		if("Hard")
+			deposit = 20
+			attached_quest.reward_amount = rand(60, 100)
+			scroll_icon = "scroll_quest_high"
+		
+	// Get available quest types for selected difficulty
+	var/list/type_choices
+	switch(difficulty_selection)
+		if("Easy")
+			type_choices = list("Fetch", "Courier", "Kill")
+		if("Medium")
+			type_choices = list("Kill", "Clear Out", "Beacon")
+		if("Hard")
+			type_choices = list("Clear Out", "Beacon", "Miniboss")
+	
+	var/type_selection = input(user, "Select quest type", src) as null|anything in type_choices
+	if(!type_selection)
+		return
+	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(scroll_point))
+	spawned_scroll.base_icon_state = scroll_icon
+	attached_quest.quest_difficulty = difficulty_selection
+	attached_quest.quest_type = type_selection
+	attached_quest.quester_reference = WEAKREF(user)
+	attached_quest.quester_name = user.real_name
+	spawned_scroll.assigned_quest = attached_quest
+	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)  // This is the correct way to store the reference
+	attached_quest.quest_scroll = spawned_scroll  // Keep this for backward compatibility if needed
+	
+	// Find an appropriate landmark for this quest
+	var/obj/effect/landmark/quest_spawner/chosen_landmark
+	for(var/obj/effect/landmark/quest_spawner/landmark in GLOB.landmarks_list)
+		if(landmark.quest_difficulty == difficulty_selection && (type_selection in landmark.quest_type))
+			chosen_landmark = landmark
+			break
+	
+	if(chosen_landmark)
+		chosen_landmark.generate_quest(attached_quest, user)
+		spawned_scroll.update_quest_text()
+	else
+		to_chat(user, span_warning("No suitable location found for this quest!"))
+		qdel(attached_quest)
+		qdel(spawned_scroll)
+		return
+	
+	SStreasury.bank_accounts[user] -= deposit
+	SStreasury.treasury_value += deposit
+	SStreasury.log_entries += "+[deposit] to treasury (quest deposit)"
 
-		// Has user enough money?
-		if(SStreasury.bank_accounts[user] < deposit)
-			say("Insufficient balance funds.")
-			return
-
-///Turn in completed scrolls and some items. Click your scroll on some item or a landmark where it'll spawn to activate it and make it turnable in.
+///Turn in completed scrolls and some items if it guild-exclusive. Click your scroll on some item or a landmark where it'll spawn to activate it and make it turnable in.
 /obj/structure/roguemachine/questgiver/proc/turn_in_quest(mob/user)
 	var/reward
 	for(var/atom/movable/pawnable_loot in input_point)
-
 		if(istype(pawnable_loot, /obj/item/paper/scroll/quest))
 			var/obj/item/paper/scroll/quest/turned_in_scroll = pawnable_loot
 			if(turned_in_scroll.assigned_quest.complete)
 				reward += turned_in_scroll.assigned_quest.reward_amount
-				switch(scroll.assigned_quest.difficulty) //deposit returns
-					if(1)
+				if(guild)
+					reward *= 1.25
+				switch(turned_in_scroll.assigned_quest.quest_difficulty)
+					if("Easy")
+						reward += 5
+					if("Medium")
 						reward += 10
-					if(2)
+					if("Hard")
 						reward += 20
-					if(3)
-						reward += 40
+				qdel(turned_in_scroll)
+				qdel(turned_in_scroll.assigned_quest)
 				continue
 
-		if(is_type_in_list(pawnable_loot, sellable_items))
-			var/obj/item/to_sell = pawnable_loot
-			if(to_sell.get_real_price() > 0)
-				reward += to_sell.sellprice
-				continue
+		if(guild)
+			if(is_type_in_list(pawnable_loot, sellable_items))
+				var/obj/item/to_sell = pawnable_loot
+				if(to_sell.get_real_price() > 0)
+					reward += to_sell.sellprice
+					qdel(to_sell)
+					continue
 
-	if(guild)
-		reward *= 1.5 //So guild handlers get some profit you know.
-	cash_in(reward)
+	cash_in(round(reward))
 
 ///Spawn the money in.
 /obj/structure/roguemachine/questgiver/proc/cash_in(reward)
+	var/to_deposit = reward
+	
+	// Calculate how many of each coin type to spawn
+	var/gold_coins = FLOOR(to_deposit / 10, 1)
+	to_deposit -= gold_coins * 10
+	
+	var/silver_coins = FLOOR(to_deposit / 5, 1)
+	to_deposit -= silver_coins * 5
+	
+	var/copper_coins = to_deposit
+	
+	// Spawn the coins at the scroll point
+	if(gold_coins > 0)
+		for(var/i in 1 to gold_coins)
+			new /obj/item/roguecoin/gold(scroll_point)
+	
+	if(silver_coins > 0)
+		for(var/i in 1 to silver_coins)
+			new /obj/item/roguecoin/silver(scroll_point)
+	
+	if(copper_coins > 0)
+		for(var/i in 1 to copper_coins)
+			new /obj/item/roguecoin/copper(scroll_point)
+	
+	if(gold_coins || silver_coins || copper_coins)
+		say("Your reward of [reward] marks has been dispensed.")
 
-///Place a scroll to the left of the machine and abandon it. Check if it's complete; if it is, actually turn in it as normal. Otherwise gives your deposit back.
+///Place a scroll to the left of the machine and abandon it. Check if it's complete; if it is, actually turn it in as normal. Otherwise gives your deposit back.
 /obj/structure/roguemachine/questgiver/proc/abandon_quest(mob/user)
+	// Check if there's a quest scroll in the input point
+	var/obj/item/paper/scroll/quest/abandoned_scroll
+	for(var/obj/item/paper/scroll/quest/Q in input_point)
+		abandoned_scroll = Q
+		break
+	
+	if(!abandoned_scroll)
+		to_chat(user, span_warning("No quest scroll found in the input area!"))
+		return
+	
+	var/datum/quest/quest = abandoned_scroll.assigned_quest
+	if(!quest)
+		to_chat(user, span_warning("This scroll doesn't have an assigned quest!"))
+		return
+	
+	// Calculate refund amount based on difficulty
+	var/refund = 0
+	switch(quest.quest_difficulty)
+		if("Easy")
+			refund = 5
+		if("Medium")
+			refund = 10
+		if("Hard")
+			refund = 20
+	
+	// Don't refund if quest is complete
+	if(quest.complete)
+		to_chat(user, span_notice("This quest is already complete! Turning it in instead..."))
+		turn_in_quest(user)
+		return
+	
+	// Delete the quest and scroll
+	qdel(quest)
+	qdel(abandoned_scroll)
+	
+	// Refund the deposit
+	if(refund > 0)
+		if(user in SStreasury.bank_accounts)
+			SStreasury.bank_accounts[user] += refund
+			SStreasury.treasury_value -= refund
+			SStreasury.log_entries += "-[refund] from treasury (quest refund)"
+			to_chat(user, span_notice("You receive a [refund] mark refund for abandoning the quest."))
+		else
+			// If no bank account, spawn physical coins
+			cash_in(refund)
+			to_chat(user, span_notice("Your refund of [refund] marks has been dispensed."))
 
 ///Prints a list of issued quests, to whom and which and their current general area.
 /obj/structure/roguemachine/questgiver/proc/print_quests(mob/user)

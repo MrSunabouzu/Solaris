@@ -53,8 +53,17 @@
 		if(HAS_TRAIT(user, TRAIT_OUTLAW))
 			say(pick(criminal_lines))
 			return
-
+	
+	// Check if this beacon activation completes any quests
 	if(!(user.real_name in src.granted_list))
+		for(var/obj/item/paper/scroll/quest/scroll in user.contents)
+			if(scroll.assigned_quest.quest_type == "Beacon" && !scroll.assigned_quest.complete && scroll.assigned_quest.target_beacon == src)
+				scroll.assigned_quest.complete = TRUE
+				to_chat(user, span_notice("You feel the beacon's energy resonate with your quest scroll!"))
+				scroll.update_quest_text()
+				playsound(src, 'sound/magic/charged.ogg', 50, TRUE)
+				do_sparks(3, TRUE, src)
+		
 		to_chat(user, span_notice("Your hand touches the beacon - ripples spreading underneath its smooth surface."))
 		to_chat(user, span_boldnotice("You can now use it for fast travel!"))
 		src.granted_list += user.real_name

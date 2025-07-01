@@ -15925,6 +15925,10 @@
 	},
 /turf/closed/wall/mineral/rogue/stone,
 /area/provincial/underground/dungeon/winding_halls)
+"fsz" = (
+/obj/effect/landmark/quest_spawner/medium,
+/turf/open/floor/rogue/cobble,
+/area/provincial/outdoors/town)
 "fsC" = (
 /obj/effect/decal/cobbleedge{
 	dir = 9
@@ -25650,7 +25654,10 @@
 /turf/open/floor/rogue/tile/brick,
 /area/provincial/outdoors/town/roofs)
 "izj" = (
-/obj/item/roguebin/water,
+/obj/structure/roguemachine/questgiver{
+	guild = 1;
+	icon_state = "questgiver_guild"
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -30764,6 +30771,10 @@
 "kia" = (
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/provincial/indoors/town/farm/secondary)
+"kid" = (
+/obj/effect/landmark/quest_spawner/hard,
+/turf/open/floor/rogue/cobble,
+/area/provincial/outdoors/town)
 "kie" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/hexstone,
@@ -38979,6 +38990,10 @@
 	icon_state = "weird1"
 	},
 /area/provincial/indoors/town)
+"mVQ" = (
+/obj/effect/landmark/quest_spawner/easy,
+/turf/open/floor/rogue/cobble,
+/area/provincial/outdoors/town)
 "mVW" = (
 /obj/structure/mineral_door/bars,
 /obj/effect/mapping_helpers/access/mages_university/artificer,
@@ -39258,6 +39273,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 4
 	},
+/obj/item/roguebin/water,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -257681,7 +257697,7 @@ vEx
 vEx
 hUk
 vnT
-tZh
+mVQ
 tZh
 jPr
 pxr
@@ -258585,7 +258601,7 @@ fhG
 kNB
 bjB
 ifQ
-tZh
+fsz
 tZh
 ifQ
 aBI
@@ -259489,7 +259505,7 @@ rVu
 rVu
 mbi
 ifQ
-tZh
+kid
 tZh
 ifQ
 sMw
