@@ -32,8 +32,10 @@
 	scroll_text += " a [assigned_quest.quest_type] quest.<br>"
 	scroll_text += " of [assigned_quest.quest_difficulty] difficulty.<br>"
 	
-	if(assigned_quest.quest_type == "Beacon" && assigned_quest.target_beacon)
-		scroll_text += " Locate and activate the Kasmidian beacon of [get_area(assigned_quest.target_beacon)].<br>"
+	if(assigned_quest.quest_type == "Beacon")
+		if(assigned_quest.target_beacon)
+			scroll_text += " Locate and activate the Kasmidian beacon of [get_area(assigned_quest.target_beacon)].<br>"
+			scroll_text += " The beacon is also known as [assigned_quest.target_beacon.name]<br>"
 
 	if(assigned_quest.quest_type == "Courier" && assigned_quest.target_delivery_location)
 		var/area_name = initial(assigned_quest.target_delivery_location.name)

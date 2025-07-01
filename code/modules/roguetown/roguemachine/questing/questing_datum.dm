@@ -26,5 +26,9 @@
 	var/datum/weakref/quest_scroll_ref
 	/// Target beacon for beacon quests
 	var/obj/structure/roguemachine/teleport_beacon/target_beacon
+	/// Whether this is a beacon connection quest
+	var/beacon_connection = FALSE
+	/// List of possible beacons for connection quests
+	var/list/possible_beacons = list()
 	/// Whether the beacon has been activated for this quest
 	var/beacon_activated = FALSE

@@ -40,7 +40,7 @@
 	var/turf/drop_turf = get_turf(dropped_item)
 	for(var/obj/structure/roguemachine/questgiver/quest_machine in SSroguemachine.questgivers)
 		if(get_turf(quest_machine.input_point) == drop_turf)
-			// Handle regular items
+			// Handle fetch quest items
 			if(Q.target_item_type && istype(dropped_item, Q.target_item_type))
 				Q.target_amount--
 				if(Q.target_amount <= 0)
@@ -55,7 +55,7 @@
 				qdel(dropped_item)
 				return
 			
-		// Handle delivery items
+		// Handle delivery quest items
 		if(Q.target_delivery_item && (istype(dropped_item, /obj/item/parcel) || istype(dropped_item, Q.target_delivery_item)))
 			var/area/current_area = get_area(user)
 			if(istype(current_area, Q.target_delivery_location))
@@ -73,8 +73,6 @@
 								scroll = Q.quest_scroll
 							if(scroll)
 								scroll.update_quest_text()
-						qdel(parcel.contained_item)
-						qdel(parcel)
 						return
 				// Handle direct delivery of non-wrapped items
 				else if(istype(dropped_item, Q.target_delivery_item))
@@ -88,5 +86,4 @@
 							scroll = Q.quest_scroll
 						if(scroll)
 							scroll.update_quest_text()
-					qdel(dropped_item)
 					return

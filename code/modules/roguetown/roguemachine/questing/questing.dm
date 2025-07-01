@@ -32,15 +32,12 @@
 	if(.)
 		return
 
-	if(guild)
-		if(user.job != "Guild Handler")
-			return
-
 	// Main Menu
 	var/list/choices = list("Consult Quests", "Turn In Quest", "Abandon Quest")
 
 	if(guild)
-		choices += list("Print Issued Quests")
+		if(user.job == "Guild Handler")
+			choices += list("Print Issued Quests")
 
 	var/selection = input(user, "The Excidium listens", src) as null|anything in choices
 
@@ -97,7 +94,7 @@
 	var/list/type_choices
 	switch(difficulty_selection)
 		if("Easy")
-			type_choices = list("Fetch", "Courier", "Kill")
+			type_choices = list("Fetch", "Courier", "Kill", "Beacon")
 		if("Medium")
 			type_choices = list("Kill", "Clear Out", "Beacon")
 		if("Hard")
@@ -145,7 +142,8 @@
 			if(turned_in_scroll.assigned_quest.complete)
 				reward += turned_in_scroll.assigned_quest.reward_amount
 				if(guild)
-					reward *= 1.25
+					if(user.job == "Guild Handler")
+						reward *= 1.25
 				switch(turned_in_scroll.assigned_quest.quest_difficulty)
 					if("Easy")
 						reward += 5
@@ -200,8 +198,8 @@
 /obj/structure/roguemachine/questgiver/proc/abandon_quest(mob/user)
 	// Check if there's a quest scroll in the input point
 	var/obj/item/paper/scroll/quest/abandoned_scroll
-	for(var/obj/item/paper/scroll/quest/Q in input_point)
-		abandoned_scroll = Q
+	for(var/obj/item/paper/scroll/quest/quest_scroll in input_point)
+		abandoned_scroll = quest_scroll
 		break
 	
 	if(!abandoned_scroll)
@@ -243,7 +241,50 @@
 		else
 			// If no bank account, spawn physical coins
 			cash_in(refund)
+			SStreasury.treasury_value -= refund
+			SStreasury.log_entries += "-[refund] from treasury (quest refund)"
 			to_chat(user, span_notice("Your refund of [refund] marks has been dispensed."))
 
 ///Prints a list of issued quests, to whom and which and their current general area.
 /obj/structure/roguemachine/questgiver/proc/print_quests(mob/user)
+	if(!guild)
+		return
+	
+	var/list/active_quests = list()
+	
+	// Gather all active quests from existing scrolls
+	for(var/obj/item/paper/scroll/quest/quest_scroll in world)
+		if(quest_scroll.assigned_quest && !quest_scroll.assigned_quest.complete)
+			active_quests += quest_scroll
+	
+	if(!length(active_quests))
+		say("No active quests found.")
+		return
+	
+	// Create the report scroll
+	var/obj/item/paper/scroll/report = new(get_turf(scroll_point))
+	report.name = "Guild Quest Report"
+	report.desc = "A list of currently active quests issued by the Adventurers' Guild."
+	
+	// Generate report text
+	var/report_text = "<center><b>ADVENTURERS' GUILD - ACTIVE QUESTS</b></center><br><br>"
+	report_text += "<i>Generated on [station_time_timestamp()]</i><br><br>"
+	
+	for(var/obj/item/paper/scroll/quest/quest_scroll in active_quests)
+		var/datum/quest/quest = quest_scroll.assigned_quest
+		var/area/quest_area = get_area(quest_scroll)
+		var/area_name = quest_area ? quest_area.name : "Unknown Location"
+		
+		report_text += "<b>Title:</b> [quest.title]<br>"
+		report_text += "<b>Recipient:</b> [quest.quester_name]<br>"
+		report_text += "<b>Type:</b> [quest.quest_type]<br>"
+		report_text += "<b>Difficulty:</b> [quest.quest_difficulty]<br>"
+		report_text += "<b>Last Known Location:</b> [area_name]<br>"
+		report_text += "<b>Reward:</b> [quest.reward_amount] marks<br><br>"
+	
+	report.info = report_text
+	say("Quest report printed.")
+
+/obj/structure/roguemachine/questgiver/guild
+	guild = TRUE
+	icon_state = "questgiver_guild"

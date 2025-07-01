@@ -69,6 +69,31 @@
 			new_quest.target_delivery_location = delivery_area
 			spawn_courier_item(new_quest, new_quest.target_delivery_location)
 
+		if("Beacon")
+			new_quest.title = "Activate [pick("an ancient", "a dormant", "a forgotten", "a mysterious")] Kasmidian beacon"
+			new_quest.beacon_connection = TRUE
+		
+			// Get all beacons the player hasn't connected to yet
+			var/list/unconnected_beacons = list()
+			for(var/obj/structure/roguemachine/teleport_beacon/beacon in SSroguemachine.teleport_beacons)
+				if(!(user.real_name in beacon.granted_list) && beacon != src)
+					unconnected_beacons += beacon
+		
+			if(length(unconnected_beacons))
+				// Filter beacons by difficulty
+				var/list/difficulty_beacons = list()
+				for(var/obj/structure/roguemachine/teleport_beacon/beacon in unconnected_beacons)
+					if(beacon.quest_difficulty == new_quest.quest_difficulty)
+						difficulty_beacons += beacon
+			
+				// If no beacons of exact difficulty, expand search
+				if(!length(difficulty_beacons))
+					difficulty_beacons = unconnected_beacons
+			
+				new_quest.target_beacon = pick(difficulty_beacons)
+				new_quest.target_amount = 1
+				new_quest.possible_beacons = unconnected_beacons
+
 		if("Miniboss")
 			new_quest.title = "Defeat [pick("the terrible", "the dreadful", "the monstrous", "the infamous")] [pick("warlord", "beast", "sorcerer", "abomination")]"
 			new_quest.target_mob_type = miniboss_mob
@@ -196,7 +221,7 @@
 	name = "easy quest landmark"
 	icon_state = "quest_marker_low"
 	quest_difficulty = "Easy"
-	quest_type = list("Fetch", "Courier", "Kill")
+	quest_type = list("Fetch", "Courier", "Kill", "Beacon")
 
 /obj/effect/landmark/quest_spawner/medium
 	name = "medium quest landmark"
