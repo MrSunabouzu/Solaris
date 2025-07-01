@@ -24,21 +24,44 @@
 /obj/item/paper/scroll/quest/examine(mob/user)
 	. = ..()
 	if(assigned_quest)
-		if(!assigned_quest.quest_receiver_reference && assigned_quest.quest_giver_name == "Adventurer's Guild")
+		if(!assigned_quest.quest_receiver_reference)
 			. += span_notice("This quest hasn't been claimed yet. Open it to claim it for yourself!")
 
 /obj/item/paper/scroll/quest/attack_self(mob/user)
 	. = ..()
 	if(.)
 		return
-	
+
 	if(!assigned_quest)
 		return
-	
+
 	// Handle claiming of guild-issued quests
-	if(!assigned_quest.quest_receiver_reference && assigned_quest.quest_giver_name == "Adventurer's Guild")
+	if(!assigned_quest.quest_receiver_reference)
 		assigned_quest.quest_receiver_reference = WEAKREF(user)
 		assigned_quest.quest_receiver_name = user.real_name
+		
+		// Special handling for beacon quests
+		if(assigned_quest.quest_type == "Beacon" && assigned_quest.beacon_connection && length(assigned_quest.possible_beacons))
+			// Filter beacons this player hasn't connected to yet
+			var/list/valid_beacons = list()
+			for(var/obj/structure/roguemachine/teleport_beacon/beacon in assigned_quest.possible_beacons)
+				if(!(user.real_name in beacon.granted_list) && beacon != src)
+					valid_beacons += beacon
+			
+			if(length(valid_beacons))
+				// Filter by difficulty if possible
+				var/list/difficulty_beacons = list()
+				for(var/obj/structure/roguemachine/teleport_beacon/beacon in valid_beacons)
+					if(beacon.quest_difficulty == assigned_quest.quest_difficulty)
+						difficulty_beacons += beacon
+				
+				// Use either difficulty-filtered beacons or all valid beacons
+				assigned_quest.possible_beacons = length(difficulty_beacons) ? difficulty_beacons : valid_beacons
+				assigned_quest.target_beacon = pick(assigned_quest.possible_beacons)
+			else
+				to_chat(user, span_warning("There are no unconnected beacons available for this quest!"))
+				return
+
 		to_chat(user, span_notice("You claim this quest for yourself!"))
 		update_quest_text()
 		return TRUE
@@ -49,7 +72,7 @@
 	
 	var/scroll_text = "<center>HELP NEEDED</center><br>"
 	scroll_text += "<center><b>[assigned_quest.title]</b></center><br><br>"
-	scroll_text += "<b>Issued by:</b> [assigned_quest.quest_giver_name ? assigned_quest.quest_giver_name : "The Adventurer's Guild"].<br>"
+	scroll_text += "<b>Issued by:</b> [assigned_quest.quest_giver_name ? "Guild Handler [assigned_quest.quest_giver_name]" : "The Adventurer's Guild"].<br>"
 	scroll_text += "<b>Issued to:</b> [assigned_quest.quest_receiver_name ? assigned_quest.quest_receiver_name : "whoever it may concern"].<br>"
 	scroll_text += "<b>Type:</b> [assigned_quest.quest_type] quest.<br>"
 	scroll_text += "<b>Difficulty:</b> [assigned_quest.quest_difficulty].<br><br>"

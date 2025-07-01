@@ -27,6 +27,11 @@
 
 	new /obj/effect/decal/marker_export(get_turf(input_point))
 
+/obj/structure/roguemachine/questgiver/examine(mob/user)
+	. = ..()
+	if(guild)
+		. += span_notice("This quest book will give <b>bigger rewards</b> if processed with the help of a <b>local guild handler</b>!")
+
 /obj/structure/roguemachine/questgiver/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
@@ -109,12 +114,16 @@
 	attached_quest.quest_type = type_selection
 	
 	// Only set quest_giver if not a guild handler
-	if(!guild && user.job != "Guild Handler")
+	if(user.job != "Guild Handler")
+		attached_quest.quest_giver_name = null
+		attached_quest.quest_giver_reference = null
 		attached_quest.quest_receiver_reference = WEAKREF(user)
 		attached_quest.quest_receiver_name = user.real_name
 	else
-		attached_quest.quest_giver_name = "Adventurer's Guild"
+		attached_quest.quest_giver_name = user.real_name
 		attached_quest.quest_giver_reference = WEAKREF(user)
+		attached_quest.quest_receiver_reference = null
+		attached_quest.quest_receiver_name = null
 	
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
@@ -128,7 +137,7 @@
 			break
 	
 	if(chosen_landmark)
-		chosen_landmark.generate_quest(attached_quest, user)
+		chosen_landmark.generate_quest(attached_quest, user.job == "Guild Handler" ? null : user)
 		spawned_scroll.update_quest_text()
 	else
 		to_chat(user, span_warning("No suitable location found for this quest!"))
@@ -143,21 +152,26 @@
 ///Turn in completed scrolls and some items if it guild-exclusive. Click your scroll on some item or a landmark where it'll spawn to activate it and make it turnable in.
 /obj/structure/roguemachine/questgiver/proc/turn_in_quest(mob/user)
 	var/reward
+	var/original_reward
 	for(var/atom/movable/pawnable_loot in input_point)
 		if(istype(pawnable_loot, /obj/item/paper/scroll/quest))
 			var/obj/item/paper/scroll/quest/turned_in_scroll = pawnable_loot
 			if(turned_in_scroll.assigned_quest.complete)
 				reward += turned_in_scroll.assigned_quest.reward_amount
+				original_reward = reward
 				if(guild)
 					if(user.job == "Guild Handler")
-						reward *= 1.25
-				switch(turned_in_scroll.assigned_quest.quest_difficulty)
+						reward *= 2
+				switch(turned_in_scroll.assigned_quest.quest_difficulty) //Deposit returns
 					if("Easy")
 						reward += 5
+						original_reward += 5
 					if("Medium")
 						reward += 10
+						original_reward += 10
 					if("Hard")
 						reward += 20
+						original_reward += 20
 				qdel(turned_in_scroll)
 				qdel(turned_in_scroll.assigned_quest)
 				continue
@@ -170,11 +184,12 @@
 					qdel(to_sell)
 					continue
 
-	cash_in(round(reward))
+	cash_in(round(reward), original_reward)
 
 ///Spawn the money in.
-/obj/structure/roguemachine/questgiver/proc/cash_in(reward)
+/obj/structure/roguemachine/questgiver/proc/cash_in(reward, original_reward)
 	var/to_deposit = reward
+	var/bonus = reward - original_reward
 	
 	// Calculate how many of each coin type to spawn
 	var/gold_coins = FLOOR(to_deposit / 10, 1)
@@ -199,7 +214,10 @@
 			new /obj/item/roguecoin/copper(scroll_point)
 	
 	if(gold_coins || silver_coins || copper_coins)
-		say("Your reward of [reward] marks has been dispensed.")
+		if(reward != original_reward)
+			say("Your guild handler assistance-increased reward of [reward] marks has been dispensed! The difference is [bonus] marks.")
+		else
+			say("Your reward of [reward] marks has been dispensed.")
 
 ///Place a scroll to the left of the machine and abandon it. Check if it's complete; if it is, actually turn it in as normal. Otherwise gives your deposit back.
 /obj/structure/roguemachine/questgiver/proc/abandon_quest(mob/user)
@@ -234,15 +252,18 @@
 		turn_in_quest(user)
 		return
 	
-	// Clean up courier quest items
+	// Clean up courier quest items more carefully
 	if(quest.quest_type == "Courier" && quest.target_delivery_item)
-		// Find and delete any existing delivery items in the world
+		// First collect all potential items to delete
+		var/list/items_to_delete = list()
+		
+		// Find parcels and items in the world
 		for(var/obj/item/parcel/P in world)
 			if(P.contained_item && istype(P.contained_item, quest.target_delivery_item))
-				qdel(P)
+				items_to_delete += P
 				continue
 			else if(istype(P, quest.target_delivery_item))
-				qdel(P)
+				items_to_delete += P
 				continue
 		
 		// Also check for unwrapped items
@@ -250,7 +271,12 @@
 			if(istype(I, quest.target_delivery_item))
 				var/datum/component/quest_object/Q = I.GetComponent(/datum/component/quest_object)
 				if(Q && Q.quest_ref == WEAKREF(quest))
-					qdel(I)
+					items_to_delete += I
+		
+		// Delete collected items in a controlled manner
+		for(var/obj/item/to_delete in items_to_delete)
+			if(!QDELETED(to_delete)) // Only delete if not already being deleted
+				qdel(to_delete)
 	
 	// Delete the quest and scroll
 	qdel(quest)

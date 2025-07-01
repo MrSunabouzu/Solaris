@@ -25,8 +25,8 @@
 
 /obj/effect/landmark/quest_spawner/proc/generate_quest(datum/quest/new_quest, mob/user)
 	new_quest.quest_difficulty = quest_difficulty
-	new_quest.quest_receiver_reference = WEAKREF(user)
-	new_quest.quest_receiver_name = user.real_name
+	new_quest.quest_receiver_reference = user ? WEAKREF(user) : null
+	new_quest.quest_receiver_name = user ? user.real_name : null
 	new_quest.target_spawn_area = get_area_name(get_turf(src))
 
 	// Set reward based on difficulty
@@ -77,27 +77,33 @@
 		if("Beacon")
 			new_quest.title = "Activate [pick("an ancient", "a dormant", "a forgotten", "a mysterious")] Kasmidian beacon"
 			new_quest.beacon_connection = TRUE
-		
-			// Get all beacons the player hasn't connected to yet
-			var/list/unconnected_beacons = list()
-			for(var/obj/structure/roguemachine/teleport_beacon/beacon in SSroguemachine.teleport_beacons)
-				if(!(user.real_name in beacon.granted_list) && beacon != src)
-					unconnected_beacons += beacon
-		
-			if(length(unconnected_beacons))
-				// Filter beacons by difficulty
-				var/list/difficulty_beacons = list()
-				for(var/obj/structure/roguemachine/teleport_beacon/beacon in unconnected_beacons)
-					if(beacon.quest_difficulty == new_quest.quest_difficulty)
-						difficulty_beacons += beacon
 			
-				// If no beacons of exact difficulty, expand search
-				if(!length(difficulty_beacons))
-					difficulty_beacons = unconnected_beacons
+			// For guild-issued quests, we'll wait until the quest is claimed to determine possible beacons
+			if(user)
+				// Get all beacons the player hasn't connected to yet
+				var/list/unconnected_beacons = list()
+				for(var/obj/structure/roguemachine/teleport_beacon/beacon in SSroguemachine.teleport_beacons)
+					if(!(user.real_name in beacon.granted_list) && beacon != src)
+						unconnected_beacons += beacon
 			
-				new_quest.target_beacon = pick(difficulty_beacons)
+				if(length(unconnected_beacons))
+					// Filter beacons by difficulty
+					var/list/difficulty_beacons = list()
+					for(var/obj/structure/roguemachine/teleport_beacon/beacon in unconnected_beacons)
+						if(beacon.quest_difficulty == new_quest.quest_difficulty)
+							difficulty_beacons += beacon
+				
+					// If no beacons of exact difficulty, expand search
+					if(!length(difficulty_beacons))
+						difficulty_beacons = unconnected_beacons
+				
+					new_quest.target_beacon = pick(difficulty_beacons)
+					new_quest.target_amount = 1
+					new_quest.possible_beacons = unconnected_beacons
+			else
+				// For guild-issued quests, store all beacons and let the claiming player determine which are valid
+				new_quest.possible_beacons = SSroguemachine.teleport_beacons.Copy()
 				new_quest.target_amount = 1
-				new_quest.possible_beacons = unconnected_beacons
 
 		if("Miniboss")
 			new_quest.title = "Defeat [pick("the terrible", "the dreadful", "the monstrous", "the infamous")] [pick("warlord", "beast", "sorcerer", "abomination")]"

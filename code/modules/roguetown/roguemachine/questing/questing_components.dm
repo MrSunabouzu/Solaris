@@ -26,11 +26,12 @@
 		RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_dropped))
 
 /datum/component/quest_object/Destroy()
+	if(QDELETED(parent)) // If parent is already being deleted, don't try to delete it again
+		return ..()
+		
 	var/datum/quest/Q = quest_ref?.resolve()
-	if(Q)
-		// If this is a courier item and the quest is being deleted (not completed)
-		if(!Q.complete && isitem(parent) && (Q.target_delivery_item && istype(parent, Q.target_delivery_item)))
-			qdel(parent) // Delete the item if its quest is being abandoned
+	if(Q && !Q.complete && isitem(parent) && (Q.target_delivery_item && istype(parent, Q.target_delivery_item)))
+		qdel(parent) // Delete the item if its quest is being abandoned
 	return ..()
 
 /datum/component/quest_object/proc/on_examine(datum/source, mob/user, list/examine_list)
@@ -85,6 +86,7 @@
 		Q.target_amount--
 		if(Q.target_amount <= 0)
 			Q.complete = TRUE
+			dead_mob.remove_filter("quest_item_outline")
 			var/obj/item/paper/scroll/quest/scroll
 			if(Q.quest_scroll_ref)
 				scroll = Q.quest_scroll_ref.resolve()
@@ -129,6 +131,8 @@
 						Q.target_amount--
 						if(Q.target_amount <= 0)
 							Q.complete = TRUE
+							parcel.remove_filter("quest_item_outline")
+							parcel.contained_item.remove_filter("quest_item_outline")
 							var/obj/item/paper/scroll/quest/scroll
 							if(Q.quest_scroll_ref)
 								scroll = Q.quest_scroll_ref.resolve()
@@ -142,6 +146,7 @@
 					Q.target_amount--
 					if(Q.target_amount <= 0)
 						Q.complete = TRUE
+						dropped_item.remove_filter("quest_item_outline")
 						var/obj/item/paper/scroll/quest/scroll
 						if(Q.quest_scroll_ref)
 							scroll = Q.quest_scroll_ref.resolve()
