@@ -8674,7 +8674,7 @@
 /turf/open/floor/rogue/grassred,
 /area/provincial/underground/dungeon/old_university)
 "cVW" = (
-/obj/effect/landmark/quest_spawner/hard,
+/obj/effect/landmark/quest_spawner/easy,
 /turf/open/floor/rogue/cobblerock,
 /area/provincial/outdoors/dungeon/riverbrook)
 "cVX" = (
@@ -14714,7 +14714,7 @@
 /turf/open/floor/rogue/cobble,
 /area/provincial/indoors/town/ramparts)
 "eUH" = (
-/obj/effect/landmark/quest_spawner/easy,
+/obj/effect/landmark/quest_spawner/medium,
 /turf/open/floor/rogue/twig,
 /area/provincial/outdoors/bog)
 "eUQ" = (
@@ -22944,10 +22944,6 @@
 	},
 /turf/open/floor/rogue/wood/herringbone,
 /area/provincial/underground/dungeon/gargoyles_rest)
-"hFO" = (
-/obj/effect/landmark/quest_spawner/hard,
-/turf/open/floor/rogue/dirt,
-/area/provincial/outdoors/beach/forest)
 "hFX" = (
 /turf/closed/wall/mineral/rogue/roofwall/middle{
 	dir = 8
@@ -50241,7 +50237,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/provincial/underground)
 "qHo" = (
-/obj/effect/landmark/quest_spawner/hard,
+/obj/effect/landmark/quest_spawner/easy,
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/outdoors/dungeon/riverbrook)
 "qHq" = (
@@ -370922,7 +370918,7 @@ sQN
 muZ
 mxb
 mxb
-hFO
+pzL
 sQN
 sQN
 sQN
