@@ -20,6 +20,8 @@
 	var/arrival_price = 0
 	///Boolean to identify outlaw-permitted beacons. FALSE disallows outlaw use.
 	var/fringe = TRUE
+	/// Difficulty for beacon connection quests.
+	var/quest_difficulty = "Unset"
 	///List of lines to spout when an outlaw's spotted.
 	var/criminal_lines = list(
 	"Criminal! Criminal!",
@@ -48,13 +50,22 @@
 
 	if(!ishuman(user))
 		return
-
-	if(!fringe)
-		if(HAS_TRAIT(user, TRAIT_OUTLAW))
-			say(pick(criminal_lines))
-			return
-
+	
+	// Check for beacon connection quest completion using recursive search
 	if(!(user.real_name in src.granted_list))
+		var/list/user_scrolls = find_quest_scrolls(user)
+		for(var/obj/item/paper/scroll/quest/scroll in user_scrolls)
+			var/datum/quest/Q = scroll.assigned_quest
+			if(Q && Q.quest_type == "Beacon" && Q.beacon_connection && !Q.complete)
+				if(Q.target_beacon == src || (length(Q.possible_beacons) && (src in Q.possible_beacons)))
+					Q.complete = TRUE
+					Q.target_beacon = src
+					to_chat(user, span_notice("You feel the beacon's energy resonate with your quest scroll!"))
+					scroll.update_quest_text()
+					playsound(src, 'sound/magic/charged.ogg', 50, TRUE)
+					do_sparks(3, TRUE, src)
+					break
+		
 		to_chat(user, span_notice("Your hand touches the beacon - ripples spreading underneath its smooth surface."))
 		to_chat(user, span_boldnotice("You can now use it for fast travel!"))
 		src.granted_list += user.real_name
@@ -110,6 +121,17 @@
 	user.flash_act(1, 1, 1, 1)
 	playsound(user, 'sound/misc/portalactivate.ogg', 100, FALSE, 9)
 	playsound(teleport_turf, 'sound/misc/portalenter.ogg', 100, FALSE, 9)
+
+/obj/structure/roguemachine/teleport_beacon/proc/find_quest_scrolls(atom/container)
+	var/list/scrolls = list()
+	for(var/obj/item/paper/scroll/quest/Q in container)
+		scrolls += Q
+	
+	// Recursively check contents of containers
+	for(var/obj/item/storage/S in container)
+		scrolls += find_quest_scrolls(S)
+	
+	return scrolls
 
 /obj/structure/roguemachine/teleport_beacon/Destroy(force)
 	SSroguemachine.teleport_beacons -= src
