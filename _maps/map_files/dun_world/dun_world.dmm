@@ -37456,10 +37456,6 @@
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/underground)
-"mwc" = (
-/obj/effect/landmark/quest_spawner/hard,
-/turf/open/floor/rogue/cobble,
-/area/provincial/outdoors/town)
 "mwg" = (
 /turf/open/floor/rogue/cobble,
 /area/provincial/indoors/town/province_keep/garrison/dungeon/cell)
@@ -44423,10 +44419,6 @@
 /obj/machinery/light/rogue/torchholder/directional/west,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/provincial/indoors)
-"oLQ" = (
-/obj/effect/landmark/quest_spawner/easy,
-/turf/open/floor/rogue/cobble,
-/area/provincial/outdoors/town)
 "oMe" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -69909,10 +69901,6 @@
 	icon_state = "weird1"
 	},
 /area/provincial/indoors/town)
-"xzY" = (
-/obj/effect/landmark/quest_spawner/medium,
-/turf/open/floor/rogue/cobble,
-/area/provincial/outdoors/town)
 "xAa" = (
 /obj/structure/closet/crate/coffin,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/medical,
@@ -257174,7 +257162,7 @@ vEx
 vEx
 hUk
 vnT
-oLQ
+tZh
 tZh
 jPr
 pxr
@@ -258078,7 +258066,7 @@ fhG
 kNB
 bjB
 ifQ
-xzY
+tZh
 tZh
 ifQ
 aBI
@@ -258982,7 +258970,7 @@ rVu
 rVu
 rVu
 ckX
-mwc
+tZh
 tZh
 ifQ
 sMw
