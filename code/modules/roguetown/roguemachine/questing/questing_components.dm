@@ -85,6 +85,7 @@
 	if(Q && !Q.complete && istype(dead_mob, Q.target_mob_type))
 		Q.target_amount--
 		dead_mob.remove_filter("quest_item_outline")
+		scroll.update_quest_text()
 		if(Q.target_amount <= 0)
 			Q.complete = TRUE
 			var/obj/item/paper/scroll/quest/scroll
