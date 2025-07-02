@@ -25,7 +25,10 @@
 	input_point = locate(x, y - 1, z)
 	scroll_point = locate(x, y, z)
 
-	new /obj/effect/decal/marker_export(get_turf(input_point))
+	// Create a more noticeable marker
+	var/obj/effect/decal/marker_export/marker = new(get_turf(input_point))
+	marker.desc = "Place completed quest scrolls here to turn them in."
+	marker.layer = ABOVE_OBJ_LAYER
 
 /obj/structure/roguemachine/questgiver/examine(mob/user)
 	. = ..()
@@ -62,57 +65,77 @@
 
 ///Quest generator. Requires a small deposit to spawn otherwise.
 /obj/structure/roguemachine/questgiver/proc/consult_quests(mob/user)
-	var/deposit
-	var/scroll_icon
-	var/datum/quest/attached_quest = new()
-
 	// Has user a bank account?
 	if(!(user in SStreasury.bank_accounts))
 		say("You have no bank account.")
 		return
-	// Has user enough money?
-	if(SStreasury.bank_accounts[user] < deposit)
-		say("Insufficient balance funds.")
+
+	// Define difficulty options with deposits
+	var/list/difficulty_choices = list(
+		"Easy" = 5,
+		"Medium" = 10, 
+		"Hard" = 20
+	)
+
+	// Create display list with deposit amounts
+	var/list/display_choices = list()
+	for(var/diff in difficulty_choices)
+		display_choices += "[diff] ([difficulty_choices[diff]] marks deposit)"
+
+	var/selection = input(user, "Select quest difficulty", src) as null|anything in display_choices
+	if(!selection)
 		return
-	
-	var/list/difficulty_choices = list("Easy", "Medium", "Hard")
-	var/difficulty_selection = input(user, "Select quest difficulty", src) as null|anything in difficulty_choices
-	if(!difficulty_selection)
+
+	// Extract the actual difficulty name from the selection
+	var/actual_difficulty
+	for(var/diff in difficulty_choices)
+		if(findtext(selection, diff))
+			actual_difficulty = diff
+			break
+
+	if(!actual_difficulty)
 		return
-	
-	// Set deposit and reward based on difficulty
-	switch(difficulty_selection)
+
+	var/deposit = difficulty_choices[actual_difficulty]
+	var/scroll_icon
+	var/datum/quest/attached_quest = new()
+
+	// Set reward based on difficulty
+	switch(actual_difficulty)
 		if("Easy")
-			deposit = 5
 			attached_quest.reward_amount = rand(15, 25)
 			scroll_icon = "scroll_quest_low"
 		if("Medium")
-			deposit = 10
 			attached_quest.reward_amount = rand(30, 50)
 			scroll_icon = "scroll_quest_mid"
 		if("Hard")
-			deposit = 20
 			attached_quest.reward_amount = rand(60, 100)
 			scroll_icon = "scroll_quest_high"
-		
+
+	// Check if user has enough money
+	if(SStreasury.bank_accounts[user] < deposit)
+		say("Insufficient balance funds. You need [deposit] marks.")
+		qdel(attached_quest)
+		return
+
 	// Get available quest types for selected difficulty
 	var/list/type_choices
-	switch(difficulty_selection)
+	switch(actual_difficulty)
 		if("Easy")
 			type_choices = list("Fetch", "Courier", "Kill", "Beacon")
 		if("Medium")
 			type_choices = list("Kill", "Clear Out", "Beacon")
 		if("Hard")
 			type_choices = list("Clear Out", "Beacon", "Miniboss")
-	
+
 	var/type_selection = input(user, "Select quest type", src) as null|anything in type_choices
 	if(!type_selection)
 		return
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(scroll_point))
 	spawned_scroll.base_icon_state = scroll_icon
-	attached_quest.quest_difficulty = difficulty_selection
+	attached_quest.quest_difficulty = actual_difficulty
 	attached_quest.quest_type = type_selection
-	
+
 	// Only set quest_giver if not a guild handler
 	if(user.job != "Guild Handler")
 		attached_quest.quest_giver_name = null
@@ -124,18 +147,18 @@
 		attached_quest.quest_giver_reference = WEAKREF(user)
 		attached_quest.quest_receiver_reference = null
 		attached_quest.quest_receiver_name = null
-	
+
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
 	attached_quest.quest_scroll = spawned_scroll
-	
+
 	// Find an appropriate landmark for this quest
 	var/obj/effect/landmark/quest_spawner/chosen_landmark
 	for(var/obj/effect/landmark/quest_spawner/landmark in GLOB.landmarks_list)
-		if(landmark.quest_difficulty == difficulty_selection && (type_selection in landmark.quest_type))
+		if(landmark.quest_difficulty == actual_difficulty && (type_selection in landmark.quest_type))
 			chosen_landmark = landmark
 			break
-	
+
 	if(chosen_landmark)
 		chosen_landmark.generate_quest(attached_quest, user.job == "Guild Handler" ? null : user)
 		spawned_scroll.update_quest_text()
@@ -144,7 +167,7 @@
 		qdel(attached_quest)
 		qdel(spawned_scroll)
 		return
-	
+
 	SStreasury.bank_accounts[user] -= deposit
 	SStreasury.treasury_value += deposit
 	SStreasury.log_entries += "+[deposit] to treasury (quest deposit)"
@@ -190,29 +213,35 @@
 /obj/structure/roguemachine/questgiver/proc/cash_in(reward, original_reward)
 	var/to_deposit = reward
 	var/bonus = reward - original_reward
-	
+
 	// Calculate how many of each coin type to spawn
 	var/gold_coins = FLOOR(to_deposit / 10, 1)
 	to_deposit -= gold_coins * 10
-	
+
 	var/silver_coins = FLOOR(to_deposit / 5, 1)
 	to_deposit -= silver_coins * 5
-	
+
 	var/copper_coins = to_deposit
-	
-	// Spawn the coins at the scroll point
+
+	// Spawn the coins at the scroll point as stacks
 	if(gold_coins > 0)
-		for(var/i in 1 to gold_coins)
-			new /obj/item/roguecoin/gold(scroll_point)
-	
+		var/obj/item/roguecoin/gold/coin_stack = new(scroll_point)
+		coin_stack.quantity = gold_coins
+		coin_stack.update_icon()
+		coin_stack.update_transform()
+
 	if(silver_coins > 0)
-		for(var/i in 1 to silver_coins)
-			new /obj/item/roguecoin/silver(scroll_point)
-	
+		var/obj/item/roguecoin/silver/coin_stack = new(scroll_point)
+		coin_stack.quantity = silver_coins
+		coin_stack.update_icon()
+		coin_stack.update_transform()
+
 	if(copper_coins > 0)
-		for(var/i in 1 to copper_coins)
-			new /obj/item/roguecoin/copper(scroll_point)
-	
+		var/obj/item/roguecoin/copper/coin_stack = new(scroll_point)
+		coin_stack.quantity = copper_coins
+		coin_stack.update_icon()
+		coin_stack.update_transform()
+
 	if(gold_coins || silver_coins || copper_coins)
 		if(reward != original_reward)
 			say("Your guild handler assistance-increased reward of [reward] marks has been dispensed! The difference is [bonus] marks.")
@@ -226,16 +255,16 @@
 	for(var/obj/item/paper/scroll/quest/quest_scroll in input_point)
 		abandoned_scroll = quest_scroll
 		break
-	
+
 	if(!abandoned_scroll)
 		to_chat(user, span_warning("No quest scroll found in the input area!"))
 		return
-	
+
 	var/datum/quest/quest = abandoned_scroll.assigned_quest
 	if(!quest)
 		to_chat(user, span_warning("This scroll doesn't have an assigned quest!"))
 		return
-	
+
 	// Calculate refund amount based on difficulty
 	var/refund = 0
 	switch(quest.quest_difficulty)
@@ -245,18 +274,18 @@
 			refund = 10
 		if("Hard")
 			refund = 20
-	
+
 	// Don't refund if quest is complete
 	if(quest.complete)
 		to_chat(user, span_notice("This quest is already complete! Turning it in instead..."))
 		turn_in_quest(user)
 		return
-	
+
 	// Clean up courier quest items more carefully
 	if(quest.quest_type == "Courier" && quest.target_delivery_item)
 		// First collect all potential items to delete
 		var/list/items_to_delete = list()
-		
+
 		// Find parcels and items in the world
 		for(var/obj/item/parcel/P in world)
 			if(P.contained_item && istype(P.contained_item, quest.target_delivery_item))
@@ -265,23 +294,23 @@
 			else if(istype(P, quest.target_delivery_item))
 				items_to_delete += P
 				continue
-		
+
 		// Also check for unwrapped items
 		for(var/obj/item/I in world)
 			if(istype(I, quest.target_delivery_item))
 				var/datum/component/quest_object/Q = I.GetComponent(/datum/component/quest_object)
 				if(Q && Q.quest_ref == WEAKREF(quest))
 					items_to_delete += I
-		
+
 		// Delete collected items in a controlled manner
 		for(var/obj/item/to_delete in items_to_delete)
 			if(!QDELETED(to_delete)) // Only delete if not already being deleted
 				qdel(to_delete)
-	
+
 	// Delete the quest and scroll
 	qdel(quest)
 	qdel(abandoned_scroll)
-	
+
 	// Refund the deposit
 	if(refund > 0)
 		if(user in SStreasury.bank_accounts)
@@ -300,32 +329,32 @@
 /obj/structure/roguemachine/questgiver/proc/print_quests(mob/user)
 	if(!guild)
 		return
-	
+
 	var/list/active_quests = list()
-	
+
 	// Gather all active quests from existing scrolls
 	for(var/obj/item/paper/scroll/quest/quest_scroll in world)
 		if(quest_scroll.assigned_quest && !quest_scroll.assigned_quest.complete)
 			active_quests += quest_scroll
-	
+
 	if(!length(active_quests))
 		say("No active quests found.")
 		return
-	
+
 	// Create the report scroll
 	var/obj/item/paper/scroll/report = new(get_turf(scroll_point))
 	report.name = "Guild Quest Report"
 	report.desc = "A list of currently active quests issued by the Adventurers' Guild."
-	
+
 	// Generate report text
 	var/report_text = "<center><b>ADVENTURER'S GUILD - ACTIVE QUESTS</b></center><br><br>"
 	report_text += "<i>Generated on [station_time_timestamp()]</i><br><br>"
-	
+
 	for(var/obj/item/paper/scroll/quest/quest_scroll in active_quests)
 		var/datum/quest/quest = quest_scroll.assigned_quest
 		var/area/quest_area = get_area(quest_scroll)
 		var/area_name = quest_area ? quest_area.name : "Unknown Location"
-		
+
 		report_text += "<b>Title:</b> [quest.title].<br>"
 		if(quest.quest_receiver_name) // Only show recipient if claimed
 			report_text += "<b>Recipient:</b> [quest.quest_receiver_name].<br>"
@@ -335,7 +364,7 @@
 		report_text += "<b>Difficulty:</b> [quest.quest_difficulty].<br>"
 		report_text += "<b>Last Known Location:</b> [area_name].<br>"
 		report_text += "<b>Reward:</b> [quest.reward_amount] marks.<br><br>"
-	
+
 	report.info = report_text
 	say("Quest report printed.")
 

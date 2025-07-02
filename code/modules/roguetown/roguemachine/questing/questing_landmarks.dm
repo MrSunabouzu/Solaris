@@ -119,8 +119,34 @@
 		new_item.AddComponent(/datum/component/quest_object, quest)
 
 /obj/effect/landmark/quest_spawner/proc/spawn_kill_mob(mob_type, datum/quest/quest)
-	var/mob/living/new_mob = new mob_type(get_turf(src))
+	var/turf/spawn_turf = get_safe_spawn_turf()
+	if(!spawn_turf)
+		return
+	
+	var/mob/living/new_mob = new mob_type(spawn_turf)
+	new_mob.faction |= "quest"
 	new_mob.AddComponent(/datum/component/quest_object, quest)
+	add_quest_faction_to_nearby_mobs(spawn_turf)
+
+/obj/effect/landmark/quest_spawner/proc/add_quest_faction_to_nearby_mobs(turf/center)
+	for(var/mob/living/M in view(7, center))
+		// Skip players and mobs that already have the quest faction
+		if(M.ckey || ("quest" in M.faction))
+			continue
+		M.faction |= "quest"
+
+/obj/effect/landmark/quest_spawner/proc/get_safe_spawn_turf()
+	var/list/possible_turfs = list()
+	for(var/turf/T in view(7, src))
+		// Check if any mobs with ckeys are nearby
+		var/unsafe = FALSE
+		for(var/mob/M in view(9, T))
+			if(M.ckey)
+				unsafe = TRUE
+				break
+		if(!unsafe)
+			possible_turfs += T
+	return pick(possible_turfs)
 
 /obj/effect/landmark/quest_spawner/proc/spawn_courier_item(datum/quest/quest, area/delivery_area)
 	if(!quest || !delivery_area)
@@ -218,15 +244,27 @@
 
 /obj/effect/landmark/quest_spawner/proc/spawn_clear_out_mobs(mob_type, amount, datum/quest/quest)
 	for(var/i in 1 to amount)
-		var/mob/living/new_mob = new mob_type(get_turf(pick(view(7, src))))
+		var/turf/spawn_turf = get_safe_spawn_turf()
+		if(!spawn_turf)
+			return
+		
+		var/mob/living/new_mob = new mob_type(spawn_turf)
+		new_mob.faction |= "quest"
 		new_mob.AddComponent(/datum/component/quest_object, quest)
+		add_quest_faction_to_nearby_mobs(spawn_turf)
 		sleep(1)
 
 /obj/effect/landmark/quest_spawner/proc/spawn_miniboss(datum/quest/quest)
-	var/mob/living/new_mob = new miniboss_mob(get_turf(src))
+	var/turf/spawn_turf = get_safe_spawn_turf()
+	if(!spawn_turf)
+		return
+	
+	var/mob/living/new_mob = new miniboss_mob(spawn_turf)
+	new_mob.faction |= "quest"
 	new_mob.AddComponent(/datum/component/quest_object, quest)
 	new_mob.maxHealth *= 2
 	new_mob.health = new_mob.maxHealth
+	add_quest_faction_to_nearby_mobs(spawn_turf)
 
 /obj/effect/landmark/quest_spawner/easy
 	name = "easy quest landmark"
