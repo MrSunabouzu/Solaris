@@ -18,20 +18,31 @@
 		M.add_filter(outline_filter_id, 2, list("type" = "outline", "color" = "#ff0000", "size" = 0.5))
 		RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(on_target_death))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_mob_examine))
+		RegisterSignal(target_quest, COMSIG_PARENT_QDELETING, PROC_REF(on_quest_deleted))
 	else
 		var/obj/item/item_parent = parent
 		item_parent.add_filter(outline_filter_id, 2, list("type" = "outline", "color" = "#008cff", "size" = 0.5))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_item_dropped))
 		RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_dropped))
+		RegisterSignal(target_quest, COMSIG_PARENT_QDELETING, PROC_REF(on_quest_deleted))
 
 /datum/component/quest_object/Destroy()
-	if(QDELETED(parent)) // If parent is already being deleted, don't try to delete it again
+	if(QDELETED(parent))
 		return ..()
 		
 	var/datum/quest/Q = quest_ref?.resolve()
-	if(Q && !Q.complete && isitem(parent) && (Q.target_delivery_item && istype(parent, Q.target_delivery_item)))
-		qdel(parent) // Delete the item if its quest is being abandoned
+	if(Q && !Q.complete && isitem(parent))
+		var/obj/item/I = parent
+		I.remove_filter(outline_filter_id)
+		
+		// Only delete if it's a courier item and we're not already in a destruction
+		if(Q.quest_type == "Courier" && (Q.target_delivery_item && istype(I, Q.target_delivery_item)) && !QDELETED(I))
+			// Null the reference first
+			Q.target_delivery_item = null
+			// Queue for deletion but don't force it
+			qdel(I)
+	
 	return ..()
 
 /datum/component/quest_object/proc/on_examine(datum/source, mob/user, list/examine_list)
@@ -82,19 +93,27 @@
 /datum/component/quest_object/proc/on_target_death(mob/living/dead_mob, gibbed)
 	SIGNAL_HANDLER
 	var/datum/quest/Q = quest_ref.resolve()
+	if(!Q || Q.complete)
+		return
+
+	if(!istype(dead_mob, Q.target_mob_type))
+		return
+
+	Q.target_amount--
+	dead_mob.remove_filter("quest_item_outline")
+
+	// Find and update the quest scroll
 	var/obj/item/paper/scroll/quest/scroll
-	if(Q && !Q.complete && istype(dead_mob, Q.target_mob_type))
-		Q.target_amount--
-		dead_mob.remove_filter("quest_item_outline")
+	if(Q.quest_scroll_ref)
+		scroll = Q.quest_scroll_ref.resolve()
+	else if(Q.quest_scroll)  // Fallback to direct reference
+		scroll = Q.quest_scroll
+
+	if(scroll)
 		scroll.update_quest_text()
 		if(Q.target_amount <= 0)
 			Q.complete = TRUE
-			if(Q.quest_scroll_ref)
-				scroll = Q.quest_scroll_ref.resolve()
-			else if(Q.quest_scroll)  // Fallback to direct reference
-				scroll = Q.quest_scroll
-			if(scroll)
-				scroll.update_quest_text()
+			scroll.update_quest_text()
 
 /datum/component/quest_object/proc/on_item_dropped(obj/item/dropped_item, mob/user)
 	SIGNAL_HANDLER
@@ -156,3 +175,16 @@
 						if(scroll)
 							scroll.update_quest_text()
 					return
+
+/datum/component/quest_object/proc/on_quest_deleted(datum/source)
+	SIGNAL_HANDLER
+	var/datum/quest/Q = quest_ref?.resolve()
+	if(ismob(parent))
+		var/mob/M = parent
+		M.remove_filter(outline_filter_id) //Still have to deal with them; not exactly free loot.
+	else if(isitem(parent))
+		var/obj/item/I = parent
+		I.remove_filter(outline_filter_id) //No completely free loot however.
+		if(!Q.complete) //It's okay to steal if you've delivered it. :)
+			qdel(I)
+	qdel(src)

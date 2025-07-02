@@ -281,34 +281,27 @@
 		turn_in_quest(user)
 		return
 
-	// Clean up courier quest items more carefully
+	// Handle courier quest items more carefully
 	if(quest.quest_type == "Courier" && quest.target_delivery_item)
-		// First collect all potential items to delete
-		var/list/items_to_delete = list()
-
-		// Find parcels and items in the world
-		for(var/obj/item/parcel/P in world)
-			if(P.contained_item && istype(P.contained_item, quest.target_delivery_item))
-				items_to_delete += P
-				continue
-			else if(istype(P, quest.target_delivery_item))
-				items_to_delete += P
-				continue
-
-		// Also check for unwrapped items
+		// First null out the reference to prevent loops
+		var/delivery_type = quest.target_delivery_item
+		quest.target_delivery_item = null
+		
+		// Find and clean up any associated items without immediately deleting
 		for(var/obj/item/I in world)
-			if(istype(I, quest.target_delivery_item))
+			if(istype(I, delivery_type))
 				var/datum/component/quest_object/Q = I.GetComponent(/datum/component/quest_object)
 				if(Q && Q.quest_ref == WEAKREF(quest))
-					items_to_delete += I
+					I.remove_filter("quest_item_outline")
+					qdel(Q)
+					// Mark for deletion but don't delete yet to prevent loops
+					I.Destroy() 
 
-		// Delete collected items in a controlled manner
-		for(var/obj/item/to_delete in items_to_delete)
-			if(!QDELETED(to_delete)) // Only delete if not already being deleted
-				qdel(to_delete)
-
-	// Delete the quest and scroll
+	// Clear the scroll's reference first
+	abandoned_scroll.assigned_quest = null
+	// Then delete the quest
 	qdel(quest)
+	// Finally delete the scroll
 	qdel(abandoned_scroll)
 
 	// Refund the deposit

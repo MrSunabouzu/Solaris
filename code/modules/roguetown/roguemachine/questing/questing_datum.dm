@@ -36,11 +36,26 @@
 	var/beacon_activated = FALSE
 
 /datum/quest/Destroy()
+	// Clean up mobs with quest components
+	for(var/mob/living/M in GLOB.mob_list)
+		var/datum/component/quest_object/Q = M.GetComponent(/datum/component/quest_object)
+		if(Q && Q.quest_ref?.resolve() == src)
+			M.remove_filter("quest_item_outline")
+			qdel(Q)
+
+	// Clean up items with quest components carefully
+	for(var/obj/item/I in world)
+		var/datum/component/quest_object/Q = I.GetComponent(/datum/component/quest_object)
+		if(Q && Q.quest_ref?.resolve() == src && !QDELETED(I))
+			I.remove_filter("quest_item_outline")
+			qdel(Q)
+			// Don't delete the item itself here to prevent loops
+
 	// Clean up references
 	quest_scroll = null
 	if(quest_scroll_ref)
 		var/obj/item/paper/scroll/quest/Q = quest_scroll_ref.resolve()
-		if(Q)
+		if(Q && !QDELETED(Q))
 			Q.assigned_quest = null
 			qdel(Q)
 		quest_scroll_ref = null
