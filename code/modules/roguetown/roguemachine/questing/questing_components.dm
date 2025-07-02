@@ -82,13 +82,13 @@
 /datum/component/quest_object/proc/on_target_death(mob/living/dead_mob, gibbed)
 	SIGNAL_HANDLER
 	var/datum/quest/Q = quest_ref.resolve()
+	var/obj/item/paper/scroll/quest/scroll
 	if(Q && !Q.complete && istype(dead_mob, Q.target_mob_type))
 		Q.target_amount--
 		dead_mob.remove_filter("quest_item_outline")
 		scroll.update_quest_text()
 		if(Q.target_amount <= 0)
 			Q.complete = TRUE
-			var/obj/item/paper/scroll/quest/scroll
 			if(Q.quest_scroll_ref)
 				scroll = Q.quest_scroll_ref.resolve()
 			else if(Q.quest_scroll)  // Fallback to direct reference
