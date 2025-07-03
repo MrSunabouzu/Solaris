@@ -1981,6 +1981,7 @@
 #include "code\modules\spells\spell_types\wizard\utility\mindlink.dm"
 #include "code\modules\spells\spell_types\wizard\utility\mirror_transform.dm"
 #include "code\modules\spells\spell_types\wizard\utility\prestidigitation.dm"
+#include "code\modules\spells\spell_types\wizard\utility\stave_the_dying.dm"
 #include "code\modules\spells\spell_types\wizard\utility\trickarm.dm"
 #include "code\modules\surgery\_surgery.dm"
 #include "code\modules\surgery\_surgery_step.dm"
