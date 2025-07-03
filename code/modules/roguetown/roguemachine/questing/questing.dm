@@ -131,35 +131,6 @@
 	var/type_selection = input(user, "Select quest type", src) as null|anything in type_choices
 	if(!type_selection)
 		return
-
-	// Find appropriate landmarks for this quest
-	var/list/possible_landmarks = list()
-
-	// First try to find landmarks that match both difficulty AND type
-	for(var/obj/effect/landmark/quest_spawner/landmark in GLOB.landmarks_list)
-		if((actual_difficulty in landmark.quest_difficulty) && (type_selection in landmark.quest_type))
-			possible_landmarks += landmark
-
-	// If none found, try landmarks that match just the difficulty
-	if(!length(possible_landmarks))
-		for(var/obj/effect/landmark/quest_spawner/landmark in GLOB.landmarks_list)
-			if((actual_difficulty in landmark.quest_difficulty))
-				possible_landmarks += landmark
-
-	// If still none found, use any quest landmark as fallback
-	if(!length(possible_landmarks))
-		for(var/obj/effect/landmark/quest_spawner/landmark in GLOB.landmarks_list)
-			possible_landmarks += landmark
-
-	// If absolutely no landmarks exist, create a temporary one
-	if(!length(possible_landmarks))
-		var/obj/effect/landmark/quest_spawner/temp_landmark = new(get_turf(src))
-		temp_landmark.quest_difficulty = list(actual_difficulty)
-		temp_landmark.quest_type = list(type_selection)
-		possible_landmarks += temp_landmark
-
-	var/obj/effect/landmark/quest_spawner/chosen_landmark = pick(possible_landmarks)
-
 	var/obj/item/paper/scroll/quest/spawned_scroll = new(get_turf(scroll_point))
 	spawned_scroll.base_icon_state = scroll_icon
 	attached_quest.quest_difficulty = actual_difficulty
@@ -180,6 +151,13 @@
 	spawned_scroll.assigned_quest = attached_quest
 	attached_quest.quest_scroll_ref = WEAKREF(spawned_scroll)
 	attached_quest.quest_scroll = spawned_scroll
+
+	// Find an appropriate landmark for this quest
+	var/obj/effect/landmark/quest_spawner/chosen_landmark
+	for(var/obj/effect/landmark/quest_spawner/landmark in GLOB.landmarks_list)
+		if(landmark.quest_difficulty == actual_difficulty && (type_selection in landmark.quest_type))
+			chosen_landmark = landmark
+			break
 
 	if(chosen_landmark)
 		chosen_landmark.generate_quest(attached_quest, user.job == "Guild Handler" ? null : user)

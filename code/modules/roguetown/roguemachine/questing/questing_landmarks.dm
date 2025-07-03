@@ -114,12 +114,8 @@
 	return new_quest
 
 /obj/effect/landmark/quest_spawner/proc/spawn_fetch_items(item_type, amount, datum/quest/quest)
-	var/turf/spawn_turf = get_safe_spawn_turf()
-	if(!spawn_turf)
-		return
-
 	for(var/i in 1 to amount)
-		var/obj/item/new_item = new item_type(spawn_turf)
+		var/obj/item/new_item = new item_type(get_turf(src))
 		new_item.AddComponent(/datum/component/quest_object, quest)
 
 /obj/effect/landmark/quest_spawner/proc/spawn_kill_mob(mob_type, datum/quest/quest)
@@ -140,41 +136,17 @@
 		M.faction |= "quest"
 
 /obj/effect/landmark/quest_spawner/proc/get_safe_spawn_turf()
-	var/list/possible_landmarks = list()
-	var/obj/effect/landmark/quest_spawner/selected_landmark
 	var/list/possible_turfs = list()
-
-	// Gather all quest landmarks with matching difficulty
-	for(var/obj/effect/landmark/quest_spawner/gathered_landmarks in GLOB.landmarks_list)
-		// Check if this landmark's difficulty list includes our difficulty
-		if((quest_difficulty in gathered_landmarks.quest_difficulty) || (gathered_landmarks.quest_difficulty in quest_difficulty))
-			possible_landmarks += gathered_landmarks
-
-	// If no matching landmarks found, use ourselves
-	if(!length(possible_landmarks))
-		possible_landmarks += src
-	
-	selected_landmark = pick(possible_landmarks)
-
-	// Check turfs around all matching landmarks
-	for(var/obj/effect/landmark/quest_spawner/landmark in selected_landmark)
-		for(var/turf/open/T in view(7, landmark)) // Only consider open turfs (non-wall, non-dense)
-			// Additional safety check for non-dense turfs
-			if(T.density)
-				continue
-
-			// Check if any player mobs are nearby
-			for(var/mob/M in view(9, T))
-				if(M.ckey)
-					break
-				possible_turfs += T
-
-	// If we found possible turfs, pick one at random
-	if(length(possible_turfs))
-		return pick(possible_turfs)
-
-	// Final fallback: return the landmark's turf if all else fails
-	return get_turf(src)
+	for(var/turf/T in view(7, src))
+		// Check if any mobs with ckeys are nearby
+		var/unsafe = FALSE
+		for(var/mob/M in view(9, T))
+			if(M.ckey)
+				unsafe = TRUE
+				break
+		if(!unsafe)
+			possible_turfs += T
+	return pick(possible_turfs)
 
 /obj/effect/landmark/quest_spawner/proc/spawn_courier_item(datum/quest/quest, area/delivery_area)
 	if(!quest || !delivery_area)
@@ -205,7 +177,6 @@
 			/obj/item/seeds/wheat,
 			/obj/item/reagent_containers/food/snacks/egg,
 			/obj/item/reagent_containers/food/snacks/egg/mothcat,
-			
 		),
 		/area/provincial/indoors/town/blacksmith = list(
 			/obj/item/ingot/iron,
@@ -241,24 +212,6 @@
 			/obj/item/ration,
 		)
 	)
-
-	// Define the complete area to jobs mapping
-	var/static/list/area_allowed_jobs = list(
-		/area/provincial/indoors/town/tavern = list("Guild Handler", "Innkeeper", "Tapster"),
-		/area/provincial/indoors/town/church = list("Guild Handler", "Priest", "Acolyte", "Templar", "Churchling"),
-		/area/provincial/indoors/town/farm = list("Guild Handler", "Soilson"),
-		/area/provincial/indoors/town/blacksmith = list("Guild Handler", "Blacksmith"),
-		/area/provincial/indoors/town/shop = list("Guild Handler", "Merchant", "Shophand"),
-		/area/provincial/indoors/town/province_keep = list("Guild Handler", "Nobleman", "Hand", "Knight Captain", "Marshal", "Steward", "Clerk", "Head Mage", "Marquis"),
-		/area/provincial/indoors/town/mages_university = list("Guild Handler", "Head Mage", "Archivist", "Artificer", "Apothicant Apprentice", "Apprentice Magician"),
-		/area/provincial/indoors/town/mages_university/alchemy_lab = list("Guild Handler", "Head Mage", "Archivist", "Artificer", "Apothicant Apprentice", "Apprentice Magician"),
-		/area/provincial/indoors/town/steward = list("Guild Handler", "Steward"),
-		/area/provincial/indoors/town = list("Guild Handler"),
-	)
-
-	// Set the delivery area type and allowed jobs on the parcel
-	delivery_parcel.delivery_area_type = delivery_area
-	delivery_parcel.allowed_jobs = area_allowed_jobs[delivery_area] || list("Guild Handler") // Fallback to just Guild Handler if area not found
 
 	// Get appropriate items for this delivery location
 	var/list/possible_items = area_delivery_items[delivery_area] || list(

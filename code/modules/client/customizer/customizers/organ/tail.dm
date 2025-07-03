@@ -44,7 +44,6 @@
 		/datum/sprite_accessory/tail/cat,
 		/datum/sprite_accessory/tail/tiger,
 		/datum/sprite_accessory/tail/leopard,
-		/datum/sprite_accessory/tail/bats,
 		)
 
 /datum/customizer/organ/tail/lizard
