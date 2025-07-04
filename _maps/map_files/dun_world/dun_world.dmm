@@ -11535,12 +11535,6 @@
 	},
 /turf/open/floor/rogue/grassred,
 /area/provincial/outdoors/field)
-"dOx" = (
-/obj/structure/pressure_plate{
-	redstone_id = "homesteadtrap1"
-	},
-/turf/open/floor/rogue/hexstone,
-/area/provincial/indoors/dungeon/lost_homestead)
 "dOz" = (
 /mob/living/simple_animal/hostile/rogue/skeleton/spear,
 /turf/open/floor/rogue/blocks,
@@ -11863,14 +11857,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/rogue/carpet/lord/left,
 /area/provincial/underground/dungeon/vulnafir)
-"dVl" = (
-/obj/structure/pressure_plate{
-	redstone_id = "rd1t1"
-	},
-/turf/open/floor/rogue/tile{
-	icon_state = "greenstone"
-	},
-/area/provincial/underground/underdark/undersea/undergrove)
 "dVq" = (
 /obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/blocks,
@@ -18299,12 +18285,6 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/provincial/underground/dungeon/winding_halls)
-"gex" = (
-/obj/structure/pressure_plate{
-	redstone_id = "rd2t1"
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/provincial/underground/underdark/undersea/undergrove)
 "geG" = (
 /obj/structure/flora/roguegrass/thorn_bush,
 /turf/open/floor/rogue/grass,
@@ -29584,13 +29564,6 @@
 	icon_state = "roofg"
 	},
 /area/provincial/outdoors/town/roofs/keep)
-"jDp" = (
-/obj/structure/activator{
-	dir = 4;
-	redstone_id = "rd2t1"
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/provincial/underground/underdark/undersea/undergrove)
 "jDB" = (
 /obj/machinery/light/rogue/campfire/densefire,
 /turf/open/floor/rogue/naturalstone,
@@ -32480,10 +32453,6 @@
 /area/provincial/outdoors/forest)
 "kxY" = (
 /obj/structure/fluff/statue/gargoyle,
-/obj/structure/activator{
-	dir = 4;
-	redstone_id = "homesteadtrap1"
-	},
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/indoors/dungeon/lost_homestead)
 "kxZ" = (
@@ -61897,10 +61866,6 @@
 /turf/open/floor/rogue/hexstone,
 /area/provincial/indoors/town/province_keep/magician)
 "uhp" = (
-/obj/structure/activator{
-	dir = 4;
-	redstone_id = "rd1t1"
-	},
 /obj/structure/fluff/statue,
 /turf/open/floor/rogue/tile{
 	icon_state = "greenstone"
@@ -97731,7 +97696,7 @@ cOs
 dba
 tIi
 rbU
-dOx
+rbU
 chw
 orV
 gBH
@@ -114453,7 +114418,7 @@ fui
 fui
 aqQ
 fui
-gex
+fui
 fui
 fui
 fui
@@ -114905,7 +114870,7 @@ fui
 fui
 oQH
 fui
-gex
+fui
 fui
 fui
 fui
@@ -116260,7 +116225,7 @@ xui
 xui
 xui
 uWl
-jDp
+fui
 uWl
 uWl
 uWl
@@ -131597,8 +131562,8 @@ nXg
 nXg
 xui
 rJz
-dVl
-dVl
+aCg
+aCg
 rJz
 xui
 uWl
