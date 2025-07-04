@@ -202,6 +202,7 @@ GLOBAL_LIST_EMPTY(confessors)
 
 GLOBAL_LIST_EMPTY(sunlights)
 GLOBAL_LIST_EMPTY(head_bounties)
+GLOBAL_LIST_EMPTY(assigned_quests)
 GLOBAL_LIST_EMPTY(board_viewers)
 GLOBAL_LIST_EMPTY(noticeboard_posts)
 GLOBAL_LIST_EMPTY(premium_noticeboardposts)
@@ -250,6 +251,7 @@ GLOBAL_LIST_EMPTY(weapon_personality_dialog)
 #define CTAG_CAPTAIN		"CAT_CAPTAIN"		// Handles Captain class selector
 #define CTAG_WAPPRENTICE	"CTAG_WAPPRENTICE"	// Mage Apprentice Classes - Handles Mage Apprentices class selector
 #define CTAG_WARDEN			"CTAG_WARDEN"		// Warden / Bogguard Class
+#define CTAG_LORD			"CTAG_LORD"         // Marquis and their subclasses selector
 
 /*
 	Defines for the triumph buy datum categories
