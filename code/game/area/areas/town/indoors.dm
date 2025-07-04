@@ -13,6 +13,9 @@
 
 /area/provincial/indoors/town/adventurers_guild
 	name = "Adventurer's Guild"
+	droning_sound = 'sound/music/area/newbiemelody.ogg'
+	droning_sound_dusk = 'sound/music/area/newbiemelody.ogg'
+	droning_sound_night = 'sound/music/area/newbiemelody.ogg'
 
 /area/provincial/indoors/town/adventurers_guild/handlers_office
 	name = "Guild Handler's Office"
