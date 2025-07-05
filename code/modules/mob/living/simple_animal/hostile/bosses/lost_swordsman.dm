@@ -77,20 +77,20 @@
 /datum/action/boss/martialdash
 	check_flags = AB_CHECK_CONSCIOUS //Incase the boss is given a player
 	boss_cost = 30 //Cost of usage for the boss' AI 1-100
-	usage_probability = 100
-	needs_target = TRUE //Does the boss need to have a target? (Only matters for the AI)
-	say_when_triggered = "Nothing Personel Kid" //What does the boss Say() when the ability triggers?
+	usage_probability = 40
+	needs_target = TRUE 
+	say_when_triggered = "Hrrgh!" 
+	var/turf/dashturf
+	var/dashdir
 
 /datum/action/boss/martialdash/Trigger()
 	. = ..()
-	var/turf/dashturf = get_turf(boss.target)
-	/*switch(target_dir)
-		if(1) //North
-			dashturf = (dashturf.y-1)
-		if(2) //South
-			dashturf = (dashturf.y+1)
-		if(4) //East
-			dashturf = (dashturf.x-1)
-		if(8) //West 
-			dashturf = (dashturf.x+1)*/
-	do_teleport(boss, dashturf)
+	dashdir = get_dir(boss, boss.target)
+	if(boss.health <= 400)
+		if(prob(50))
+			dashdir = clamp((dashdir)+1,1,10)
+		else
+			dashdir = clamp((dashdir)-1,1,10)
+	dashturf = get_step(boss.target, dashdir)
+	do_teleport(boss, dashturf, no_effects=TRUE)
+	playsound(boss, 'sound/foley/martial_dodge.ogg', 100)
