@@ -93,4 +93,4 @@
 			dashdir = clamp((dashdir)-1,1,10)
 	dashturf = get_step(boss.target, dashdir)
 	do_teleport(boss, dashturf, no_effects=TRUE)
-	playsound(boss, 'sound/foley/martial_dodge.ogg', 100)
+	playsound(boss, 'sound/foley/martialdash.ogg', 100)
