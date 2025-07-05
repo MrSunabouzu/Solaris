@@ -122,6 +122,8 @@
 		else
 			dashdir = clamp((dashdir)-1,1,10)
 	dashturf = get_step(boss.target, dashdir)
+	if(dashturf.density) //Dont backflip into a wall, legend
+		return
 	boss.visible_message(span_boldannounce("[boss] dashes around to [boss.target]'s blind spot!"))
 	do_sparks(1, FALSE, boss)
 	do_teleport(boss, dashturf, no_effects=TRUE)
