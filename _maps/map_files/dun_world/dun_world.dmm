@@ -1764,7 +1764,6 @@
 /obj/structure/stairs{
 	dir = 8
 	},
-/obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/cobble,
 /area/provincial/indoors/town/sewer)
 "aDi" = (
@@ -41543,10 +41542,6 @@
 /mob/living/carbon/human/species/skeleton/npc/ambush,
 /turf/open/floor/rogue/wood,
 /area/provincial/indoors/dungeon/riverbrook)
-"nyi" = (
-/obj/structure/spider/stickyweb,
-/turf/open/floor/carpet/red,
-/area/provincial/indoors/town/sewer)
 "nyj" = (
 /obj/structure/flora/roguegrass,
 /obj/structure/flora/roguegrass/herb/random,
@@ -62773,11 +62768,6 @@
 	dir = 8
 	},
 /area/provincial/underground/dungeon/vulnafir)
-"uxN" = (
-/obj/structure/plasticflaps,
-/obj/structure/spider/stickyweb,
-/turf/open/water/sewer,
-/area/provincial/indoors/town/sewer)
 "uxT" = (
 /obj/structure/rack/rogue,
 /obj/item/clothing/gloves/roguetown/chain,
@@ -70634,11 +70624,6 @@
 /obj/structure/chair/bench/church/smallbench,
 /turf/open/floor/carpet/red,
 /area/provincial/indoors/town/sewer)
-"xfT" = (
-/obj/structure/spider/stickyweb,
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
-/turf/open/floor/rogue/blocks/green,
-/area/provincial/indoors/town/sewer)
 "xfW" = (
 /obj/structure/closet/crate/chest/wicker{
 	opened = 1
@@ -73561,7 +73546,6 @@
 /turf/open/floor/rogue/wood,
 /area/provincial/indoors/town/tavern/room/luxury/five)
 "ygn" = (
-/obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/wood,
 /area/provincial/indoors/town/sewer)
 "ygr" = (
@@ -129203,7 +129187,7 @@ mZd
 bVo
 dxI
 pqN
-iBz
+iqS
 dxI
 umD
 umD
@@ -131463,7 +131447,7 @@ mRT
 wpa
 dxI
 pqN
-uOl
+cqq
 dxI
 umD
 umD
@@ -135529,7 +135513,7 @@ kOH
 kOH
 kOH
 dxI
-uOl
+cqq
 pqN
 cqq
 dxI
@@ -136436,7 +136420,7 @@ dxI
 cqq
 pqN
 cqq
-iBz
+iqS
 dxI
 umD
 umD
@@ -136888,7 +136872,7 @@ dxI
 cqq
 pqN
 cqq
-uOl
+cqq
 dxI
 umD
 umD
@@ -138702,7 +138686,7 @@ rWT
 vUI
 pEX
 iYk
-bTM
+rWT
 ayb
 dxI
 xeo
@@ -139147,7 +139131,7 @@ mHE
 hIu
 cbs
 pqN
-uOl
+cqq
 cbs
 rWT
 gri
@@ -139599,7 +139583,7 @@ mHE
 uIH
 pqN
 pqN
-uOl
+cqq
 dxI
 bCq
 rWT
@@ -139607,7 +139591,7 @@ rWT
 rWT
 rWT
 rWT
-bTM
+rWT
 dxI
 xeo
 nmU
@@ -140051,10 +140035,10 @@ mHE
 xXv
 cbs
 pqN
-uOl
+cqq
 cbs
-bTM
-bTM
+rWT
+rWT
 szy
 tRr
 rWT
@@ -140504,7 +140488,7 @@ cwC
 dxI
 pqN
 pqN
-uxN
+miw
 dkz
 pqN
 pqN
@@ -142315,13 +142299,13 @@ cqq
 cqq
 cqq
 cqq
-uOl
+cqq
 cqq
 cqq
 cqq
 enL
 cqq
-uOl
+cqq
 cqq
 djY
 cWl
@@ -142761,14 +142745,14 @@ xIx
 mHE
 aVe
 cbs
-uOl
+cqq
 pqN
 pqN
 pqN
 pqN
-dkz
 pqN
-dkz
+pqN
+pqN
 pqN
 pqN
 pqN
@@ -143214,7 +143198,7 @@ mHE
 aiT
 dxI
 iBz
-uOl
+cqq
 cqq
 pqN
 cqq
@@ -143225,10 +143209,10 @@ qGR
 qGR
 qGR
 spx
-dkz
-dkz
+pqN
+pqN
 cqq
-uOl
+cqq
 cqq
 cqq
 cqq
@@ -143679,7 +143663,7 @@ xrl
 aNM
 spx
 pqN
-dkz
+pqN
 pqN
 pqN
 pqN
@@ -145025,7 +145009,7 @@ qGR
 hlX
 cqq
 pqN
-uOl
+cqq
 cbs
 xrl
 fdD
@@ -145472,8 +145456,8 @@ hUB
 hlX
 pqN
 pqN
-dkz
-dkz
+pqN
+pqN
 pqN
 pqN
 pqN
@@ -145923,10 +145907,10 @@ umD
 dxI
 pqN
 pqN
-uOl
 cqq
 cqq
-uOl
+cqq
+cqq
 cqq
 pqN
 cqq
@@ -146822,8 +146806,8 @@ gYv
 cqq
 cqq
 cqq
-uOl
-uOl
+cqq
+cqq
 cqq
 pqN
 cqq
@@ -147726,9 +147710,9 @@ dxI
 pqN
 cqq
 cqq
-uOl
 cqq
-uOl
+cqq
+cqq
 cqq
 cqq
 dxI
@@ -148639,7 +148623,7 @@ vtG
 mRT
 mRT
 dxI
-uOl
+cqq
 pqN
 qsv
 jFk
@@ -149530,9 +149514,9 @@ dxI
 pqN
 uOl
 cqq
-uOl
 cqq
-uOl
+cqq
+cqq
 dxI
 umD
 umD
@@ -149543,7 +149527,7 @@ rRL
 rRL
 fyA
 dxI
-uOl
+cqq
 pqN
 qsv
 dOk
@@ -150432,7 +150416,7 @@ rRL
 rRL
 dxI
 pqN
-iBz
+iqS
 cbs
 fyA
 vyi
@@ -151354,20 +151338,20 @@ dxI
 cqq
 pqN
 cqq
-uOl
 cqq
 cqq
-uOl
 cqq
-pqN
 cqq
 cqq
 pqN
 cqq
 cqq
+pqN
+cqq
+cqq
 cqq
 uOl
-uOl
+cqq
 qsv
 kZB
 uXz
@@ -151810,10 +151794,10 @@ qGR
 qGR
 qGR
 spx
-uOl
+cqq
 pqN
 cqq
-uOl
+cqq
 cbs
 qGR
 qGR
@@ -152240,7 +152224,7 @@ rRL
 rRL
 dxI
 pqN
-uOl
+cqq
 dxI
 pUG
 daG
@@ -152255,16 +152239,16 @@ umD
 umD
 umD
 dxI
-uOl
+cqq
 pqN
 dxI
 hdv
 tex
 vFX
 cbs
-uOl
+cqq
 pqN
-uOl
+cqq
 cqq
 jlq
 cqq
@@ -152692,10 +152676,10 @@ vFX
 fyA
 dxI
 pqN
-uOl
+cqq
 dxI
 vUV
-pUG
+hdv
 hHo
 dxI
 umD
@@ -152716,7 +152700,7 @@ hdv
 gYv
 cqq
 pqN
-uOl
+cqq
 cqq
 cbs
 jhk
@@ -153147,7 +153131,7 @@ pqN
 cqq
 dxI
 fEd
-pUG
+hdv
 hdv
 shI
 qGR
@@ -153605,11 +153589,11 @@ dxI
 cqq
 cqq
 cqq
-uOl
 cqq
-uOl
 cqq
-uOl
+cqq
+cqq
+cqq
 enL
 cqq
 pqN
@@ -153618,7 +153602,7 @@ jcC
 hdv
 lPo
 dxI
-uOl
+cqq
 pqN
 pqN
 pqN
@@ -154058,11 +154042,11 @@ cqq
 pqN
 pqN
 pqN
-dkz
-dkz
-dkz
 pqN
-dkz
+pqN
+pqN
+pqN
+pqN
 pqN
 pqN
 dxI
@@ -154072,7 +154056,7 @@ dEj
 dxI
 uOl
 pqN
-uOl
+cqq
 cqq
 pqN
 qsv
@@ -154500,13 +154484,13 @@ pqN
 pqN
 pqN
 pqN
-uOl
+cqq
 dxI
 rSE
 adZ
 vFX
 cbs
-uOl
+cqq
 pqN
 hUB
 qGR
@@ -154525,7 +154509,7 @@ cbs
 cqq
 pqN
 cqq
-uOl
+cqq
 pqN
 qsv
 txm
@@ -154542,16 +154526,16 @@ jBW
 okr
 vbX
 wSb
-uOl
+cqq
 iBz
 pqN
 cqq
 cqq
 uOl
-uOl
-uOl
 cqq
 uOl
+cqq
+cqq
 pqN
 nFY
 sYv
@@ -154940,7 +154924,7 @@ eZe
 hdv
 dxI
 pqN
-xfT
+enL
 uOl
 cqq
 cqq
@@ -154952,7 +154936,7 @@ cqq
 cqq
 uOl
 pqN
-uOl
+cqq
 dxI
 sOh
 vFX
@@ -155386,13 +155370,13 @@ dxI
 eaC
 hdv
 hdv
-nyi
+abY
 abY
 abY
 hdv
 dxI
 pqN
-uOl
+cqq
 sGr
 qGR
 cbs
@@ -155410,7 +155394,7 @@ rtK
 vFX
 mRT
 cbs
-uOl
+cqq
 pqN
 dxI
 umD
@@ -155455,7 +155439,7 @@ iqS
 cqq
 cqq
 uOl
-uOl
+cqq
 pqN
 cbs
 qGR
@@ -155841,7 +155825,7 @@ kAG
 xfR
 abY
 xfR
-pUG
+hdv
 dxI
 pqN
 pqN
@@ -155878,7 +155862,7 @@ umD
 umD
 umD
 dxI
-uOl
+cqq
 pqN
 kLh
 reY
@@ -156766,7 +156750,7 @@ qGR
 qGR
 qGR
 rTl
-uOl
+cqq
 pqN
 dxI
 umD
@@ -157195,7 +157179,7 @@ iTV
 llc
 kAG
 abY
-nyi
+abY
 abY
 hdv
 nEJ
@@ -157218,7 +157202,7 @@ cRH
 cRH
 wSw
 dxI
-uOl
+cqq
 pqN
 dxI
 umD
@@ -157236,7 +157220,7 @@ umD
 dxI
 cqq
 pqN
-uOl
+cqq
 cbs
 umD
 bki
@@ -157670,7 +157654,7 @@ pnl
 vFX
 iMF
 cbs
-uOl
+cqq
 pqN
 dxI
 umD
@@ -157724,7 +157708,7 @@ pqN
 pqN
 pqN
 cqq
-uOl
+cqq
 dxI
 mRT
 mRT
@@ -158551,8 +158535,8 @@ hdv
 hdv
 hdv
 abY
-nyi
-nyi
+abY
+abY
 hdv
 dxI
 pqN
@@ -158566,7 +158550,7 @@ nEJ
 cbs
 qGR
 pQm
-uOl
+cqq
 pqN
 cqq
 dxI
@@ -158628,7 +158612,7 @@ cqq
 uOl
 pqN
 cqq
-uOl
+cqq
 dxI
 mRT
 mRT
@@ -159003,7 +158987,7 @@ urc
 xLP
 hdv
 eZe
-pUG
+hdv
 hdv
 hdv
 dxI
@@ -159018,7 +159002,7 @@ cqq
 cqq
 cqq
 uOl
-uOl
+cqq
 pqN
 cqq
 aNM
@@ -159076,7 +159060,7 @@ nZm
 dxI
 vFX
 vFX
-iBz
+iqS
 eOJ
 pqN
 uOl
@@ -159531,8 +159515,8 @@ vFX
 uOl
 voO
 pqN
-uOl
-uOl
+cqq
+cqq
 dxI
 mRT
 mRT
@@ -159929,12 +159913,12 @@ pqN
 pqN
 pqN
 cqq
-uOl
-uOl
 cqq
 cqq
-uOl
-uOl
+cqq
+cqq
+cqq
+cqq
 cbs
 mRT
 mRT
@@ -164039,7 +164023,7 @@ mRT
 mRT
 wSb
 dxI
-uOl
+cqq
 pqN
 dpb
 oBn
@@ -170809,7 +170793,7 @@ djb
 djb
 hIZ
 ntd
-uOl
+cqq
 cqq
 pqN
 wSb
@@ -171261,7 +171245,7 @@ xgT
 dHj
 ioo
 ntd
-uOl
+cqq
 cqq
 pqN
 wSb
@@ -171713,7 +171697,7 @@ ntd
 aiV
 gBk
 ntd
-iBz
+iqS
 cqq
 pqN
 wSb
@@ -175327,7 +175311,7 @@ bVo
 bVo
 bVo
 dxI
-uOl
+cqq
 cqq
 cqq
 cqq
@@ -175779,10 +175763,10 @@ bVo
 bVo
 bVo
 dxI
-uOl
+cqq
 pqN
 pqN
-dkz
+pqN
 pqN
 cbs
 bVo
@@ -177128,12 +177112,12 @@ bVo
 bVo
 bVo
 dxI
-uOl
+cqq
 cqq
 cqq
 yiv
-yiv
-uOl
+iqS
+cqq
 uOl
 cqq
 pqN
@@ -178034,7 +178018,7 @@ bVo
 dxI
 cqq
 pqN
-uOl
+cqq
 cqq
 enL
 cqq
@@ -179388,7 +179372,7 @@ bVo
 bVo
 bVo
 dxI
-uOl
+cqq
 pqN
 cqq
 dxI
@@ -181187,14 +181171,14 @@ cqq
 cqq
 cqq
 cqq
-uOl
-uOl
+cqq
+cqq
 uOl
 cqq
 cqq
 enL
 cqq
-uOl
+cqq
 uOl
 cqq
 pqN
@@ -181650,7 +181634,7 @@ pqN
 pqN
 pqN
 pqN
-uOl
+cqq
 dxI
 bVo
 bVo
@@ -182085,13 +182069,13 @@ vGQ
 dxI
 cqq
 pqN
-uOl
-uOl
-cqq
-cqq
-cqq
 cqq
 uOl
+cqq
+cqq
+cqq
+cqq
+cqq
 cqq
 iqS
 cqq
@@ -182101,7 +182085,7 @@ cqq
 uOl
 cqq
 cqq
-uOl
+cqq
 cqq
 dxI
 bVo
@@ -183434,7 +183418,7 @@ kLh
 cqq
 cqq
 iqS
-uOl
+cqq
 pqN
 cqq
 cqq
