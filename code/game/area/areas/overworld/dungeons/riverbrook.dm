@@ -7,6 +7,9 @@
 	droning_sound = 'sound/music/area/towngenold.ogg'
 	droning_sound_dusk = 'sound/music/area/forestnightold.ogg'
 	droning_sound_night = 'sound/music/area/fieldold.ogg'
+	ambush_times = /area/provincial/outdoors/forest/brightway::ambush_times
+	ambush_types = /area/provincial/outdoors/forest/brightway::ambush_types
+	ambush_mobs = /area/provincial/outdoors/forest/brightway::ambush_mobs
 
 /area/provincial/indoors/dungeon/riverbrook
 	name = "Riverbrook - Interior"
