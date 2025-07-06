@@ -94,6 +94,7 @@
 #define TRAIT_NIGHT_OWL "Night Owl"
 #define TRAIT_BEAUTIFUL "Beautiful"
 #define TRAIT_SIMPLE_WOUNDS "simple_wounds"
+#define TRAIT_BANDITCAMP "banditcamp" // Dummy trait that signifies having knowledge of the bandit camp's location
 #define TRAIT_VAMPMANSION "vampiremansion"
 #define TRAIT_VAMP_DREAMS "vamp_dreams"
 #define TRAIT_LIMPDICK "Limp Dick"

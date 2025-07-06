@@ -1427,6 +1427,9 @@
 /obj/structure/chair/wood/rogue{
 	dir = 4
 	},
+/obj/effect/landmark/start/bandit{
+	dir = 4
+	},
 /turf/open/floor/rogue/twig,
 /area/provincial/indoors)
 "jp" = (
@@ -1462,6 +1465,9 @@
 /area/provincial/indoors)
 "kz" = (
 /obj/structure/chair/wood/rogue{
+	dir = 8
+	},
+/obj/effect/landmark/start/bandit{
 	dir = 8
 	},
 /turf/open/floor/rogue/twig,
@@ -1804,9 +1810,7 @@
 /turf/open/floor/rogue/twig,
 /area/provincial/indoors)
 "uN" = (
-/obj/structure/fluff/statue/evil{
-	name = "your friend and mine, matthew"
-	},
+/obj/structure/fluff/statue/evil,
 /turf/open/water/cleanshallow,
 /area/provincial/outdoors/forest/brightway)
 "uS" = (
@@ -2006,6 +2010,7 @@
 /obj/structure/mineral_door/wood/donjon{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/access/antag/bandit,
 /turf/open/floor/rogue/dirt,
 /area/provincial/underground)
 "BD" = (
@@ -2593,6 +2598,13 @@
 "TH" = (
 /turf/open/floor/rogue/blocks,
 /area/rasurian_heartland/outdoors/supplypod_active_transit)
+"TN" = (
+/obj/structure/chair/stool/rogue,
+/obj/effect/landmark/start/bandit{
+	dir = 8
+	},
+/turf/open/floor/rogue/twig,
+/area/provincial/indoors)
 "Ub" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -2635,6 +2647,13 @@
 /obj/item/quiver/bolts,
 /turf/open/floor/rogue/cobble,
 /area/rasurian_heartland/outdoors)
+"Vm" = (
+/obj/structure/chair/stool/rogue,
+/obj/effect/landmark/start/bandit{
+	dir = 4
+	},
+/turf/open/floor/rogue/twig,
+/area/provincial/indoors)
 "Vu" = (
 /obj/machinery/light/rogue/forge,
 /turf/open/floor/rogue/ruinedwood{
@@ -14785,9 +14804,9 @@ Ww
 qb
 dp
 Wc
-DD
+Vm
 iX
-DD
+Vm
 iX
 Wc
 Yt
@@ -15177,7 +15196,7 @@ Yt
 Wc
 kz
 kz
-DD
+TN
 kz
 Wc
 Yt

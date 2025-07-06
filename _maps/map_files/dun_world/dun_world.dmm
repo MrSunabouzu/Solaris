@@ -3113,15 +3113,6 @@
 /obj/effect/mapping_helpers/autoname,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/provincial/indoors/town/province_keep/garrison/gate/west)
-"baH" = (
-/obj/effect/landmark/start/bandit{
-	dir = 1
-	},
-/obj/effect/landmark/start/banditlate{
-	dir = 1
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/provincial/underground/forest)
 "baO" = (
 /obj/structure/roguemachine/scomm/directional/west,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -312523,7 +312514,7 @@ azB
 rMa
 rMa
 rMa
-baH
+rMa
 oEj
 oEj
 xQu
@@ -312974,8 +312965,8 @@ kGI
 rRM
 rMa
 rMa
-baH
-baH
+rMa
+rMa
 rMa
 oEj
 xQu
@@ -313426,8 +313417,8 @@ kGI
 rRM
 rMa
 rMa
-baH
-baH
+rMa
+rMa
 oEj
 oEj
 xQu
@@ -313879,7 +313870,7 @@ rRM
 rRM
 rMa
 rMa
-baH
+rMa
 oEj
 oEj
 xQu
