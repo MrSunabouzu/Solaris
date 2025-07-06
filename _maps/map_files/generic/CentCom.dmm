@@ -1435,12 +1435,6 @@
 "jp" = (
 /turf/open/floor/rogue/grass,
 /area/provincial/outdoors/forest/brightway)
-"jC" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/dragon{
-	name = "make me a small business owner"
-	},
-/turf/open/floor/rogue/dirt,
-/area/provincial/indoors)
 "jH" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -1596,6 +1590,7 @@
 /turf/open/floor/rogue/concrete,
 /area/provincial/outdoors/forest)
 "ol" = (
+/obj/structure/roguemachine/hoardmaster,
 /turf/open/floor/rogue/grass,
 /area/provincial/indoors)
 "or" = (
@@ -14273,7 +14268,7 @@ rJ
 rJ
 jp
 qb
-jC
+dp
 Yt
 Yt
 Yt

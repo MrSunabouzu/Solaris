@@ -142,6 +142,7 @@
 #define TRAIT_WILDMAGIC "Wild Magic" //low chance for random stuff to happen when casting
 #define TRAIT_WILDMAGIC_BENEFIC "Beneficial Wild Magic"
 #define TRAIT_FIENDKISS "Kiss of the Fiend" //after casting some spells, hurl a firebolt at the same location
+#define TRAIT_BANDIT "Of the Darklands" //recognized by bandits as an ally
 
 
 GLOBAL_LIST_INIT(roguetraits, list(
@@ -266,6 +267,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_WILDMAGIC = span_info("My magic sometimes has unexpected consequences."),
 	TRAIT_WILDMAGIC_BENEFIC = span_info("I am inspired when witnessing magic going haywire."),
 	TRAIT_FIENDKISS = span_info("When I cast projectile magic, my patron also hurls a fire bolt at the same location."),
+	TRAIT_BANDIT = span_info("Though the dust of the Dusk War has long ended, it's scars are mine - and this land's countrymen are no heroes."),
 ))
 
 // trait accessor defines
