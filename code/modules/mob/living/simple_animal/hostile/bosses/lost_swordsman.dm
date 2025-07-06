@@ -197,7 +197,7 @@
 /obj/effect/temp_visual/minibossdeath/Initialize()
 	. = ..()
 	visible_message(span_boldannounce("The Forgotten Swordsman lets out a horrible scream and dissolves before you!"))
-	playsound(src, 'sound/vo/mobs/simple_orcs/orc_death5.ogg', 70)
+	playsound(src, 'sound/vo/mobs/ghost/death.ogg', 70)
 
 /obj/effect/temp_visual/minibossdeath/Destroy()
 	for(var/mob/M in range(7,src))
