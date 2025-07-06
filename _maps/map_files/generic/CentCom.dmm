@@ -1432,6 +1432,13 @@
 	},
 /turf/open/floor/rogue/twig,
 /area/provincial/indoors)
+"ja" = (
+/obj/structure/mineral_door/wood/donjon{
+	icon_state = "donjondir"
+	},
+/obj/effect/mapping_helpers/access/antag/bandit,
+/turf/open/floor/rogue/dirt/road,
+/area/provincial/outdoors/forest/brightway)
 "jp" = (
 /turf/open/floor/rogue/grass,
 /area/provincial/outdoors/forest/brightway)
@@ -1492,10 +1499,9 @@
 /turf/open/floor/rogue/herringbone,
 /area/rasurian_heartland/indoors/prison)
 "lm" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1
-	},
-/turf/closed,
+/obj/structure/mineral_door/wood,
+/obj/effect/mapping_helpers/access/antag/bandit,
+/turf/open/floor/rogue/dirt/road,
 /area/provincial/indoors)
 "lw" = (
 /turf/open/floor/rogue/cobble,
@@ -1985,9 +1991,10 @@
 	},
 /area/provincial/indoors)
 "Az" = (
-/obj/structure/mineral_door/wood/deadbolt{
+/obj/structure/mineral_door/wood/donjon{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/access/antag/bandit,
 /turf/open/floor/rogue/dirt,
 /area/provincial/outdoors/forest/brightway)
 "AJ" = (
@@ -2207,9 +2214,8 @@
 /turf/open/floor/rogue/dirt,
 /area/provincial/indoors)
 "Hi" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 8
-	},
+/obj/structure/mineral_door/wood,
+/obj/effect/mapping_helpers/access/antag/bandit,
 /turf/open/floor/rogue/dirt,
 /area/provincial/indoors)
 "Hj" = (
@@ -2503,9 +2509,11 @@
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/indoors)
 "PX" = (
-/obj/structure/mineral_door/wood/deadbolt{
+/obj/structure/mineral_door/wood/donjon{
+	icon_state = "donjondir";
 	dir = 1
 	},
+/obj/effect/mapping_helpers/access/antag/bandit,
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/outdoors/forest/brightway)
 "Qo" = (
@@ -2753,9 +2761,11 @@
 /turf/open/floor/rogue/herringbone,
 /area/provincial/indoors)
 "ZL" = (
-/obj/structure/mineral_door/wood/deadbolt{
+/obj/structure/mineral_door/wood/donjon{
+	icon_state = "donjondir";
 	dir = 4
 	},
+/obj/effect/mapping_helpers/access/antag/bandit,
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/underground)
 "ZT" = (
@@ -14911,7 +14921,7 @@ rQ
 rQ
 rQ
 rQ
-rQ
+rJ
 rJ
 rJ
 rJ
@@ -15041,10 +15051,10 @@ rQ
 rQ
 rQ
 rQ
-rQ
 rJ
 pe
 yg
+ja
 yg
 yg
 yg
@@ -15171,10 +15181,10 @@ rQ
 rQ
 rQ
 rQ
-rQ
 rJ
 pe
 yg
+ja
 yg
 yg
 jp
@@ -15301,7 +15311,7 @@ rQ
 rQ
 rQ
 rQ
-rQ
+rJ
 rJ
 rJ
 rJ
