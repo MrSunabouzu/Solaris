@@ -53387,6 +53387,14 @@
 /obj/structure/rack/rogue/shelf,
 /turf/open/floor/rogue/herringbone,
 /area/provincial/indoors/town/mages_university/artificer)
+"rnM" = (
+/obj/structure/roguemachine/atm/directional/south{
+	location_tag = "Adventurer's Guild"
+	},
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/provincial/indoors/town/adventurers_guild)
 "rnQ" = (
 /obj/structure/stairs{
 	dir = 1
@@ -262981,7 +262989,7 @@ gKm
 bIM
 jRS
 jRS
-jRS
+rnM
 rVu
 rVu
 pUt
