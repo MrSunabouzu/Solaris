@@ -1359,12 +1359,6 @@
 /obj/machinery/light/rogue/wallfire/candle/directional/south,
 /turf/open/floor/rogue/blocks,
 /area/rasurian_heartland/indoors)
-"gp" = (
-/obj/effect/landmark/start/banditlate{
-	dir = 1
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/provincial/outdoors/forest/brightway)
 "gw" = (
 /obj/structure/fluff/statue/scare,
 /turf/open/floor/rogue/grass,
@@ -1398,7 +1392,7 @@
 	name = "Underdark";
 	aportalid = "BANDITCAMPIN2";
 	aportalgoesto = "BANDITCAMPOUT2";
-	required_trait = "TRAIT_OUTLAW"
+	required_trait = "outlaw"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/underground)
@@ -1431,9 +1425,6 @@
 /area/provincial/outdoors/forest/brightway)
 "iX" = (
 /obj/structure/chair/wood/rogue{
-	dir = 4
-	},
-/obj/effect/landmark/start/bandit{
 	dir = 4
 	},
 /turf/open/floor/rogue/twig,
@@ -1471,9 +1462,6 @@
 /area/provincial/indoors)
 "kz" = (
 /obj/structure/chair/wood/rogue{
-	dir = 8
-	},
-/obj/effect/landmark/start/bandit{
 	dir = 8
 	},
 /turf/open/floor/rogue/twig,
@@ -1642,7 +1630,7 @@
 /obj/structure/fluff/traveltile{
 	aportalgoesto = "BANDITCAMPOUT3";
 	aportalid = "BANDITCAMPIN3";
-	required_trait = "TRAIT_OUTLAW";
+	required_trait = "outlaw";
 	name = "Brightway Woods"
 	},
 /turf/open/floor/rogue/dirt,
@@ -1714,13 +1702,6 @@
 "qZ" = (
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/dirt,
-/area/provincial/indoors)
-"rD" = (
-/obj/structure/chair/stool/rogue,
-/obj/effect/landmark/start/bandit{
-	dir = 4
-	},
-/turf/open/floor/rogue/twig,
 /area/provincial/indoors)
 "rJ" = (
 /turf/closed/mineral/rogue/bedrock,
@@ -2257,12 +2238,6 @@
 /obj/machinery/gear_painter,
 /turf/open/floor/rogue/cobble,
 /area/rasurian_heartland/indoors)
-"Ix" = (
-/obj/effect/landmark/start/banditlate{
-	dir = 4
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/provincial/outdoors/forest/brightway)
 "IF" = (
 /obj/machinery/light/rogue/smelter,
 /obj/machinery/light/rogue/wallfire/candle/directional/south,
@@ -2326,10 +2301,6 @@
 /obj/effect/mapping_helpers/access/rasura,
 /turf/open/floor/rogue/dirt/road,
 /area/rasurian_heartland/indoors)
-"Jy" = (
-/obj/effect/landmark/start/banditlate,
-/turf/open/floor/rogue/dirt,
-/area/provincial/outdoors/forest/brightway)
 "JA" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -2567,7 +2538,7 @@
 	aportalid = "BANDITCAMPIN1";
 	aportalgoesto = "BANDITCAMPOUT1";
 	name = "The Emerald Grove";
-	required_trait = "TRAIT_OUTLAW"
+	required_trait = "outlaw"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/outdoors/forest/brightway)
@@ -2639,13 +2610,6 @@
 	dir = 9
 	},
 /turf/open/floor/rogue/dirt,
-/area/provincial/indoors)
-"Ul" = (
-/obj/structure/chair/stool/rogue,
-/obj/effect/landmark/start/bandit{
-	dir = 8
-	},
-/turf/open/floor/rogue/twig,
 /area/provincial/indoors)
 "Ut" = (
 /obj/effect/proc_holder/spell/invoked/heal,
@@ -13649,8 +13613,8 @@ jp
 rJ
 rJ
 rJ
-Ix
-Ix
+Ww
+Ww
 WM
 qb
 le
@@ -14460,7 +14424,7 @@ Ww
 Ww
 Ww
 Ww
-gp
+Ww
 Rh
 rJ
 rQ
@@ -14590,7 +14554,7 @@ Ww
 Ww
 Ww
 Ww
-gp
+Ww
 Rh
 rJ
 rQ
@@ -14821,9 +14785,9 @@ Ww
 qb
 dp
 Wc
-rD
+DD
 iX
-rD
+DD
 iX
 Wc
 Yt
@@ -15066,7 +15030,7 @@ rQ
 rQ
 rJ
 pe
-Jy
+yg
 yg
 yg
 yg
@@ -15196,7 +15160,7 @@ rQ
 rQ
 rJ
 pe
-Jy
+yg
 yg
 yg
 jp
@@ -15213,7 +15177,7 @@ Yt
 Wc
 kz
 kz
-Ul
+DD
 kz
 Wc
 Yt

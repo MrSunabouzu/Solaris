@@ -1909,7 +1909,7 @@
 /obj/structure/fluff/traveltile{
 	aportalid = "BANDITCAMPOUT2";
 	aportalgoesto = "BANDITCAMPIN2";
-	required_trait = "TRAIT_OUTLAW"
+	required_trait = "outlaw"
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/provincial/underground/underdark)
@@ -3113,6 +3113,15 @@
 /obj/effect/mapping_helpers/autoname,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/provincial/indoors/town/province_keep/garrison/gate/west)
+"baH" = (
+/obj/effect/landmark/start/bandit{
+	dir = 1
+	},
+/obj/effect/landmark/start/banditlate{
+	dir = 1
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/provincial/underground/forest)
 "baO" = (
 /obj/structure/roguemachine/scomm/directional/west,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -29654,7 +29663,7 @@
 /obj/structure/fluff/traveltile{
 	aportalid = "BANDITCAMPOUT3";
 	aportalgoesto = "BANDITCAMPIN3";
-	required_trait = "TRAIT_OUTLAW"
+	required_trait = "outlaw"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/underground/forest/brightway)
@@ -46026,7 +46035,7 @@
 /obj/structure/fluff/traveltile{
 	aportalgoesto = "BANDITCAMPIN1";
 	aportalid = "BANDITCAMPOUT1";
-	required_trait = "TRAIT_OUTLAW"
+	required_trait = "outlaw"
 	},
 /turf/open/floor/rogue/dirt,
 /area/provincial/underground/forest)
@@ -312519,7 +312528,7 @@ azB
 rMa
 rMa
 rMa
-rMa
+baH
 oEj
 oEj
 xQu
@@ -312970,8 +312979,8 @@ kGI
 rRM
 rMa
 rMa
-rMa
-rMa
+baH
+baH
 rMa
 oEj
 xQu
@@ -313422,8 +313431,8 @@ kGI
 rRM
 rMa
 rMa
-rMa
-rMa
+baH
+baH
 oEj
 oEj
 xQu
@@ -313875,7 +313884,7 @@ rRM
 rRM
 rMa
 rMa
-rMa
+baH
 oEj
 oEj
 xQu
