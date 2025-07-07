@@ -1363,6 +1363,9 @@
 	dir = 6
 	},
 /obj/structure/chair/stool/rogue,
+/obj/effect/landmark/start/courtagent{
+	dir = 8
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
 	},
@@ -15703,6 +15706,7 @@
 	pixel_y = 20;
 	pixel_x = 10
 	},
+/obj/effect/landmark/start/courtagent,
 /turf/open/floor/carpet/royalblack,
 /area/provincial/outdoors/field)
 "fjY" = (
@@ -22536,7 +22540,7 @@
 /obj/effect/landmark/latejoin,
 /obj/effect/landmark/start/courtagent,
 /turf/open/floor/rogue/cobblerock,
-/area/provincial/outdoors/beach)
+/area/provincial/outdoors/field)
 "htv" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/winch{
@@ -29663,6 +29667,10 @@
 	},
 /turf/open/floor/rogue/metal/barograte/open,
 /area/provincial/indoors/dungeon/giuseppes_toybox)
+"jEY" = (
+/obj/machinery/light/rogue/firebowl,
+/turf/open/floor/rogue/dirt,
+/area/provincial/underground/forest)
 "jFh" = (
 /obj/machinery/light/rogue/wallfire/candle/directional/north,
 /turf/open/floor/rogue/carpet/lord/right,
@@ -33970,10 +33978,6 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/rogue/blocks/green,
 /area/provincial/indoors/town/sewer)
-"kWt" = (
-/obj/machinery/light/rogue/firebowl,
-/turf/open/floor/rogue/dirt,
-/area/provincial/underground/forest)
 "kWA" = (
 /obj/structure/fluff/railing/border{
 	dir = 10
@@ -309742,7 +309746,7 @@ jPD
 rMa
 rMa
 jPD
-kWt
+jEY
 xQu
 xQu
 xQu
