@@ -66,21 +66,35 @@
 /datum/action/boss/trickammo //Projectile variety as fight continues
 	check_flags = AB_CHECK_CONSCIOUS 
 	boss_cost = 40 
-	usage_probability = 16
+	usage_probability = 25
 	needs_target = FALSE 
 	say_when_triggered = ""
-	var/specialammo = list(/obj/projectile/bullet/reusable/bolt/weak, /obj/projectile/bullet/bolt/pyro/weak, /obj/projectile/magic/frostbolt)
-	var/reloadsound = list('sound/combat/Ranged/crossbow-small-shot-01.ogg','sound/combat/Ranged/crossbow-small-shot-02.ogg','sound/combat/Ranged/crossbow-small-shot-03.ogg')
-	var/reloadhums = list('sound/vo/female/gen/hum (1).ogg','sound/vo/female/gen/hum (2).ogg','sound/vo/female/gen/hum (3).ogg')
-	var/reloadgrunts = list('sound/vo/female/gen/pain (1).ogg','sound/vo/female/gen/pain (2).ogg','sound/vo/female/gen/pain (3).ogg')
+	var/TAspecialammo = list(/obj/projectile/bullet/reusable/bolt/weak, /obj/projectile/bullet/bolt/pyro/weak, /obj/projectile/magic/frostbolt)
+	var/TAreloadsound = list('sound/combat/Ranged/crossbow_medium_reload-01.ogg', 'sound/combat/Ranged/crossbow_medium_reload-02.ogg', 'sound/combat/Ranged/crossbow_medium_reload-03.ogg')
+	var/TAreloadhums = list('sound/vo/female/gen/hum (1).ogg', 'sound/vo/female/gen/hum (2).ogg', 'sound/vo/female/gen/hum (3).ogg')
+	var/TAreloadgrunts = list('sound/vo/female/gen/pain (1).ogg', 'sound/vo/female/gen/pain (2).ogg', 'sound/vo/female/gen/pain (3).ogg')
 
 /datum/action/boss/trickammo/Trigger()
 	. = ..()
 	if(boss.health <= 400)
-		boss.projectiletype = pick(specialammo)
-	else
-		return
-
+		boss.projectiletype = pick(TAspecialammo)
+		if(boss.projectiletype == /obj/projectile/bullet/reusable/bolt/weak)
+			boss.visible_message(span_boldannounce("[boss] hums a godsawful tune as she loads in some bolts!"))
+			playsound(boss,pick(TAreloadsound),rand(50,70))
+			sleep(rand(6,12))
+			playsound(boss,pick(TAreloadhums),rand(70,90))
+		if(boss.projectiletype == /obj/projectile/bullet/bolt/pyro/weak)
+			boss.visible_message(span_boldannounce("[boss] singes her finger as she loads white-hot bolts!"))
+			playsound(boss,pick(TAreloadsound),rand(50,70))
+			sleep(rand(2,4))
+			playsound(boss,'sound/combat/hits/burn (1).ogg', 40)
+			sleep(4)
+			playsound(boss,pick(TAreloadgrunts),rand(40,80))
+		if(boss.projectiletype == /obj/projectile/magic/frostbolt)
+			boss.visible_message(span_boldannounce("[boss] runs her fingers over the loaded arrow, enchanting them!"))
+			playsound(boss,pick(TAreloadsound),rand(50,70))
+			sleep(rand(6,12))
+			playsound(boss,'sound/magic/whiteflame.ogg', 80)
 
 /datum/action/boss/motormouth //She is already way too dangerous so this just gives her a chance to waste her own resources.
 	check_flags = AB_CHECK_CONSCIOUS 
@@ -116,15 +130,14 @@
 		boss.rapid = 3
 		boss.say("Alright, That's it!! Now you asked for it!!!")
 		boss.visible_message(span_boldannounce("[boss] cocks her crossbow and it transforms!"))
-		playsound(boss,'sound/foley/gun_cock.ogg', 100)
-		do_sparks(1,FALSE,boss) //make proper dodge effect proc later
+		playsound(boss,'sound/foley/gun_cock.ogg', 200)
+		do_sparks(1,FALSE,boss) 
 		desperation = TRUE
 		dashdir = get_dir(boss, boss.target) //Do exactly one martial dash to foil being penned in. Once.
 		dashturf = get_step(boss.target, dashdir) 
 		if(dashturf.density) 
 			return
 		boss.visible_message(span_boldannounce("[boss] backflips over [boss.target]!"))
-		do_sparks(1, FALSE, boss)
 		do_teleport(boss, dashturf, no_effects=TRUE)
 		playsound(boss, 'sound/foley/martialdash.ogg', 100)
 	else
