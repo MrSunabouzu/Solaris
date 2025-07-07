@@ -1906,10 +1906,9 @@
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/outdoors/forest)
 "aFr" = (
-/obj/structure/fluff/traveltile{
-	aportalid = "BANDITCAMPOUT2";
+/obj/structure/fluff/traveltile/bandit{
 	aportalgoesto = "BANDITCAMPIN2";
-	required_trait = "outlaw"
+	aportalid = "BANDITCAMPOUT2"
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/provincial/underground/underdark)
@@ -11436,10 +11435,11 @@
 /turf/open/floor/rogue/church,
 /area/provincial/underground/dungeon/old_ruin)
 "dNH" = (
-/obj/effect/spawner/lootdrop/roguetown/dungeon/money,
-/obj/effect/spawner/lootdrop/roguetown/dungeon/materials,
-/obj/structure/closet/crate/chest/neu_iron,
-/turf/open/floor/rogue/dirt/road,
+/obj/structure/fluff/traveltile/bandit{
+	aportalgoesto = "BANDITCAMPIN3";
+	aportalid = "BANDITCAMPOUT3"
+	},
+/turf/open/floor/rogue/naturalstone,
 /area/provincial/underground/forest/brightway)
 "dNK" = (
 /turf/closed/wall/mineral/rogue/stone/moss,
@@ -29663,14 +29663,6 @@
 	},
 /turf/open/floor/rogue/metal/barograte/open,
 /area/provincial/indoors/dungeon/giuseppes_toybox)
-"jEY" = (
-/obj/structure/fluff/traveltile{
-	aportalid = "BANDITCAMPOUT3";
-	aportalgoesto = "BANDITCAMPIN3";
-	required_trait = "outlaw"
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/provincial/underground/forest/brightway)
 "jFh" = (
 /obj/machinery/light/rogue/wallfire/candle/directional/north,
 /turf/open/floor/rogue/carpet/lord/right,
@@ -33979,10 +33971,9 @@
 /turf/open/floor/rogue/blocks/green,
 /area/provincial/indoors/town/sewer)
 "kWt" = (
-/obj/effect/decal/remains/saiga,
-/obj/effect/spawner/lootdrop/roguetown/dungeon,
-/turf/open/floor/rogue/dirt/road,
-/area/provincial/underground/forest/brightway)
+/obj/machinery/light/rogue/firebowl,
+/turf/open/floor/rogue/dirt,
+/area/provincial/underground/forest)
 "kWA" = (
 /obj/structure/fluff/railing/border{
 	dir = 10
@@ -46001,12 +45992,11 @@
 /turf/open/floor/rogue/metal/barograte/open,
 /area/provincial/underground/underdark/sunkencity)
 "oSR" = (
-/obj/structure/fluff/traveltile{
+/obj/structure/fluff/traveltile/bandit{
 	aportalgoesto = "BANDITCAMPIN1";
-	aportalid = "BANDITCAMPOUT1";
-	required_trait = "outlaw"
+	aportalid = "BANDITCAMPOUT1"
 	},
-/turf/open/floor/rogue/dirt,
+/turf/open/floor/rogue/naturalstone,
 /area/provincial/underground/forest)
 "oSS" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -307941,9 +307931,9 @@ xQu
 xQu
 xQu
 xQu
-jPD
-jPD
-jPD
+rMa
+rMa
+rMa
 xQu
 xQu
 xQu
@@ -308392,8 +308382,8 @@ xQu
 xQu
 xQu
 xQu
-xQu
-jPD
+rMa
+rMa
 jPD
 jPD
 xQu
@@ -308840,15 +308830,15 @@ rMa
 fCL
 jPD
 jPD
+jPD
+jPD
 xQu
 xQu
-xQu
-xQu
+rMa
 jPD
+rMa
 jPD
-jPD
-jPD
-jPD
+rMa
 xQu
 xQu
 xQu
@@ -309292,15 +309282,15 @@ fCL
 rMa
 rMa
 jPD
-xQu
-xQu
-xQu
-xQu
 jPD
 jPD
 jPD
+rMa
+rMa
 jPD
+rMa
 jPD
+rMa
 xQu
 xQu
 xQu
@@ -309743,16 +309733,16 @@ fCL
 fCL
 rMa
 pxx
-xQu
-xQu
-xQu
-xQu
-xQu
+rRM
+rRM
 jPD
 jPD
 jPD
 jPD
+rMa
+rMa
 jPD
+kWt
 xQu
 xQu
 xQu
@@ -310194,16 +310184,16 @@ xQu
 jPD
 jPD
 jPD
-xQu
-xQu
-xQu
-xQu
-xQu
-xQu
+rRM
+rRM
+rRM
+rRM
+rRM
 jPD
 jPD
 jPD
 jPD
+rMa
 jPD
 xQu
 xQu
@@ -310649,9 +310639,9 @@ qCA
 qCA
 qCA
 qCA
-xQu
-xQu
-xQu
+rRM
+rRM
+rRM
 jPD
 jPD
 jPD
@@ -477612,8 +477602,8 @@ euY
 euY
 euY
 euY
-euY
-euY
+dNH
+dNH
 euY
 euY
 euY
@@ -478063,10 +478053,10 @@ hhQ
 hhQ
 hhQ
 hhQ
-hhQ
-hhQ
-hhQ
-hhQ
+aTX
+aTX
+aTX
+aTX
 hhQ
 hhQ
 hhQ
@@ -478513,14 +478503,14 @@ hhQ
 hhQ
 hhQ
 hhQ
-bZs
+dxX
 dxX
 aTX
 aTX
 aTX
 dxX
 dxX
-bZs
+dxX
 hhQ
 hhQ
 hhQ
@@ -478966,11 +478956,11 @@ hhQ
 hhQ
 aTX
 dxX
-dxX
-dxX
+aTX
+aTX
 dxX
 hhQ
-dNH
+aTX
 dxX
 aTX
 hhQ
@@ -479419,9 +479409,9 @@ hhQ
 aTX
 aTX
 hhQ
-kWt
 dxX
-bZs
+dxX
+dxX
 hhQ
 hhQ
 dxX
@@ -480776,9 +480766,9 @@ bmy
 bmy
 hhQ
 hhQ
-gkE
+aTX
 dxX
-ukF
+aTX
 dxX
 aTX
 wgq
@@ -490265,11 +490255,11 @@ iuy
 iuy
 iuy
 iuy
-dxX
-dxX
-dxX
-dxX
-euY
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
 hhQ
 hhQ
 hhQ
@@ -490716,12 +490706,12 @@ iuy
 iuy
 iuy
 hhQ
-euY
-dxX
-dxX
-dxX
-dxX
-euY
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
 hhQ
 hhQ
 hhQ
@@ -491168,12 +491158,12 @@ iuy
 hhQ
 hhQ
 hhQ
-euY
-dxX
-dxX
-dxX
-dxX
-euY
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
 hhQ
 hhQ
 hhQ
@@ -491620,12 +491610,12 @@ hhQ
 hhQ
 hhQ
 hhQ
-euY
-dxX
-dxX
-dxX
-dxX
-euY
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
 hhQ
 hhQ
 hhQ
@@ -492072,12 +492062,12 @@ hhQ
 hhQ
 hhQ
 hhQ
-euY
-euY
-jEY
-jEY
-euY
-euY
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
+hhQ
 hhQ
 hhQ
 hhQ
@@ -492525,10 +492515,10 @@ hhQ
 hhQ
 hhQ
 hhQ
-euY
-euY
-euY
-euY
+hhQ
+hhQ
+hhQ
+hhQ
 hhQ
 hhQ
 hhQ
@@ -492979,7 +492969,7 @@ etB
 etB
 hhQ
 dxX
-dxX
+hhQ
 hhQ
 hhQ
 hhQ
@@ -493431,7 +493421,7 @@ etB
 etB
 hhQ
 dxX
-dxX
+hhQ
 hhQ
 hhQ
 hhQ

@@ -913,7 +913,7 @@
 /area/provincial/indoors)
 "cx" = (
 /turf/closed/mineral/rogue/bedrock,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "cy" = (
 /obj/structure/table/wood{
 	icon_state = "largetable";
@@ -1342,8 +1342,8 @@
 	aportalgoesto = "BANDITCAMPOUT3";
 	aportalid = "BANDITCAMPIN3"
 	},
-/turf/open/floor/rogue/grass,
-/area/provincial/outdoors/forest/brightway)
+/turf/open/floor/rogue/naturalstone,
+/area/provincial/underground/forest/brightway)
 "eR" = (
 /obj/structure/fermenting_barrel/water,
 /turf/open/floor/rogue/dirt,
@@ -1400,7 +1400,7 @@
 	dir = 1
 	},
 /turf/open/floor/rogue/wood,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "hx" = (
 /turf/open/floor/rogue/herringbone,
 /area/rasurian_heartland/indoors/prison)
@@ -1443,7 +1443,7 @@
 /area/provincial/indoors)
 "ja" = (
 /turf/closed/wall/mineral/rogue/decostone,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "jp" = (
 /turf/open/floor/rogue/grass,
 /area/provincial/outdoors/forest/brightway)
@@ -1523,6 +1523,12 @@
 "lW" = (
 /turf/open/floor/rogue/wood,
 /area/provincial/outdoors/forest/brightway)
+"me" = (
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/provincial/underground/forest/brightway)
 "mw" = (
 /obj/structure/rack/rogue,
 /obj/item/storage/roguebag{
@@ -1618,7 +1624,7 @@
 /area/provincial/outdoors/forest)
 "ol" = (
 /turf/open/floor/rogue/naturalstone,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "or" = (
 /obj/structure/fluff/statue/tdummy,
 /turf/open/floor/rogue/dirt,
@@ -1686,10 +1692,10 @@
 "pF" = (
 /obj/machinery/light/rogue/wallfire/candle/directional/north,
 /turf/open/floor/rogue/twig,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "pJ" = (
 /turf/open/floor/rogue/dirt/road,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "pP" = (
 /obj/machinery/anvil,
 /turf/open/floor/rogue/ruinedwood{
@@ -1726,7 +1732,7 @@
 /turf/open/floor/rogue/dirt,
 /area/provincial/indoors)
 "rJ" = (
-/turf/closed/mineral/rogue/bedrock,
+/turf/closed/mineral/random/rogue,
 /area/provincial/outdoors/forest/brightway)
 "rQ" = (
 /turf/closed,
@@ -1767,7 +1773,7 @@
 	icon_state = "rockwd";
 	dir = 2
 	},
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "te" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/cloak/raincloak/furcloak{
@@ -1807,7 +1813,7 @@
 	aportalid = "BANDITCAMPIN2"
 	},
 /turf/open/floor/rogue/naturalstone,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "tw" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
@@ -1846,10 +1852,10 @@
 /area/provincial/outdoors/forest/brightway)
 "uN" = (
 /turf/open/water/cleanshallow,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "uS" = (
 /turf/open/floor/rogue/twig,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "uV" = (
 /obj/machinery/light/rogue/torchholder/directional/north,
 /turf/open/floor/rogue/dirt/road,
@@ -1921,7 +1927,7 @@
 "xC" = (
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/twig,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "xI" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/mask/cigarette/rollie/nicotine,
@@ -1935,7 +1941,7 @@
 /area/provincial/indoors)
 "xN" = (
 /turf/closed/mineral/random/rogue,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "xO" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -1957,7 +1963,7 @@
 "xS" = (
 /obj/item/reagent_containers/glass/cup/wooden,
 /turf/open/floor/rogue/dirt,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "yf" = (
 /turf/open/floor/rogue/cobble,
 /area/provincial/indoors)
@@ -1984,6 +1990,12 @@
 "yK" = (
 /turf/closed,
 /area/provincial/indoors)
+"zB" = (
+/obj/structure/fluff/railing/border{
+	dir = 10
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/provincial/underground/forest/brightway)
 "zF" = (
 /obj/machinery/light/rogue/oven/west,
 /turf/open/floor/rogue/dirt,
@@ -2034,7 +2046,7 @@
 /obj/effect/mapping_helpers/access/antag/bandit,
 /obj/effect/mapping_helpers/lock_door,
 /turf/open/floor/rogue/dirt/road,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "AJ" = (
 /obj/structure/rack/rogue,
 /obj/item/natural/bundle/cloth{
@@ -2052,11 +2064,15 @@
 	},
 /obj/effect/mapping_helpers/access/antag/bandit,
 /turf/open/floor/rogue/dirt,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "BD" = (
 /obj/effect/landmark/prisonwarp,
 /turf/open/floor/rogue/blocks,
 /area/rasurian_heartland/indoors/prison)
+"BG" = (
+/obj/item/natural/rock,
+/turf/open/floor/rogue/grass,
+/area/provincial/outdoors/forest/brightway)
 "BL" = (
 /turf/open/water/cleanshallow,
 /area/provincial/outdoors/forest/brightway)
@@ -2098,8 +2114,11 @@
 /turf/open/floor/rogue/blocks/paving,
 /area/rasurian_heartland/outdoors)
 "Db" = (
-/turf/closed/mineral/rogue/bedrock,
-/area/provincial)
+/obj/structure/fluff/railing/fence{
+	dir = 1
+	},
+/turf/open/floor/rogue/grass,
+/area/provincial/outdoors/forest/brightway)
 "Dm" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -2170,7 +2189,7 @@
 "ET" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/wood,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "EV" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rasurian_heartland/indoors/prison)
@@ -2211,6 +2230,12 @@
 "FU" = (
 /turf/closed/wall/mineral/rogue/wooddark/window,
 /area/provincial/indoors)
+"FV" = (
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/provincial/underground/forest/brightway)
 "Gn" = (
 /obj/structure/mineral_door/wood,
 /obj/effect/mapping_helpers/access/rasura,
@@ -2296,6 +2321,10 @@
 /obj/machinery/light/rogue/wallfire/candle/directional/south,
 /turf/open/floor/rogue/dirt/road,
 /area/rasurian_heartland/indoors)
+"IH" = (
+/obj/machinery/light/rogue/firebowl/stump,
+/turf/open/floor/rogue/dirt/road,
+/area/provincial/outdoors/forest/brightway)
 "IS" = (
 /turf/closed/wall/mineral/rogue/tent{
 	dir = 8
@@ -2451,7 +2480,7 @@
 	icon_state = "rockwd";
 	dir = 4
 	},
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "MD" = (
 /turf/open/floor/rogue/tile/brick,
 /area/rasurian_heartland/indoors/artificacy_launchbay/bay_three)
@@ -2535,7 +2564,7 @@
 /area/provincial/indoors)
 "OF" = (
 /turf/open/floor/rogue/dirt,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "OQ" = (
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/tile{
@@ -2600,11 +2629,10 @@
 	},
 /area/provincial/indoors)
 "Rh" = (
-/obj/structure/fluff/traveltile{
-	aportalid = "BANDITCAMPIN1";
-	aportalgoesto = "BANDITCAMPOUT1";
+/obj/structure/fluff/traveltile/bandit{
 	name = "The Emerald Grove";
-	required_trait = "outlaw"
+	aportalgoesto = "BANDITCAMPOUT1";
+	aportalid = "BANDITCAMPIN1"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/provincial/outdoors/forest/brightway)
@@ -2625,7 +2653,7 @@
 "Sh" = (
 /obj/structure/fermenting_barrel/water,
 /turf/open/floor/rogue/grass,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "Si" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt,
@@ -2658,6 +2686,12 @@
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/dirt,
 /area/provincial/outdoors/forest/brightway)
+"Tt" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/provincial/underground/forest/brightway)
 "TA" = (
 /obj/structure/roguetent,
 /turf/open/floor/rogue/dirt,
@@ -2672,6 +2706,9 @@
 	},
 /turf/open/floor/rogue/twig,
 /area/provincial/indoors)
+"Ua" = (
+/turf/open/floor/rogue/sand,
+/area/provincial/outdoors/forest/brightway)
 "Ub" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -2829,7 +2866,7 @@
 /area/provincial/indoors)
 "YJ" = (
 /turf/open/floor/rogue/grass,
-/area/provincial/underground)
+/area/provincial/underground/forest/brightway)
 "Zl" = (
 /turf/open/floor/rogue/herringbone,
 /area/provincial/indoors)
@@ -8207,8 +8244,8 @@ cx
 cx
 ol
 pJ
-pJ
-pJ
+FV
+me
 pJ
 ol
 pJ
@@ -8727,8 +8764,8 @@ cx
 xN
 ol
 ol
-pJ
-ol
+Tt
+zB
 ol
 xN
 xN
@@ -9239,12 +9276,12 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
+cx
 xN
 pJ
 pJ
@@ -9366,15 +9403,15 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
 jp
 jp
 jp
 lN
-rJ
+xN
 xN
 ja
 Az
@@ -9496,7 +9533,7 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 lN
 jp
 jp
@@ -9504,9 +9541,9 @@ lN
 Lm
 jp
 jp
-rJ
-rJ
-rJ
+xN
+xN
+xN
 Ww
 Ww
 WM
@@ -9626,7 +9663,7 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 lN
 jp
 jp
@@ -9756,7 +9793,7 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 yz
 xQ
 xQ
@@ -9885,8 +9922,8 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
+cx
+cx
 qb
 Of
 sO
@@ -9929,7 +9966,7 @@ jp
 jp
 jp
 cx
-rJ
+cx
 rQ
 rQ
 rQ
@@ -10015,7 +10052,7 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 lN
 kk
 QF
@@ -10059,7 +10096,7 @@ jp
 XA
 jp
 jp
-rJ
+cx
 rQ
 rQ
 rQ
@@ -10144,8 +10181,8 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
+cx
+cx
 jp
 lm
 yf
@@ -10189,8 +10226,8 @@ jp
 jp
 jp
 jp
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -10274,7 +10311,7 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 lN
 jp
 ZL
@@ -10320,7 +10357,7 @@ Ww
 Ww
 Ww
 Rh
-rJ
+cx
 rQ
 rQ
 rQ
@@ -10398,13 +10435,13 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 lN
 jp
 qb
@@ -10450,7 +10487,7 @@ Ww
 Ww
 Ww
 Rh
-rJ
+cx
 rQ
 rQ
 rQ
@@ -10527,14 +10564,14 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
+cx
+cx
 jp
 jp
 jp
 jp
-jp
-rJ
+BG
+Db
 jp
 jp
 yz
@@ -10574,13 +10611,13 @@ mJ
 WI
 mJ
 Em
-Wr
+IH
+Ww
 jp
 jp
 jp
-jp
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -10656,15 +10693,15 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
+cx
+cx
 jp
 jp
 jp
+XA
 jp
 jp
-jp
-rJ
+Db
 Lm
 jp
 yg
@@ -10709,7 +10746,7 @@ jp
 jp
 jp
 XA
-rJ
+cx
 rQ
 rQ
 rQ
@@ -10784,13 +10821,13 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
+cx
+cx
+cx
 jp
+Lm
 jp
-jp
-jp
+Wr
 jp
 jp
 jp
@@ -10839,7 +10876,7 @@ lN
 jp
 jp
 jp
-rJ
+cx
 rQ
 rQ
 rQ
@@ -10914,9 +10951,9 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 eI
-jp
+ol
 jp
 Ww
 Ww
@@ -10968,8 +11005,8 @@ XA
 jp
 jp
 jp
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -11044,9 +11081,9 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 eI
-yg
+ol
 yg
 yg
 Ww
@@ -11094,11 +11131,11 @@ BL
 DP
 BL
 yg
+Ww
 jp
 jp
 jp
-jp
-rJ
+cx
 rQ
 rQ
 rQ
@@ -11174,19 +11211,19 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+ol
 jp
 jp
 jp
 jp
-jp
-jp
+XA
 jp
 UK
-hJ
-WM
+yg
+jp
 jp
 jp
 BL
@@ -11224,11 +11261,11 @@ BL
 DP
 BL
 yg
+Ww
 jp
 jp
 jp
-jp
-rJ
+cx
 rQ
 rQ
 rQ
@@ -11306,18 +11343,18 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
 jp
 jp
 jp
-rJ
-rJ
-rJ
-jp
+Db
+lN
+hJ
+ng
 jp
 jp
 eC
@@ -11357,8 +11394,8 @@ yg
 jp
 jp
 jp
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -11440,13 +11477,13 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
-rJ
-rQ
-rJ
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 WM
 Lm
 jp
@@ -11487,7 +11524,7 @@ yg
 jp
 jp
 XA
-rJ
+cx
 rQ
 rQ
 rQ
@@ -11576,16 +11613,16 @@ rQ
 rQ
 rQ
 rQ
-rJ
+cx
 WM
 jp
 jp
 jp
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
 cx
 cx
 cx
@@ -11603,8 +11640,8 @@ Cn
 jp
 jp
 jp
-jp
-jp
+Ww
+Ww
 jp
 jp
 jp
@@ -11613,11 +11650,11 @@ jp
 BL
 DP
 BL
-yg
+Ua
 jp
 jp
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -11706,12 +11743,12 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
+cx
 rQ
 rQ
 rQ
@@ -11734,7 +11771,7 @@ To
 jp
 XA
 jp
-jp
+Ww
 jp
 yg
 jp
@@ -11743,10 +11780,10 @@ jp
 BL
 DP
 BL
-yg
+Ua
 jp
 jp
-rJ
+cx
 rQ
 rQ
 rQ
@@ -11858,14 +11895,14 @@ xN
 xN
 yg
 jp
-rJ
-rJ
-rJ
+cx
+cx
+cx
 yg
 jp
-jp
-jp
-jp
+Ww
+Ww
+Ww
 jp
 jp
 jp
@@ -11875,8 +11912,8 @@ DP
 BL
 yg
 jp
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -11988,13 +12025,13 @@ xN
 xN
 Bq
 cx
-Db
+cx
 rQ
-rJ
+cx
 yg
 Lr
 ho
-jp
+Ua
 jp
 ng
 ng
@@ -12004,8 +12041,8 @@ BL
 DP
 BL
 yg
-rJ
-Db
+cx
+cx
 rQ
 rQ
 rQ
@@ -12120,12 +12157,12 @@ OF
 cx
 rQ
 rQ
-rJ
+cx
 Pj
 Pj
 Pj
-jp
-jp
+Ua
+Ua
 yg
 yg
 rJ
@@ -12133,8 +12170,8 @@ rJ
 BL
 DP
 BL
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -12250,20 +12287,20 @@ OF
 cx
 rQ
 rQ
-rJ
+cx
 Pj
 Pj
 Pj
 Pj
 nd
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
 rQ
 rQ
 rQ
@@ -12369,9 +12406,9 @@ cx
 YJ
 OF
 YJ
-cx
-cx
-cx
+xN
+xN
+xN
 OF
 OF
 OF
@@ -12380,13 +12417,13 @@ cx
 cx
 rQ
 rQ
-rJ
+cx
 Pj
 Pj
 Pj
 Pj
-rJ
-rJ
+cx
+cx
 rQ
 rQ
 rQ
@@ -12499,8 +12536,8 @@ cx
 uS
 uS
 OF
-cx
-cx
+xN
+xN
 OF
 OF
 OF
@@ -12510,12 +12547,12 @@ rQ
 rQ
 rQ
 rQ
-rJ
-rJ
-rJ
-rJ
-rJ
-rJ
+cx
+cx
+cx
+cx
+cx
+cx
 rQ
 rQ
 rQ
