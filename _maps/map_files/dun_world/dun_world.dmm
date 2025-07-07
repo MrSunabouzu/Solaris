@@ -29133,11 +29133,9 @@
 /turf/open/floor/rogue/blocks,
 /area/provincial/underground/forest/brightway)
 "juQ" = (
-/obj/effect/landmark/start/wardenlate{
-	dir = 1
-	},
-/turf/open/floor/rogue/woodturned,
-/area/provincial/indoors/town/province_keep/garrison/warden_watchtower)
+/obj/machinery/light/rogue/firebowl,
+/turf/open/floor/rogue/dirt,
+/area/provincial/underground/forest)
 "juS" = (
 /obj/structure/stone_tile/surrounding_tile/burnt{
 	dir = 8
@@ -29667,10 +29665,6 @@
 	},
 /turf/open/floor/rogue/metal/barograte/open,
 /area/provincial/indoors/dungeon/giuseppes_toybox)
-"jEY" = (
-/obj/machinery/light/rogue/firebowl,
-/turf/open/floor/rogue/dirt,
-/area/provincial/underground/forest)
 "jFh" = (
 /obj/machinery/light/rogue/wallfire/candle/directional/north,
 /turf/open/floor/rogue/carpet/lord/right,
@@ -309746,7 +309740,7 @@ jPD
 rMa
 rMa
 jPD
-jEY
+juQ
 xQu
 xQu
 xQu
@@ -361678,7 +361672,7 @@ qCA
 qCA
 qCA
 nlz
-juQ
+eiB
 djR
 wsK
 qOT
@@ -362130,7 +362124,7 @@ qCA
 qCA
 qCA
 nlz
-juQ
+eiB
 gnV
 gnV
 phJ
@@ -362582,7 +362576,7 @@ qCA
 qCA
 qCA
 nlz
-juQ
+eiB
 gnV
 nRi
 fBT
@@ -363034,7 +363028,7 @@ jQv
 jQv
 qCA
 nlz
-juQ
+eiB
 gnV
 gnV
 nvp
@@ -363486,7 +363480,7 @@ dpq
 jQv
 qCA
 nlz
-juQ
+eiB
 feI
 wnM
 qOT
@@ -363938,7 +363932,7 @@ dpq
 jQv
 qCA
 nlz
-juQ
+eiB
 feI
 rpG
 kbh
