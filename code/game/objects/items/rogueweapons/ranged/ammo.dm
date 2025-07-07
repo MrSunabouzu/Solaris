@@ -56,6 +56,22 @@
 	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/crossbows, SKILL_LEVEL_EXPERT))
 		L.mind.add_sleep_experience(/datum/skill/combat/crossbows, L.STAINT * skill_multiplier)
 
+/obj/projectile/bullet/reusable/bolt/weak
+	name = "Shoddy Bolt"
+	damage = 50
+	damage_type = BRUTE
+	armor_penetration = 50
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "bolt_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt
+	range = 15
+	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
+	embedchance = 50
+	woundclass = BCLASS_STAB
+	flag = "piercing"
+	speed = 1
+	npc_damage_mult = 1
+
 //arrows ฅ^•ﻌ•^ฅ
 
 /obj/item/ammo_casing/caseless/rogue/arrow
@@ -235,6 +251,30 @@
 	var/mob/living/M = target
 	M.adjust_fire_stacks(6)
 	M.adjustFireLoss(15)
+	M.IgniteMob()
+
+/obj/projectile/bullet/bolt/pyro/weak
+	name = "pyroclastic bolt"
+	desc = "A bolt smeared with a flammable tincture."
+	damage = 20
+	damage_type = BRUTE
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "boltpyro_proj"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt
+	range = 15
+	hitsound = 'sound/blank.ogg'
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+	flag = "piercing"
+	speed = 0.9
+
+/obj/projectile/bullet/bolt/pyro/weak/on_hit(target)
+	..()
+	if(!ismob(target))
+		return
+	var/mob/living/M = target
+	M.adjust_fire_stacks(3)
+	M.adjustFireLoss(9)
 	M.IgniteMob()
 
 /obj/item/ammo_casing/caseless/rogue/arrow/pyro

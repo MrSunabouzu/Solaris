@@ -9,15 +9,15 @@
 	icon_state = "lost_swordsman"
 	wander = 1
 	vision_range = 4
-	aggro_vision_range = 18
+	aggro_vision_range = 10
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	obj_damage = 100
 	base_intents = list(/datum/intent/simple/miniboss_bigsword_cleave,/datum/intent/simple/miniboss_bigsword_impale,/datum/intent/simple/miniboss_bigsword_suckerpunch)
 	melee_damage_lower = 20
 	melee_damage_upper = 40
 	dodge_prob = 50
-	health = 1200
-	maxHealth = 1200
+	health = 900
+	maxHealth = 900
 	STASTR = 18
 	STAPER = 12
 	STAINT = 8
@@ -53,7 +53,7 @@
 	icon_state = "phaseout"
 	dir = NORTH
 	name = "Underking's Grasp"
-	desc = "Finally, freedom."
+	desc = "Finally... freedom..."
 	randomdir = FALSE
 	duration = 1 SECONDS
 	layer = MASSIVE_OBJ_LAYER
@@ -116,7 +116,7 @@
 /datum/action/boss/martialdash/Trigger()
 	. = ..()
 	dashdir = get_dir(boss, boss.target)
-	if(boss.health <= 600) //add dash feints if boss is bloodied
+	if(boss.health <= 500) //add dash feints if boss is bloodied
 		if(prob(50))
 			dashdir = clamp((dashdir)+1,1,10)
 		else
@@ -141,7 +141,7 @@
 
 /datum/action/boss/bladedance/Trigger()
 	. = ..()
-	if(boss.health <= 600) //Wider radius when bloodied
+	if(boss.health <= 500) //Wider radius when bloodied
 		area_of_effect = 2
 	else
 		area_of_effect = 1
@@ -184,8 +184,8 @@
 
 /datum/action/boss/secondwind/Trigger()
 	. = ..()
-	if(boss.health <= 600 && hashealed == FALSE) //Heal ourselves the first time we reach bloodied
-		boss.heal_overall_damage(500)
+	if(boss.health <= 500 && hashealed == FALSE) //Heal ourselves the first time we reach bloodied
+		boss.heal_overall_damage(300)
 		boss.visible_message(span_boldannounce("[boss] roars as it finds the willpower to keep fighting!"))
 		hashealed = TRUE
 		playsound(boss, 'sound/vo/mobs/simple_orcs/orc_yell.ogg', 70)
@@ -194,12 +194,15 @@
 
 //Utility stuff
 
-/obj/effect/temp_visual/minibossdeath/Initialize()
+/obj/effect/temp_visual/minibossdeath/lost_swordsman/Initialize()
 	. = ..()
 	visible_message(span_boldannounce("The Forgotten Swordsman lets out a horrible scream and dissolves before you!"))
 	playsound(src, 'sound/vo/mobs/ghost/death.ogg', 70)
+	for(var/mob/M in range(7,src))
+		shake_camera(M, 7, 1)
+	return ..()
 
-/obj/effect/temp_visual/minibossdeath/Destroy()
+/obj/effect/temp_visual/minibossdeath/lost_swordsman/Destroy()
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 7, 1)
 	return ..()
