@@ -10,18 +10,11 @@
 	wander = 0
 	vision_range = 8
 	aggro_vision_range = 10
-	ranged = 1
-	rapid = 1
-	rapid_fire_delay = 40
-	ranged_message = "throws a tossblade"
-	projectiletype = /obj/projectile/bullet/reusable/bolt/weak
-	projectilesound = 'sound/combat/Ranged/crossbow-small-shot-01.ogg'
-	ranged_cooldown_time = 80
-	retreat_distance = 4
+	retreat_distance = 1
 	minimum_distance = 2
 	environment_smash = 1
 	obj_damage = 15
-	base_intents = list()
+	base_intents = list(/datum/intent/spear/banditboss_spear)
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 	dodge_prob = 33
@@ -38,3 +31,19 @@
 	loot = list(/obj/effect/spawner/lootdrop/roguetown/dungeon/money, /obj/effect/spawner/lootdrop/roguetown/gems, /obj/effect/temp_visual/minibossdeath)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
+
+	//Melee Attacks
+
+/datum/intent/spear/banditboss_spear
+	name = "thrust"
+	blade_class = BCLASS_STAB
+	attack_verb = list("thrusts")
+	animname = "stab"
+	icon_state = "instab"
+	reach = 2
+	chargetime = 0
+	swingdelay = 1
+	warnie = "mobwarning"
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 33
+	item_d_type = "stab"
