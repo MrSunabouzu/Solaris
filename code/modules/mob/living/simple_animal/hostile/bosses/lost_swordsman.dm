@@ -14,7 +14,7 @@
 	obj_damage = 100
 	base_intents = list(/datum/intent/simple/miniboss_bigsword_cleave,/datum/intent/simple/miniboss_bigsword_impale,/datum/intent/simple/miniboss_bigsword_suckerpunch)
 	melee_damage_lower = 20
-	melee_damage_upper = 40
+	melee_damage_upper = 35
 	dodge_prob = 50
 	health = 900
 	maxHealth = 900
@@ -25,13 +25,13 @@
 	STAEND = 20
 	STASPD = 15
 	STALUC = 15
-	loot = list(/obj/effect/spawner/lootdrop/roguetown/dungeon/money/rich, /obj/effect/spawner/lootdrop/roguetown/dungeon/gadgets, /obj/effect/spawner/lootdrop/roguetown/gems, /obj/effect/temp_visual/minibossdeath)
+	loot = list(/obj/effect/spawner/lootdrop/roguetown/dungeon/money/rich, /obj/effect/spawner/lootdrop/roguetown/dungeon/gadgets, /obj/effect/spawner/lootdrop/roguetown/gems, /obj/effect/temp_visual/minibossdeath_lost_swordsman)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
 
 //Effects
 
-/obj/effect/temp_visual/trap
+/obj/effect/temp_visual/trap //turn me into a telegraph later
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "trap"
 	light_outer_range = 2
@@ -44,16 +44,6 @@
 	dir = NORTH
 	name = "Dance of Blades"
 	desc = "Get out of the way!"
-	randomdir = FALSE
-	duration = 1 SECONDS
-	layer = MASSIVE_OBJ_LAYER
-
-/obj/effect/temp_visual/minibossdeath
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "phaseout"
-	dir = NORTH
-	name = "Underking's Grasp"
-	desc = "Finally... freedom..."
 	randomdir = FALSE
 	duration = 1 SECONDS
 	layer = MASSIVE_OBJ_LAYER
@@ -122,6 +112,8 @@
 		else
 			dashdir = clamp((dashdir)-1,1,10)
 	dashturf = get_step(boss.target, dashdir)
+	if(!dashturf)
+		return
 	if(dashturf.density) //Dont backflip into a wall, legend
 		return
 	boss.visible_message(span_boldannounce("[boss] dashes around to [boss.target]'s blind spot!"))
@@ -133,7 +125,7 @@
 	check_flags = AB_CHECK_CONSCIOUS //Incase the boss is given a player
 	boss_cost = 60 //Cost of usage for the boss' AI 1-100
 	usage_probability = 60
-	needs_target = FALSE 
+	needs_target = TRUE
 	say_when_triggered = "RRAGH!"
 	var/delay = 14
 	var/damage = 75 //there are lines on the floor
@@ -194,19 +186,22 @@
 
 //Utility stuff
 
-/obj/effect/temp_visual/minibossdeath/lost_swordsman/Initialize()
+/obj/effect/temp_visual/minibossdeath_lost_swordsman
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "phaseout"
+	dir = NORTH
+	name = "Underking's Grasp"
+	desc = "Finally... freedom..."
+	randomdir = FALSE
+	duration = 1 SECONDS
+	layer = MASSIVE_OBJ_LAYER
+
+/obj/effect/temp_visual/minibossdeath_lost_swordsman/Initialize()
 	. = ..()
 	visible_message(span_boldannounce("The Forgotten Swordsman lets out a horrible scream and dissolves before you!"))
 	playsound(src, 'sound/vo/mobs/ghost/death.ogg', 70)
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 7, 1)
-	return ..()
-
-/obj/effect/temp_visual/minibossdeath/lost_swordsman/Destroy()
-	for(var/mob/M in range(7,src))
-		shake_camera(M, 7, 1)
-	return ..()
-
 
 
 

@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/boss/archer_asshole
-	name = "Cocky Crossbowelf"
+	name = "Cocky Crossbow Elf"
 	desc = "The near permanent grin smeared on her face betrays the monster harbored inside. Cut her hubristic journey short."
 	mob_biotypes = MOB_HUMANOID
-	boss_abilities = list(/datum/action/boss/trickammo,/datum/action/boss/motormouth,/datum/action/boss/rapidfire)
+	boss_abilities = list(/datum/action/boss/aa_trickammo,/datum/action/boss/aa_motormouth,/datum/action/boss/aa_rapidfire)
 	faction = list("miniboss")
 	del_on_death = TRUE
 	icon = 'icons/mob/solaris_badasses.dmi'
@@ -21,7 +21,7 @@
 	minimum_distance = 3
 	environment_smash = 0
 	obj_damage = 5
-	base_intents = list(/datum/intent/simple/miniboss_sad_punch)
+	base_intents = list(/datum/intent/simple/aa_miniboss_sad_punch)
 	melee_damage_lower = 1
 	melee_damage_upper = 5
 	dodge_prob = 75
@@ -35,7 +35,7 @@
 	STAEND = 20
 	STASPD = 18
 	STALUC = 15
-	loot = list(/obj/effect/spawner/lootdrop/roguetown/dungeon/money, /obj/effect/spawner/lootdrop/roguetown/gems, /obj/effect/temp_visual/minibossdeath)
+	loot = list(/obj/effect/spawner/lootdrop/roguetown/dungeon/money, /obj/effect/spawner/lootdrop/roguetown/gems, /obj/effect/temp_visual/minibossdeath_asshole_archer)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
 	emote_taunt = list("smile","giggle","grin")
@@ -47,7 +47,7 @@
 
 //Basic Attacks
 
-/datum/intent/simple/miniboss_sad_punch //Useless on purpose, shes less dangerous in melee
+/datum/intent/simple/aa_miniboss_sad_punch //Useless on purpose, shes less dangerous in melee
 	name = "punch"
 	icon_state = "instrike"
 	attack_verb = list("pathetically baps", "ineffectually punches", "hurts her hand attempting to jab")
@@ -63,7 +63,7 @@
 
 //Special Attacks
 
-/datum/action/boss/trickammo //Projectile variety as fight continues
+/datum/action/boss/aa_trickammo //Projectile variety as fight continues
 	check_flags = AB_CHECK_CONSCIOUS 
 	boss_cost = 40 
 	usage_probability = 25
@@ -74,7 +74,7 @@
 	var/TAreloadhums = list('sound/vo/female/gen/hum (1).ogg', 'sound/vo/female/gen/hum (2).ogg', 'sound/vo/female/gen/hum (3).ogg')
 	var/TAreloadgrunts = list('sound/vo/female/gen/pain (1).ogg', 'sound/vo/female/gen/pain (2).ogg', 'sound/vo/female/gen/pain (3).ogg')
 
-/datum/action/boss/trickammo/Trigger()
+/datum/action/boss/aa_trickammo/Trigger()
 	. = ..()
 	if(boss.health <= 400)
 		boss.projectiletype = pick(TAspecialammo)
@@ -96,17 +96,18 @@
 			sleep(rand(6,12))
 			playsound(boss,'sound/magic/whiteflame.ogg', 80)
 
-/datum/action/boss/motormouth //She is already way too dangerous so this just gives her a chance to waste her own resources.
+/datum/action/boss/aa_motormouth //She is already way too dangerous so this just gives her a chance to waste her own resources.
 	check_flags = AB_CHECK_CONSCIOUS 
 	boss_cost = 50 
 	usage_probability = 9
 	needs_target = TRUE
+	boss_type = /mob/living/simple_animal/hostile/boss/archer_asshole
 	say_when_triggered = ""
 	var/quips = list("Hoo boy...", "Hee hee!", "C'mon, keep up!", "Sloooowpoke~", "Just you wait~", "I've seen TREES grow faster than you move!", "Betcha can't dodge this!", "I got things to do, hurry up and bleed out!", "First fight?", "Oooh your a natural at getting shot!", "Nothing like a good hunt!", "D'aww this is adorable. Look at you!", "That all you got?")
 	var/quipsbloodied = list("Shit..! Alright, not bad for a sapling!", "Hey C'mon it was a joke I swear!", "Rrgh.. Stand! STILL!!", "Would you just DIE already?!", "I'll get through this... always do...", "Ugh! Quit movin already!", "Gah!", "YOU are costing me FAR too many bolts!", "Bolts aren't FREE you know, die already?", "Making me work for it eh?", "Ooooh I love an good dance partner!")
 	var/quipsneardeath = list("Wait wait wait i'm sorry ok!?", "Damn..! Not like this!", "YOU won't be my end!", "DIE! DIE! DIE!", "I've been through worse...!", "Ngh..", "GAH-", "NO!", "DIE!", "Sunmarch isn't worth this..!", "Aeternus save me!", "I.. can still.... fight...!", "It's...going to be.... fine..!", "No! I'M supposed to be the one that WINS!", "I always win... just watch...")
 
-/datum/action/boss/motormouth/Trigger() //Gets more desperate and less chatty as she's losing.
+/datum/action/boss/aa_motormouth/Trigger() //Gets more desperate and less chatty as she's losing.
 	. = ..()
 	if(boss.health >= 400 && prob(88))
 		boss.say(pick(quips))
@@ -115,18 +116,19 @@
 	if(boss.health <= 200 && prob(66))
 		boss.say(pick(quipsneardeath))
 
-/datum/action/boss/rapidfire //Desperation mechanic that makes her gimmick worse to deal with.
+/datum/action/boss/aa_rapidfire //Desperation mechanic that makes her gimmick worse to deal with.
 	check_flags = AB_CHECK_CONSCIOUS 
 	boss_cost = 10
 	usage_probability = 100
 	needs_target = TRUE
+	boss_type = /mob/living/simple_animal/hostile/boss/archer_asshole
 	say_when_triggered = ""
 	var/desperation = FALSE
 	var/turf/dashturf
 	var/dashdir
 
-/datum/action/boss/rapidfire/Trigger()
-	if(boss.health <= 200 && desperation == FALSE)
+/datum/action/boss/aa_rapidfire/Trigger()
+	if(boss.health <= 125 && desperation == FALSE)
 		boss.rapid = 3
 		boss.say("Alright, That's it!! Now you asked for it!!!")
 		boss.visible_message(span_boldannounce("[boss] cocks her crossbow and it transforms!"))
@@ -142,5 +144,24 @@
 		playsound(boss, 'sound/foley/martialdash.ogg', 100)
 	else
 		return
+
+//Utility stuff
+
+/obj/effect/temp_visual/minibossdeath_asshole_archer
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "phaseout"
+	dir = NORTH
+	name = "Underking's Grasp"
+	desc = "How did I go so far astray...?"
+	randomdir = FALSE
+	duration = 1 SECONDS
+	layer = MASSIVE_OBJ_LAYER
+
+/obj/effect/temp_visual/minibossdeath_asshole_archer/Initialize()
+	. = ..()
+	visible_message(span_boldannounce("The Crossbow Elf screams before vanishing into light!"))
+	playsound(src, 'sound/vo/female/elf/scream (3).ogg', 80)
+	for(var/mob/M in range(7,src))
+		shake_camera(M, 7, 1)
 
 		
