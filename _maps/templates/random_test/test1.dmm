@@ -1,0 +1,23 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/rogue/blocks,
+/area/provincial)
+"C" = (
+/turf/closed/wall/mineral/rogue/pipe,
+/area/provincial)
+
+(1,1,1) = {"
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+C
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+"}

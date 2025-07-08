@@ -11,6 +11,7 @@
 #include "_maps\map_files\generic\CentCom.dmm"
 #include "_maps\templates\bog_shack_small.dm"
 #include "_maps\templates\sewers.dm"
+#include "_maps\templates\random_test.dm"
 #include "code\__byond_version_compat.dm"
 #include "code\_compile_options.dm"
 #include "code\rt.dm"
