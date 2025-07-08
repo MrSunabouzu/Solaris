@@ -38,7 +38,7 @@
 
 /datum/component/storage/concrete/roguetown/smokingpouch/New(datum/P, ...)
 	. = ..()
-	can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/grown/rogue, /obj/item/clothing/mask/cigarette, /obj/item/paper))
+	can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/grown/rogue, /obj/item/clothing/mask/cigarette, /obj/item/paper, /obj/item/flint))
 
 /datum/component/storage/concrete/roguetown/belt
 	screen_max_rows = 3
