@@ -31,7 +31,7 @@
 	can_hold = typecacheof(list(/obj/item/cooking, /obj/item/reagent_containers/food/snacks, /obj/item/reagent_containers/, /obj/item/kitchen))
 
 /datum/component/storage/concrete/roguetown/smokingpouch
-	screen_max_rows = 3
+	screen_max_rows = 2
 	screen_max_columns = 3
 	max_w_class = WEIGHT_CLASS_HUGE
 	not_while_equipped = TRUE
