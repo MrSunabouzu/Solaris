@@ -1090,6 +1090,10 @@
 /obj/structure/far_travel,
 /turf/open/floor/rogue/blocks,
 /area/provincial/indoors)
+"ox" = (
+/obj/effect/landmark/map_load_mark/random_test,
+/turf/open/floor/rogue/dirt,
+/area/provincial/outdoors)
 "qw" = (
 /obj/structure/fluff/statue/tdummy,
 /turf/open/floor/rogue/cobble,
@@ -1100,6 +1104,10 @@
 "vW" = (
 /turf/open/floor/rogue/cobble,
 /area/provincial/indoors/town/steward/import_platform)
+"AJ" = (
+/obj/effect/landmark/map_load_mark/random_test,
+/turf/open/floor/rogue/dirt/road,
+/area/provincial/outdoors)
 "Jz" = (
 /obj/effect/landmark/latejoin,
 /obj/structure/far_travel,
@@ -1108,6 +1116,10 @@
 "QR" = (
 /turf/open/floor/rogue/dirt,
 /area/provincial/outdoors/forest)
+"WP" = (
+/obj/effect/landmark/map_load_mark/random_test,
+/turf/open/floor/rogue/cobble,
+/area/provincial/outdoors)
 
 (1,1,1) = {"
 aa
@@ -6976,7 +6988,7 @@ aJ
 cC
 al
 al
-ai
+ox
 al
 al
 al
@@ -8011,7 +8023,7 @@ aJ
 bm
 aJ
 al
-aJ
+WP
 ai
 ai
 ai
@@ -8771,7 +8783,7 @@ ab
 ab
 at
 cG
-aJ
+WP
 aJ
 aJ
 aJ
@@ -9291,7 +9303,7 @@ al
 al
 al
 aG
-al
+AJ
 al
 aL
 al

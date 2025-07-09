@@ -137,3 +137,5 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/landmark/map_load_mark/Initialize()
 	. = ..()
 	LAZYADD(SSmapping.map_load_marks,src)
+
+obj/effect/landmark/random_room_helper

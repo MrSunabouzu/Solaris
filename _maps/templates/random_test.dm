@@ -14,8 +14,13 @@
 
 	//This uses the "IDs" as below -- they should not have spaces in them though since they're strings it won't matter much
 	//It needs at least 1 to do anything, no limit in max number of templates
-	templates = list( "test 1","test 2","test 3" )
+	templates = list( /datum/map_template/rnd_test1,/datum/map_template/rnd_test2,/datum/map_template/rnd_test3 )
+	var/datum/map_template
 
+/obj/effect/landmark/map_load_mark/random_test/Initialize()
+	. = ..()
+	map_template = pick(templates)
+	map_template.load(src)
 //The template path as directly below should be unique, though doesn't matter what it's actually named since we use the ID for everything.
 /datum/map_template/rnd_test1
 	name = "1"
