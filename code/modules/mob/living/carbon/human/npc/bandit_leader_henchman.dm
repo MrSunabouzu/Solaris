@@ -70,6 +70,8 @@ GLOBAL_LIST_INIT(bandhench_aggro, world.file2list("strings/rt/searaideraggroline
 		new_hair.set_accessory_type(hairm, null, src)
 
 	head.add_bodypart_feature(new_hair)
+	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+	dna.species.handle_body(src)
 	if(is_species(src,/datum/species/human/northern))
 		equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/bandit_leader_henchman)
 	else

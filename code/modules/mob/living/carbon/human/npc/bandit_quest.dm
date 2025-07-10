@@ -1,9 +1,9 @@
-GLOBAL_LIST_INIT(bandhench_aggro, world.file2list("strings/rt/searaideraggrolines.txt"))
+GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggrolines.txt"))
 
 /mob/living/carbon/human/species/human/bandit_leader_henchman
 	aggressive=1
 	mode = NPC_AI_IDLE
-	faction = list("quest_target")
+	faction = list("quest_ target")
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(bandhench_aggro, world.file2list("strings/rt/searaideraggroline
 		aggressive=1
 		wander = TRUE
 		if(!is_silent && target != newtarg)
-			say(pick(GLOB.bandhench_aggro))
+			say(pick(GLOB.banditquest_aggro))
 			linepoint(target)
 
 /mob/living/carbon/human/species/human/bandit_leader_henchman/should_target(mob/living/L)
@@ -31,20 +31,20 @@ GLOBAL_LIST_INIT(bandhench_aggro, world.file2list("strings/rt/searaideraggroline
 
 /mob/living/carbon/human/species/human/bandit_leader_henchman/Initialize(mob/living/L)
 	. = ..()
-	if(prob(50))
-		set_species(/datum/species/human/northern)
-	else
-		set_species(/datum/species/human/halfelf)
+	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/lupian,/datum/species/elf/wood,/datum/species/moth,/datum/species/kobold,/datum/species/goblinp)
+	var/datum/species/chosen_species
+	chosen_species = pick(allowed_species)
+	set_species(chosen_species)
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	is_silent = TRUE
 
 /mob/living/carbon/human/species/human/bandit_leader_henchman/after_creation()
 	..()
-	job = "Henchman"
+	job = "Pillager"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	real_name = pick("Bandit Henchman","Bandit Goon","Bandit Thug")
+	real_name = pick("Thug","Outlaw","Brigand","Blackguard","Knave","Wretch")
 	gender = pick(MALE, FEMALE)
 	var/hairf = pick(list(/datum/sprite_accessory/hair/head/himecut, 
 						/datum/sprite_accessory/hair/head/countryponytailalt, 
@@ -70,6 +70,8 @@ GLOBAL_LIST_INIT(bandhench_aggro, world.file2list("strings/rt/searaideraggroline
 		new_hair.set_accessory_type(hairm, null, src)
 
 	head.add_bodypart_feature(new_hair)
+	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+	dna.species.handle_body(src)
 	if(is_species(src,/datum/species/human/northern))
 		equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/bandit_leader_henchman)
 	else
