@@ -45,6 +45,7 @@
 	sellprice = 6
 
 /obj/item/storage/gadget/smokingpouch/crafted/PopulateContents()
+	return
 
 /obj/item/folding_table_stored
 	name = "folding table"
