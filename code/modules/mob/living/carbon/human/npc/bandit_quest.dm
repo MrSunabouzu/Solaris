@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggrolines.txt"))
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman
+/mob/living/carbon/human/species/human/bandit_quest
 	aggressive=1
 	mode = NPC_AI_IDLE
 	faction = list("quest_ target")
@@ -10,11 +10,11 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 	possible_rmb_intents = list()
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/ambush
+/mob/living/carbon/human/species/human/bandit_quest/ambush
 	aggressive=1
 	wander = TRUE
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/retaliate(mob/living/L)
+/mob/living/carbon/human/species/human/bandit_quest/retaliate(mob/living/L)
 	var/newtarg = target
 	.=..()
 	if(target)
@@ -24,12 +24,12 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 			say(pick(GLOB.banditquest_aggro))
 			linepoint(target)
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/should_target(mob/living/L)
+/mob/living/carbon/human/species/human/bandit_quest/should_target(mob/living/L)
 	if(L.stat != CONSCIOUS)
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/Initialize(mob/living/L)
+/mob/living/carbon/human/species/human/bandit_quest/Initialize(mob/living/L)
 	. = ..()
 	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/lupian,/datum/species/elf/wood,/datum/species/moth,/datum/species/kobold,/datum/species/goblinp)
 	var/datum/species/chosen_species
@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	is_silent = TRUE
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/after_creation()
+/mob/living/carbon/human/species/human/bandit_quest/after_creation()
 	..()
 	job = "Pillager"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
@@ -70,17 +70,16 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 		new_hair.set_accessory_type(hairm, null, src)
 
 	head.add_bodypart_feature(new_hair)
+	if(is_species(src,/obj/item/organ/ears/lupian))
+		new_hair.add_bodypart_feature(/datum/sprite_accessory/ears/wolf)
+		
 	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
 	dna.species.handle_body(src)
-	if(is_species(src,/datum/species/human/northern))
-		equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/bandit_leader_henchman)
-	else
-		equipOutfit(new /datum/outfit/job/roguetown/human/species/human/halfelf/bandit_leader_henchman)
 	update_hair()
 	update_body()
 	src.say(pick("On it boss!","You got it boss!","Roger dat boss!","Lets get em!"))
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/npc_idle()
+/mob/living/carbon/human/species/human/bandit_quest/npc_idle()
 	if(m_intent == MOVE_INTENT_SNEAK)
 		return
 	if(world.time < next_idle)
@@ -102,75 +101,7 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 			emote("warcry")
 	. = ..()
 
-/datum/outfit/job/roguetown/human/species/human/northern/bandit_leader_henchman/pre_equip(mob/living/carbon/human/H)
-	armor = /obj/item/clothing/suit/roguetown/armor/leather
-	if(H.gender == FEMALE && prob(22)) //if the bikini ever updates to works on men, remove the gender check only
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/bikini
-	pants = /obj/item/clothing/under/roguetown/trou/leather
-	cloak = /obj/item/clothing/cloak/raincloak
-	if(prob(33))
-		cloak = /obj/item/clothing/cloak/raincloak/red
-	if(prob(33))
-		cloak = /obj/item/clothing/cloak/raincloak/green
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	if(prob(20))
-		wrists = /obj/item/clothing/wrists/roguetown/bracers
-	mask = /obj/item/clothing/mask/rogue/facemask
-	if(prob(50))
-		mask = /obj/item/clothing/mask/rogue/ragmask/black
-	if(prob(40))
-		head = /obj/item/clothing/head/roguetown/helmet/leather
-	neck = /obj/item/clothing/neck/roguetown/leather
-	if(prob(50))
-		neck = /obj/item/clothing/neck/roguetown/gorget
-	gloves = /obj/item/clothing/gloves/roguetown/leather/black
-	shoes = /obj/item/clothing/shoes/roguetown/boots
-	H.STASTR = rand(10,12)
-	H.STASPD = rand(10,12)
-	H.STACON = rand(12,14)
-	H.STAEND = rand(12,14)
-	H.STAPER = rand(10,12)
-	H.STAINT = rand(8,10) //dump stat
-	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword/iron
-		l_hand = /obj/item/rogueweapon/shield/wood
-	else
-		r_hand = /obj/item/rogueweapon/huntingknife/idagger
 
-/datum/outfit/job/roguetown/human/species/human/halfelf/bandit_leader_henchman/pre_equip(mob/living/carbon/human/H)
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
-	if(H.gender == FEMALE && prob(22)) //if the bikini ever updates to works on men, remove the gender check only
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/hide/bikini
-	if(prob(50))
-		pants = /obj/item/clothing/under/roguetown/trou/leather
-	cloak = /obj/item/clothing/cloak/raincloak
-	if(prob(33))
-		cloak = /obj/item/clothing/cloak/raincloak/blue
-	if(prob(33))
-		cloak = /obj/item/clothing/cloak/raincloak/purple
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	if(prob(20))
-		wrists = /obj/item/clothing/wrists/roguetown/bracers
-	mask = /obj/item/clothing/mask/rogue/facemask
-	if(prob(50))
-		mask = /obj/item/clothing/mask/rogue/ragmask/black
-	if(prob(40))
-		head = /obj/item/clothing/head/roguetown/helmet/bandana
-	if(prob(50))
-		neck = /obj/item/clothing/neck/roguetown/leather
-	gloves = /obj/item/clothing/gloves/roguetown/leather/black
-	shoes = /obj/item/clothing/shoes/roguetown/boots
-	H.STASTR = rand(10,12)
-	H.STASPD = rand(12,14) //slightly higher speed as a consolation for being worse equipped
-	H.STACON = rand(12,14)
-	H.STAEND = rand(12,14)
-	H.STAPER = rand(10,12)
-	H.STAINT = rand(8,10) //dump stat
-	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword/iron
-		l_hand = /obj/item/rogueweapon/huntingknife/idagger
-	else
-		r_hand = /obj/item/rogueweapon/huntingknife/idagger
 	
 	
 
