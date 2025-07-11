@@ -463,6 +463,55 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.generic_event_spawns -= src
 	return ..()
 
+//blood moon event spawns
+/obj/effect/landmark/event_spawn/townraid
+	name = "Town Raid"
+	icon_state = "generic_event"
+	layer = HIGH_LANDMARK_LAYER
+
+/obj/effect/landmark/event_spawn/townraid/New()
+	GLOB.moon_event_spawns += src
+
+/obj/effect/landmark/event_spawn/townraid/Destroy()
+	GLOB.moon_event_spawns -= src
+	return ..()
+
+/obj/effect/landmark/event_spawn/towndamage
+	name = "Town Damage"
+	icon_state = "generic_event"
+	layer = HIGH_LANDMARK_LAYER
+
+/obj/effect/landmark/event_spawn/towndamage/New()
+	GLOB.moon_event_spawns += src
+
+/obj/effect/landmark/event_spawn/towndamage/Destroy()
+	GLOB.moon_event_spawns -= src
+	return ..()
+
+/obj/effect/landmark/event_spawn/raidboss
+	name = "Server Boss"
+	icon_state = "generic_event"
+	layer = HIGH_LANDMARK_LAYER
+
+/obj/effect/landmark/event_spawn/raidboss/New()
+	GLOB.moon_event_spawns += src
+
+/obj/effect/landmark/event_spawn/raidboss/Destroy()
+	GLOB.moon_event_spawns -= src
+	return ..()
+
+/obj/effect/landmark/event_spawn/blightland
+	name = "Blight Land"
+	icon_state = "generic_event"
+	layer = HIGH_LANDMARK_LAYER
+
+/obj/effect/landmark/event_spawn/blightland/New()
+	GLOB.moon_event_spawns += src
+
+/obj/effect/landmark/event_spawn/blightland/Destroy()
+	GLOB.moon_event_spawns -= src
+	return ..()
+
 /obj/effect/landmark/ruin
 	var/datum/map_template/ruin/ruin_template
 
