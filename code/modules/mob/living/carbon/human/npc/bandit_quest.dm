@@ -31,14 +31,14 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 
 /mob/living/carbon/human/species/human/bandit_quest/Initialize(mob/living/L)
 	. = ..()
-	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/lupian,/datum/species/elf/wood,/datum/species/moth,/datum/species/kobold,/datum/species/goblinp,/datum/species/tabaxi)
+	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/elf/wood,/datum/species/human/halfelf,/datum/species/dwarf/gnome,/datum/species/dwarf/mountain)
 	var/datum/species/chosen_species
 	chosen_species = pick(allowed_species)
-	set_species(/datum/species/tabaxi)
+	set_species(chosen_species)
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	is_silent = TRUE
 
-/mob/living/carbon/human/species/human/bandit_quest/after_creation(mob/living/L)
+/mob/living/carbon/human/species/human/bandit_quest/after_creation()
 	..()
 	job = "Pillager"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
@@ -54,13 +54,14 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 						/datum/sprite_accessory/hair/head/dave, 
 						/datum/sprite_accessory/hair/head/emo, 
 						/datum/sprite_accessory/hair/head/sabitsuki))
-	var/hairc =  pick(list("#e02222","#a39c3d","#7a440f","#3f2516"))
+	var/hairc =  pick(list("#ad1818","#a39c3d","#7a440f","#3f2516","#ab5d0f"))
 	var/eyec = pick(list("#29b136","#3d51be","#8b6215","#72863c"))
-	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
+	var/obj/item/organ/eyes/mob_eyes
 	var/datum/bodypart_feature/hair/head/new_hair = new()
 	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
-	var/obj/item/organ/ears/ears = get_bodypart(BODY_ZONE_PRECISE_EARS)
-	var/obj/item/organ/tail/tail = getorganslot(ORGAN_SLOT_TAIL)
+	mob_eyes = src.getorgan(ORGAN_SLOT_EYES)
+	if(mob_eyes)
+		mob_eyes.eye_color = (eyec)
 	if(gender == FEMALE)
 		new_hair.set_accessory_type(hairf, hairc, src)
 	else
@@ -68,26 +69,14 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 
 	head.add_bodypart_feature(new_hair)
 
-	if(is_species(/datum/species/lupian))
-		ears.set_accessory_type(/datum/sprite_accessory/ears/wolf, (hairc))
-		tail.set_accessory_type(/datum/sprite_accessory/tail/wolf, (hairc))
-	if(is_species(/datum/species/goblinp))
-		ears.set_accessory_type(/datum/sprite_accessory/ears/goblin, (hairc))
-	if(is_species(/datum/species/elf/wood))
-		ears.set_accessory_type(/datum/sprite_accessory/ears/elfw, (hairc))
-	if(is_species(/datum/species/moth))
-	if(is_species(/datum/species/kobold))
-	if(is_species(/datum/species/tabaxi))
-		ears.set_accessory_type(/obj/item/organ/ears/tajaran)
-		ears.dye_color = (hairc)
+	if(prob(70))
+		equipOutfit(new /datum/outfit/job/roguetown/human/species/human/bandit_quest)
+	else
+		equipOutfit(new /datum/outfit/job/roguetown/human/species/human/bandit_quest_heavy)
 
-		
-	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
-	dna.species.handle_body(src)
 	update_hair()
 	update_body()
-	update_body_parts(TRUE)	
-	src.say(pick("On it boss!","You got it boss!","Roger dat boss!","Lets get em!"))
+
 
 /mob/living/carbon/human/species/human/bandit_quest/npc_idle()
 	if(m_intent == MOVE_INTENT_SNEAK)
@@ -105,11 +94,79 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 	if(!wander && prob(10))
 		face_atom(get_step(src,pick(GLOB.cardinals)))
 
-/mob/living/carbon/human/species/human/bandit_leader_henchman/handle_combat()
+/mob/living/carbon/human/species/human/bandit_quest/handle_combat()
 	if(mode == NPC_AI_HUNT)
-		if(prob(5))
-			emote("warcry")
+		if(prob(20))
+			emote(pick("warcry","rage"))
+			if(prob(30))
+				say(pick("For Glory!","Just you wait!","Die!","Die already!","Can't wait to see what you have!","I live for this part!"))
+				linepoint(target)
+	if(mode == NPC_AI_FLEE)
+		if(prob(20))
+			emote(pick("whimper","scream"))
+			if(prob(20))
+				say(pick("I can't die here!","Fuck this!","This ain't worth it!","Yikes!","Blasted heroes!"))
 	. = ..()
+
+/datum/outfit/job/roguetown/human/species/human/bandit_quest/pre_equip(mob/living/carbon/human/H)
+	armor = /obj/item/clothing/suit/roguetown/armor/leather
+	if(H.gender == FEMALE && prob(22)) //if the bikini ever updates to works on men, remove the gender check only
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/bikini
+	pants = /obj/item/clothing/under/roguetown/trou/leather
+	cloak = pick(list(/obj/item/clothing/cloak/raincloak,/obj/item/clothing/cloak/raincloak/red,/obj/item/clothing/cloak/raincloak/green))
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	if(prob(20))
+		wrists = /obj/item/clothing/wrists/roguetown/bracers
+	mask = /obj/item/clothing/mask/rogue/facemask
+	if(prob(50))
+		mask = /obj/item/clothing/mask/rogue/ragmask/black
+	if(prob(40))
+		head = /obj/item/clothing/head/roguetown/helmet/leather
+	neck = /obj/item/clothing/neck/roguetown/leather
+	if(prob(50))
+		neck = /obj/item/clothing/neck/roguetown/gorget
+	gloves = /obj/item/clothing/gloves/roguetown/leather/black
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	H.STASTR = rand(10,12)
+	H.STASPD = rand(10,12)
+	H.STACON = rand(12,14)
+	H.STAEND = rand(12,14)
+	H.STAPER = rand(10,12)
+	H.STAINT = rand(8,10) //dump stat
+	if(prob(50))
+		r_hand = /obj/item/rogueweapon/sword/iron
+		l_hand = /obj/item/rogueweapon/shield/wood
+	else
+		r_hand = /obj/item/rogueweapon/huntingknife/idagger
+
+/datum/outfit/job/roguetown/human/species/human/bandit_quest_heavy/pre_equip(mob/living/carbon/human/H)
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+	if(H.gender == FEMALE && prob(22)) //if the bikini ever updates to works on men, remove the gender check only
+		armor = /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
+	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
+	cloak = pick(list(/obj/item/clothing/cloak/raincloak,/obj/item/clothing/cloak/raincloak/red,/obj/item/clothing/cloak/raincloak/green))
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	mask = /obj/item/clothing/mask/rogue/facemask
+	if(prob(50))
+		mask = /obj/item/clothing/mask/rogue/ragmask/black
+	if(prob(60))
+		head = /obj/item/clothing/head/roguetown/helmet/skullcap
+	neck = /obj/item/clothing/neck/roguetown/leather
+	if(prob(50))
+		neck = /obj/item/clothing/neck/roguetown/gorget
+	gloves = /obj/item/clothing/gloves/roguetown/leather/black
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	H.STASTR = rand(11,13)
+	H.STASPD = rand(10,12)
+	H.STACON = rand(12,14)
+	H.STAEND = rand(12,14)
+	H.STAPER = rand(10,12)
+	H.STAINT = rand(8,10) //dump stat
+	if(prob(50))
+		r_hand = /obj/item/rogueweapon/sword/iron
+		l_hand = /obj/item/rogueweapon/shield/wood
+	else
+		r_hand = /obj/item/rogueweapon/halberd/bardiche
 
 
 	

@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(bandhench_aggro, world.file2list("strings/rt/searaideraggroline
 						/datum/sprite_accessory/hair/head/dave, 
 						/datum/sprite_accessory/hair/head/emo, 
 						/datum/sprite_accessory/hair/head/sabitsuki))
-	var/hairc =  pick(list("#191515","#a39c3d"),"#7a440f","#3f2516")
+	var/hairc =  pick(list("#191515","#a39c3d","#7a440f","#3f2516"))
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	var/eyec = pick(list("#29b136","#3d51be","#8b6215","#72863c"))
 
