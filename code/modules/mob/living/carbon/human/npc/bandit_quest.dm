@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/lupian,/datum/species/elf/wood,/datum/species/moth,/datum/species/kobold,/datum/species/goblinp,/datum/species/tabaxi)
 	var/datum/species/chosen_species
 	chosen_species = pick(allowed_species)
-	set_species(chosen_species)
+	set_species(/datum/species/tabaxi)
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	is_silent = TRUE
 
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 						/datum/sprite_accessory/hair/head/dave, 
 						/datum/sprite_accessory/hair/head/emo, 
 						/datum/sprite_accessory/hair/head/sabitsuki))
-	var/hairc =  pick(list("#191515","#a39c3d"),"#7a440f","#3f2516")
+	var/hairc =  pick(list("#e02222","#a39c3d","#7a440f","#3f2516"))
 	var/eyec = pick(list("#29b136","#3d51be","#8b6215","#72863c"))
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	var/datum/bodypart_feature/hair/head/new_hair = new()
@@ -78,13 +78,15 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 	if(is_species(/datum/species/moth))
 	if(is_species(/datum/species/kobold))
 	if(is_species(/datum/species/tabaxi))
-		ears.set_accessory_type(/obj/item/organ/ears/tajaran, (hairc))
+		ears.set_accessory_type(/obj/item/organ/ears/tajaran)
+		ears.dye_color = (hairc)
 
 		
 	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
 	dna.species.handle_body(src)
 	update_hair()
 	update_body()
+	update_body_parts(TRUE)	
 	src.say(pick("On it boss!","You got it boss!","Roger dat boss!","Lets get em!"))
 
 /mob/living/carbon/human/species/human/bandit_quest/npc_idle()
