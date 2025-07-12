@@ -31,14 +31,14 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 
 /mob/living/carbon/human/species/human/bandit_quest/Initialize(mob/living/L)
 	. = ..()
-	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/lupian,/datum/species/elf/wood,/datum/species/moth,/datum/species/kobold,/datum/species/goblinp)
+	var/list/allowed_species = list(/datum/species/human/northern,/datum/species/lupian,/datum/species/elf/wood,/datum/species/moth,/datum/species/kobold,/datum/species/goblinp,/datum/species/tabaxi)
 	var/datum/species/chosen_species
 	chosen_species = pick(allowed_species)
 	set_species(chosen_species)
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	is_silent = TRUE
 
-/mob/living/carbon/human/species/human/bandit_quest/after_creation()
+/mob/living/carbon/human/species/human/bandit_quest/after_creation(mob/living/L)
 	..()
 	job = "Pillager"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
@@ -55,23 +55,31 @@ GLOBAL_LIST_INIT(banditquest_aggro, world.file2list("strings/rt/searaideraggroli
 						/datum/sprite_accessory/hair/head/emo, 
 						/datum/sprite_accessory/hair/head/sabitsuki))
 	var/hairc =  pick(list("#191515","#a39c3d"),"#7a440f","#3f2516")
-	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	var/eyec = pick(list("#29b136","#3d51be","#8b6215","#72863c"))
-
-	if(organ_eyes)
-		(organ_eyes.eye_color) = (eyec)
-	hair_color = (hairc)
+	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	var/datum/bodypart_feature/hair/head/new_hair = new()
 	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
-
+	var/obj/item/organ/ears/ears = get_bodypart(BODY_ZONE_PRECISE_EARS)
+	var/obj/item/organ/tail/tail = getorganslot(ORGAN_SLOT_TAIL)
 	if(gender == FEMALE)
-		new_hair.set_accessory_type(hairf, null, src)
+		new_hair.set_accessory_type(hairf, hairc, src)
 	else
-		new_hair.set_accessory_type(hairm, null, src)
+		new_hair.set_accessory_type(hairm, hairc, src)
 
 	head.add_bodypart_feature(new_hair)
-	if(is_species(src,/obj/item/organ/ears/lupian))
-		new_hair.add_bodypart_feature(/datum/sprite_accessory/ears/wolf)
+
+	if(is_species(/datum/species/lupian))
+		ears.set_accessory_type(/datum/sprite_accessory/ears/wolf, (hairc))
+		tail.set_accessory_type(/datum/sprite_accessory/tail/wolf, (hairc))
+	if(is_species(/datum/species/goblinp))
+		ears.set_accessory_type(/datum/sprite_accessory/ears/goblin, (hairc))
+	if(is_species(/datum/species/elf/wood))
+		ears.set_accessory_type(/datum/sprite_accessory/ears/elfw, (hairc))
+	if(is_species(/datum/species/moth))
+	if(is_species(/datum/species/kobold))
+	if(is_species(/datum/species/tabaxi))
+		ears.set_accessory_type(/obj/item/organ/ears/tajaran, (hairc))
+
 		
 	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
 	dna.species.handle_body(src)
